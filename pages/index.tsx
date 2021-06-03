@@ -1,6 +1,10 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+	useEffect(() => {
+		console.log("hello nextjs");
+	}, []);
 	return (
 		<div>
 			<Head>
@@ -9,7 +13,20 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className="text-blue-700 p-10">123</main>
+			<main className="w-screen h-screen">
+				<SelfIntro />
+			</main>
 		</div>
 	);
 }
+
+const SelfIntro = () => {
+	const [username] = useState("world");
+	return (
+		<div className="w-full h-full flex flex-col justify-center items-center">
+			<h1 className="text-sm">
+				Hello, <span className="text-blue-700 font-bold">{username}</span>
+			</h1>
+		</div>
+	);
+};
