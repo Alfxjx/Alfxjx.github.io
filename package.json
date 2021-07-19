@@ -15,10 +15,13 @@
     "@emotion/styled": "11",
     "autoprefixer": "^10.2.5",
     "framer-motion": "4",
+    "gray-matter": "^4.0.3",
     "next": "10.2.0",
     "postcss": "^8.3.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.9",
