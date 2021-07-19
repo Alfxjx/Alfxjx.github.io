@@ -5,9 +5,7 @@ coverImage: '/assets/blog/hello-world/cover.jpg'
 date: '2020-07-19T20:35:07.322Z'
 author:
   name: Alfxjx
-  picture: '/assets/blog/authors/tim.jpeg'
-ogImage:
-  url: '/assets/blog/hello-world/cover.jpg'
+  picture: '/assets/blog/authors/alfxjx.jpeg'
 ---
 
 # [CSS]矩形进度条的两种实现
