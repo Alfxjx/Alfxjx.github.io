@@ -1,14 +1,16 @@
-import { getAllPosts, getAllBlogs} from "../utils/api";
+import { getAllPosts, getAllBlogs } from "../utils/api";
 import Link from "next/link";
 
 export default function Document({ allPosts }) {
 	return (
-		<div className="w-screen h-screen">
+		<div className='w-screen h-screen'>
 			{allPosts.map((post) => {
 				return (
 					<div>
-						<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-							<a className="hover:underline">{post.title}</a>
+						<Link
+							as={`/${post.type}/${post.slug}`}
+							href={`/${post.type}/[slug]`}>
+							<a className='hover:underline'>{post.title}</a>
 						</Link>
 						<span>{post.author.name}</span>
 					</div>
@@ -40,8 +42,6 @@ export async function getStaticProps() {
 	]);
 
 	return {
-		props: { allPosts:[
-			...allBlogs,...allPosts
-		] },
+		props: { allPosts: [...allBlogs, ...allPosts] },
 	};
 }
