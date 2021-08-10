@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useEffect } from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
 
@@ -17,9 +16,8 @@ export default function Home() {
 			</Head>
 
 			<FullPage>
-				<div className='flex-1 flex-grow'>
-					<SelfIntro />
-				</div>
+				<Avatar src='/Patrick.jpg' alt='avatar' />
+				<SelfIntro />
 				<Footer />
 			</FullPage>
 		</div>
@@ -29,21 +27,9 @@ export default function Home() {
 const SelfIntro = () => {
 	return (
 		<FullPageMain>
-			<h1>
-				Hello,{" "}
-				<Link href='/docs'>
-					<span className='text-blue-700 hover:text-blue-400 font-bold cursor-pointer'>
-						world
-					</span>
-				</Link>
-			</h1>
-			<div className='text-sm mt-4'>I'm Xu "Alfred" Jianxiang,</div>
-			<div className='text-sm mt-2'>
-				a frontend developer who work for his{" "}
-				<span className='italic text-blue-700 hover:text-blue-400 font-bold'>
-					passion
-				</span>
-			</div>
+			<p className='title'>Hello, World</p>
+			<p>I'm Xu "Alfred" Jianxiang,</p>
+			<p>a frontend developer who work for his passion</p>
 		</FullPageMain>
 	);
 };
@@ -58,4 +44,24 @@ const FullPage = styled.div`
 
 const FullPageMain = styled.div`
 	flex: 1 1 auto;
+	width: 100vw;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	p {
+		font-family: "GreenHome" sans-serif;
+		margin: 0.25rem 0;
+		&.title {
+			margin-top: 1rem;
+		}
+	}
+`;
+
+const Avatar = styled.img`
+	border-radius: 50%;
+	width: 10rem;
+	height: 10rem;
+	margin-top: 5.4rem;
+	box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 `;
