@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export default function Document({ allPosts }) {
 	return (
-		<div className='w-screen h-screen'>
+		<div className=''>
 			{allPosts.map((post) => {
 				return (
-					<div>
+					<div key={post.slug}>
 						<Link
 							as={`/${post.type}/${post.slug}`}
 							href={`/${post.type}/[slug]`}>

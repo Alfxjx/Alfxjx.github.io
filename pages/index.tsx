@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Footer } from "../components/Footer";
 
 export default function Home() {
 	useEffect(() => {
@@ -53,14 +54,6 @@ const FooterBeian = () => {
 			<Link href='https://beian.miit.gov.cn/#/Integrated/index'>
 				津ICP备18010186号-2
 			</Link>
-		</div>
-	);
-};
-
-const Footer = () => {
-	return (
-		<div className='flex-inital text-center text-gray-300 text-xs pb-2'>
-			<Link href='http://www.anbandon.work'>old blog</Link>
 		</div>
 	);
 };
