@@ -1,6 +1,7 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
+import styled from "styled-components";
 import { Footer } from "../components/Footer";
 
 export default function Home() {
@@ -15,25 +16,24 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<main className='w-screen h-screen flex flex-col items-center '>
+			<FullPage>
 				<div className='flex-1 flex-grow'>
 					<SelfIntro />
 				</div>
 				<Footer />
-			</main>
+			</FullPage>
 		</div>
 	);
 }
 
 const SelfIntro = () => {
-	const [username] = useState("world");
 	return (
-		<div className='w-full h-full flex flex-col justify-center items-center'>
-			<h1 className='text-sm'>
+		<FullPageMain>
+			<h1>
 				Hello,{" "}
 				<Link href='/docs'>
 					<span className='text-blue-700 hover:text-blue-400 font-bold cursor-pointer'>
-						{username}
+						world
 					</span>
 				</Link>
 			</h1>
@@ -44,16 +44,18 @@ const SelfIntro = () => {
 					passion
 				</span>
 			</div>
-		</div>
+		</FullPageMain>
 	);
 };
 
-const FooterBeian = () => {
-	return (
-		<div className='flex-inital text-center text-gray-300 text-xs pb-2'>
-			<Link href='https://beian.miit.gov.cn/#/Integrated/index'>
-				津ICP备18010186号-2
-			</Link>
-		</div>
-	);
-};
+const FullPage = styled.div`
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+const FullPageMain = styled.div`
+	flex: 1 1 auto;
+`;
