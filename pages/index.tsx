@@ -1,7 +1,9 @@
 import Head from "next/head";
+import {useRouter} from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
+import { Button } from "../components/Button/index";
 
 export default function Home() {
 	useEffect(() => {
@@ -25,11 +27,22 @@ export default function Home() {
 }
 
 const SelfIntro = () => {
+	const router = useRouter();
+	const handleNew = ()=>{
+		router.push("/blogs/loading-in-css")
+	};
+	const handleBlogs = ()=>{
+		router.push("/docs")
+	};
 	return (
 		<FullPageMain>
-			<p className='title'>Hello, World</p>
-			<p>I'm Xu "Alfred" Jianxiang,</p>
-			<p>a frontend developer who work for his passion</p>
+			<p className='green-home title main'>Hello, World.</p>
+			<p className='green-home title'>I'm Xu "Alfred" Jianxiang,</p>
+			<p className='green-home title'>a frontend developer who work for his passion</p>
+			<Buttons>
+				<Button onClick={handleNew}>Latest</Button>
+				<Button onClick={handleBlogs} btnType="primary">Blogs</Button>
+			</Buttons>
 		</FullPageMain>
 	);
 };
@@ -50,10 +63,13 @@ const FullPageMain = styled.div`
 	flex-direction: column;
 	align-items: center;
 	p {
-		font-family: "GreenHome" sans-serif;
-		margin: 0.25rem 0;
 		&.title {
 			margin-top: 1rem;
+			font-size: 1.5rem;
+			letter-spacing: 2px;
+		}
+		&.main{
+			margin-top: 3rem;
 		}
 	}
 `;
@@ -64,4 +80,14 @@ const Avatar = styled.img`
 	height: 10rem;
 	margin-top: 5.4rem;
 	box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+`;
+
+const Buttons = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	button{
+		margin: 3rem 1rem;
+		width: 6rem;
+	}
 `;
