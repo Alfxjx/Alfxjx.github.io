@@ -1,5 +1,5 @@
 import Head from "next/head";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
@@ -28,20 +28,29 @@ export default function Home() {
 
 const SelfIntro = () => {
 	const router = useRouter();
-	const handleNew = ()=>{
-		router.push("/blogs/loading-in-css")
+	const handleNew = () => {
+		router.push("/blogs/loading-in-css");
 	};
-	const handleBlogs = ()=>{
-		router.push("/docs")
+	const handleBlogs = () => {
+		router.push("/docs");
 	};
 	return (
 		<FullPageMain>
-			<p className='green-home title main'>Hello, World.</p>
-			<p className='green-home title'>I'm Xu "Alfred" Jianxiang,</p>
-			<p className='green-home title'>a frontend developer who work for his passion</p>
+			<p className='my-main-font title main'>Hello, World.</p>
+			<p className='my-main-font title'>I'm Xu "Alfred" Jianxiang,</p>
+			<p className='my-main-font title'>
+				a frontend developer who work for his passion
+			</p>
 			<Buttons>
-				<Button onClick={handleNew}>Latest</Button>
-				<Button onClick={handleBlogs} btnType="primary">Blogs</Button>
+				<Button className='my-main-font btn' onClick={handleNew}>
+					Latest
+				</Button>
+				<Button
+					className='my-main-font btn'
+					onClick={handleBlogs}
+					btnType='primary'>
+					Blogs
+				</Button>
 			</Buttons>
 		</FullPageMain>
 	);
@@ -65,20 +74,25 @@ const FullPageMain = styled.div`
 	p {
 		&.title {
 			margin-top: 1rem;
-			font-size: 1.5rem;
+			font-size: 2rem;
 			letter-spacing: 2px;
 		}
-		&.main{
+		&.main {
 			margin-top: 3rem;
 		}
+	}
+	.btn {
+		font-size: 1.5rem;
+		font-weight: 700;
+		letter-spacing: 2px;
 	}
 `;
 
 const Avatar = styled.img`
 	border-radius: 50%;
-	width: 10rem;
-	height: 10rem;
-	margin-top: 5.4rem;
+	width: 12rem;
+	height: 12rem;
+	margin-top: 6.2rem;
 	box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 `;
 
@@ -86,7 +100,7 @@ const Buttons = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	button{
+	button {
 		margin: 3rem 1rem;
 		width: 6rem;
 	}

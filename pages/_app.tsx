@@ -9,7 +9,7 @@ const FontStyles = createGlobalStyle`
 	font-style: normal;
 	font-weight: 400;
 }
-.green-home{
+.my-main-font{
 	font-family: "GreenHome";
 }
 
