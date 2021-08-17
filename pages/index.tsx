@@ -20,7 +20,7 @@ export default function Home() {
 			<FullPage>
 				<Avatar src='/Patrick.jpg' alt='avatar' />
 				<SelfIntro />
-				<Footer />
+				<Footer showLink={true} />
 			</FullPage>
 		</div>
 	);

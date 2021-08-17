@@ -6,17 +6,23 @@ import Github from "../../public/github.svg";
 import Weibo from "../../public/weibo.svg";
 import Juejin from "../../public/juejin.svg";
 
-export const Footer = () => {
+export const Footer = ({ showLink }) => {
 	return (
 		<FooterWrapper>
 			<div className="green-home flex-inital text-center text-gray-300 text-xs pb-2">
 				<span>Powerd by Next.js on gh-pages, </span>
 				<Link href="http://www.anbandon.work">More in old blog</Link>
 			</div>
-			<IconList>
-				<a href="https://github.com/alfxjx"><Github /></a>
-				<a href="https://weibo.com/u/1950371745"><Weibo /></a>
-				<a href="https://juejin.cn/user/2330620383728551"><Juejin /></a>
+			<IconList show={showLink}>
+				<a href="https://github.com/alfxjx">
+					<Github />
+				</a>
+				<a href="https://weibo.com/u/1950371745">
+					<Weibo />
+				</a>
+				<a href="https://juejin.cn/user/2330620383728551">
+					<Juejin />
+				</a>
 			</IconList>
 		</FooterWrapper>
 	);
@@ -34,7 +40,7 @@ const FooterWrapper = styled.div`
 `;
 
 const IconList = styled.div`
-	display: flex;
+	display: ${(props) => (props.show ? "flex" : "none")};
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
