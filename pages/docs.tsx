@@ -1,6 +1,6 @@
 import React from "react";
 import Masonry from "react-masonry-css";
-import { getAllPosts } from "../utils/api";
+import { getPostBySlug, getAllPosts } from "../utils/api";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -10,50 +10,52 @@ import Github from "../public/github.svg";
 import Weibo from "../public/weibo.svg";
 import Juejin from "../public/juejin.svg";
 import Share from "../public/share.svg";
+import Expand from "../public/expand.svg";
 
 // @note react-reveal 之后文章多了可以用
-export default function Document({ allPosts }) {
+export default function Document({ newOneContent, allPosts }) {
 	const router = useRouter();
 	const breakpointColumnsObj = {
 		default: 2,
-		2500: 4,
-		1800: 3,
-		1200: 2,
-		800: 1,
+		1800: 2,
+		1000: 1,
 	};
+	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
-			<div className='header'>
+			<div className="header">
 				<Avatar
 					onClick={() => {
 						router.push("/");
 					}}
-					src='/Patrick.jpg'
-					alt='avatar'
+					src="/Patrick.jpg"
+					alt="avatar"
 				/>
-				<div className='links'>
-					<a href='https://github.com/alfxjx'>
+				<div className="links">
+					<a href="https://github.com/alfxjx">
 						<Github />
 					</a>
-					<a href='https://weibo.com/u/1950371745'>
+					<a href="https://weibo.com/u/1950371745">
 						<Weibo />
 					</a>
-					<a href='https://juejin.cn/user/2330620383728551'>
+					<a href="https://juejin.cn/user/2330620383728551">
 						<Juejin />
 					</a>
 				</div>
 			</div>
-			<div className='blog-list'>
+			<div className="blog-list">
+				<NewBlog post={newOneContent} />
 				<Masonry
 					breakpointCols={breakpointColumnsObj}
-					className='my-masonry-grid'
-					columnClassName='my-masonry-grid_column'>
-					{allPosts.map((post) => {
+					className="my-masonry-grid"
+					columnClassName="my-masonry-grid_column"
+				>
+					{restPosts.map((post) => {
 						return <BlogCard post={post} key={post.slug} />;
 					})}
 				</Masonry>
 			</div>
-			<div className='footer-wrapper'>
+			<div className="footer-wrapper">
 				<Footer showLink={false} />
 			</div>
 		</ListPage>
@@ -62,27 +64,109 @@ export default function Document({ allPosts }) {
 
 const BlogCard = ({ post }) => (
 	<BlogCardWrapper bgImg={post.coverImage}>
-		<div className='fixed'>
+		<div className="fixed">
 			<Share />
 		</div>
 		<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-			<img src={post.coverImage} alt='' />
+			<img src={post.coverImage} alt="" />
 		</Link>
-		<div className='blog-info'>
+		<div className="blog-info">
 			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<a className='link' title={post.title}>
+				<a className="link" title={post.title}>
 					{post.title}
 				</a>
 			</Link>
-			<div className='blog-sub'>
-				<span className='username'>@{post.author.name} </span>
-				<span className='date'>
+			<div className="blog-sub">
+				<span className="username">@{post.author.name} </span>
+				<span className="date">
 					{formatDate(new Date(post.date), "yyyy-MM-dd")}
 				</span>
 			</div>
 		</div>
 	</BlogCardWrapper>
 );
+
+const NewBlog = ({ post }) => {
+	return (
+		<NewBlogWrapper>
+			<div className="expand">
+				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
+					<Expand />
+				</Link>
+			</div>
+			<div className="img">
+				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
+					<img src={post.ogImage} alt="" />
+				</Link>
+			</div>
+			<div className="title">{post.title}</div>
+			<div className="info">
+				<div>{post.author.name}</div>
+				<div>{post.date}</div>
+			</div>
+			<section
+				className="content"
+				dangerouslySetInnerHTML={{ __html: post.content.slice(0, 800) }}
+			/>
+		</NewBlogWrapper>
+	);
+};
+
+const ListPage = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	.header {
+		margin: 0.5rem 0 0 1rem;
+		position: absolute;
+		top: 0;
+		left: 0;
+		.links {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			a:first-child {
+				margin-top: 0.75rem;
+			}
+			a {
+				margin: 0.25rem 0;
+			}
+			svg {
+				width: 1.75rem;
+				height: 1.75rem;
+			}
+		}
+	}
+	.blog-list {
+		margin: 0 7rem;
+		padding: 2rem 0 0 0;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.my-masonry-grid {
+			width: 75%;
+			display: flex;
+			justify-content: center;
+			margin: 0 auto;
+		}
+	}
+	.footer-wrapper {
+		flex: 0;
+		display: flex;
+		justify-content: center;
+		padding: 0.25rem 0;
+	}
+`;
+
+const Avatar = styled.img`
+	border-radius: 50%;
+	width: 4rem;
+	height: 4rem;
+	cursor: pointer;
+`;
 
 const BlogCardWrapper = styled.div`
 	display: flex;
@@ -141,7 +225,7 @@ const BlogCardWrapper = styled.div`
 			flex-direction: row;
 			justify-content: flex-start;
 			line-height: 1.618rem;
-			.username{
+			.username {
 				color: #447bdb;
 				margin-right: 1rem;
 			}
@@ -149,56 +233,54 @@ const BlogCardWrapper = styled.div`
 	}
 `;
 
-const ListPage = styled.div`
+const NewBlogWrapper = styled.div`
 	position: relative;
-	width: 100%;
-	height: 100vh;
+	width: 75%;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
-	.header {
-		margin: 0.5rem 0 0 1rem;
+	align-items: center;
+	position: relative;
+	padding: 16px 0 2rem;
+	margin: 12px 8px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	.expand {
 		position: absolute;
-		top: 0;
-		left: 0;
-		.links {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			a:first-child {
-				margin-top: 0.75rem;
-			}
-			a {
-				margin: 0.25rem 0;
-			}
-			svg {
-				width: 1.75rem;
-				height: 1.75rem;
-			}
+		bottom: 10px;
+		right: 20px;
+		svg {
+			width: 1.5rem;
+			height: 1.5rem;
+			cursor: pointer;
 		}
 	}
-	.blog-list {
-		margin: 0 7rem;
-		padding: 2rem 0 0 0;
-		flex: 1;
-		.my-masonry-grid {
-			display: flex;
-			justify-content: center;
-			margin: 0 auto;
+	.img {
+		width: 100%;
+		img {
+			width: 100%;
 		}
 	}
-	.footer-wrapper {
-		flex: 0;
+	.title {
+		width: 100%;
+		font-size: 1.5rem;
+		font-weight: 700;
+		text-align: left;
+		margin: 0.5rem 0;
+		padding: 6px 12px;
+		box-sizing: border-box;
+	}
+	.info {
+		width: 100%;
 		display: flex;
-		justify-content: center;
-		padding: 0.25rem 0;
+		justify-content: space-between;
+		padding: 6px 12px;
+		box-sizing: border-box;
 	}
-`;
-
-const Avatar = styled.img`
-	border-radius: 50%;
-	width: 4rem;
-	height: 4rem;
-	cursor: pointer;
+	.content {
+		padding: 6px 12px;
+		box-sizing: border-box;
+	}
 `;
 
 export async function getStaticProps() {
@@ -211,7 +293,18 @@ export async function getStaticProps() {
 		"coverImage",
 		"excerpt",
 	]);
+	const [newOnePost, ...restPosts] = allPosts;
+	const newOneContent = getPostBySlug(newOnePost.slug, [
+		"title",
+		"date",
+		"slug",
+		"author",
+		"type",
+		"content",
+		"ogImage",
+		"coverImage",
+	]);
 	return {
-		props: { allPosts: [...allPosts] },
+		props: { newOneContent, allPosts: [...allPosts] },
 	};
 }

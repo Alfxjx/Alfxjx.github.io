@@ -2,6 +2,7 @@
 title: 'this is copy 2'
 excerpt: '最近开发接到一个需求，前端展示付款的验证码，验证码时效 10 分钟，到期过期，同时在二维码的外侧有一个倒计时条，原本的实现方式是通过 JS 来控制，设置左上，左下，右上，右下四个矩形，每个矩形只显示一个折角的边框，从而模拟整个外框。'
 coverImage: '/assets/blog/js.jpg'
+ogImage: '/assets/blog/js.jpg'
 date: '2020-07-19T20:35:07.322Z'
 type: posts
 author:

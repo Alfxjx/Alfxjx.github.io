@@ -44,5 +44,5 @@ export function getAllPosts(fields = []) {
 		.map((slug) => getPostBySlug(slug, fields))
 		// sort posts by date in descending order
 		.sort((post1: any, post2: any) => (post1.date > post2.date ? -1 : 1));
-	return posts;
+	return posts as any;
 }
