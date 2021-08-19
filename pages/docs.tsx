@@ -1,4 +1,5 @@
-import React, { useLayoutEffect, useEffect } from "react";
+import React from "react";
+import Masonry from "react-masonry-css";
 import { getAllPosts } from "../utils/api";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,38 +11,49 @@ import Weibo from "../public/weibo.svg";
 import Juejin from "../public/juejin.svg";
 import Share from "../public/share.svg";
 
+// @note react-reveal 之后文章多了可以用
 export default function Document({ allPosts }) {
 	const router = useRouter();
+	const breakpointColumnsObj = {
+		default: 2,
+		2500: 4,
+		1800: 3,
+		1200: 2,
+		800: 1,
+	};
 	return (
 		<ListPage>
-			<div className="header">
+			<div className='header'>
 				<Avatar
 					onClick={() => {
 						router.push("/");
 					}}
-					src="/Patrick.jpg"
-					alt="avatar"
+					src='/Patrick.jpg'
+					alt='avatar'
 				/>
-				<div className="links">
-					<a href="https://github.com/alfxjx">
+				<div className='links'>
+					<a href='https://github.com/alfxjx'>
 						<Github />
 					</a>
-					<a href="https://weibo.com/u/1950371745">
+					<a href='https://weibo.com/u/1950371745'>
 						<Weibo />
 					</a>
-					<a href="https://juejin.cn/user/2330620383728551">
+					<a href='https://juejin.cn/user/2330620383728551'>
 						<Juejin />
 					</a>
 				</div>
 			</div>
-			<div className="blog-list">
-				<div className="real-list">
+			<div className='blog-list'>
+				<Masonry
+					breakpointCols={breakpointColumnsObj}
+					className='my-masonry-grid'
+					columnClassName='my-masonry-grid_column'>
 					{allPosts.map((post) => {
 						return <BlogCard post={post} key={post.slug} />;
 					})}
-				</div>
+				</Masonry>
 			</div>
-			<div className="footer-wrapper">
+			<div className='footer-wrapper'>
 				<Footer showLink={false} />
 			</div>
 		</ListPage>
@@ -49,22 +61,24 @@ export default function Document({ allPosts }) {
 }
 
 const BlogCard = ({ post }) => (
-	<BlogCardWrapper>
-		<div className="fixed">
+	<BlogCardWrapper bgImg={post.coverImage}>
+		<div className='fixed'>
 			<Share />
 		</div>
 		<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-			<img src={post.coverImage} alt="" />
+			<img src={post.coverImage} alt='' />
 		</Link>
-		<div className="blog-info">
+		<div className='blog-info'>
 			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<a className="link" title={post.title}>
+				<a className='link' title={post.title}>
 					{post.title}
 				</a>
 			</Link>
-			<div className="blog-sub">
-				<span>{formatDate(new Date(post.date), "yyyy-MM-dd")}</span>
-				<span>{post.author.name}</span>
+			<div className='blog-sub'>
+				<span className='username'>@{post.author.name} </span>
+				<span className='date'>
+					{formatDate(new Date(post.date), "yyyy-MM-dd")}
+				</span>
 			</div>
 		</div>
 	</BlogCardWrapper>
@@ -74,23 +88,23 @@ const BlogCardWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-width: 30%;
-	min-width: 18rem;
 	position: relative;
-	padding: 8px 0px;
-	margin: 8px;
+	padding: 0px;
+	margin: 12px 8px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	.fixed {
 		position: absolute;
-		top: 10%;
-		right: 5%;
+		bottom: 0;
+		right: 0%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		border-radius: 6px;
+		padding: 5px 3px 0;
 		svg {
-			width: 1.5rem;
-			height: 1.5rem;
+			width: 2rem;
+			height: 2rem;
 			color: #fff;
 			cursor: pointer;
 		}
@@ -101,7 +115,6 @@ const BlogCardWrapper = styled.div`
 	}
 	.blog-info {
 		width: 100%;
-		height: 3rem;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -113,20 +126,32 @@ const BlogCardWrapper = styled.div`
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
+			line-height: 3rem;
+			text-decoration: none;
+			color: #000;
+			font-weight: 600;
+			&:hover {
+				color: #447bdb;
+			}
 		}
 		.blog-sub {
 			width: 100%;
 			font-size: 0.875rem;
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
+			justify-content: flex-start;
+			line-height: 1.618rem;
+			.username{
+				color: #447bdb;
+				margin-right: 1rem;
+			}
 		}
 	}
 `;
 
 const ListPage = styled.div`
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -152,22 +177,17 @@ const ListPage = styled.div`
 		}
 	}
 	.blog-list {
-		margin: 0 0 0 7rem;
-		box-sizing: border-box;
-		padding-top: 2rem;
-		flex: 1 1 auto;
-		display: flex;
-		justify-content: center;
-		.real-list {
-			width: 80%;
+		margin: 0 7rem;
+		padding: 2rem 0 0 0;
+		flex: 1;
+		.my-masonry-grid {
 			display: flex;
 			justify-content: center;
-			align-items: flex-start;
-			flex-wrap: wrap;
+			margin: 0 auto;
 		}
 	}
 	.footer-wrapper {
-		flex: 0 0 auto;
+		flex: 0;
 		display: flex;
 		justify-content: center;
 		padding: 0.25rem 0;
