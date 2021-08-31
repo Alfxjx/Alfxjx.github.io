@@ -13,7 +13,7 @@ export const Footer = ({ showLink }) => {
 				<span>Powerd by Next.js on gh-pages, </span>
 				<Link href='http://www.anbandon.work'>More in old blog</Link>
 			</div>
-			<IconList>
+			<IconList show={showLink}>
 				<a href='https://github.com/alfxjx'>
 					<Github />
 				</a>

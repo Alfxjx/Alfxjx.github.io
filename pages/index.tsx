@@ -76,6 +76,9 @@ const FullPageMain = styled.div`
 			margin-top: 1rem;
 			font-size: 2rem;
 			letter-spacing: 2px;
+			@media (max-width: 600px) {
+				font-size: 1rem;
+			}
 		}
 		&.main {
 			margin-top: 3rem;
@@ -85,6 +88,9 @@ const FullPageMain = styled.div`
 		font-size: 1.5rem;
 		font-weight: 700;
 		letter-spacing: 2px;
+		@media (max-width: 600px) {
+			font-size: 1rem;
+		}
 	}
 `;
 
