@@ -23,38 +23,39 @@ export default function Document({ newOneContent, allPosts }) {
 	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
-			<div className='header'>
+			<div className="header">
 				<Avatar
 					onClick={() => {
 						router.push("/");
 					}}
-					src='/Patrick.jpg'
-					alt='avatar'
+					src="/Patrick.jpg"
+					alt="avatar"
 				/>
-				<div className='links'>
-					<a href='https://github.com/alfxjx'>
+				<div className="links">
+					<a href="https://github.com/alfxjx">
 						<Github />
 					</a>
-					<a href='https://weibo.com/u/1950371745'>
+					<a href="https://weibo.com/u/1950371745">
 						<Weibo />
 					</a>
-					<a href='https://juejin.cn/user/2330620383728551'>
+					<a href="https://juejin.cn/user/2330620383728551">
 						<Juejin />
 					</a>
 				</div>
 			</div>
-			<div className='blog-list'>
+			<div className="blog-list">
 				<NewBlog post={newOneContent} />
 				<Masonry
 					breakpointCols={breakpointColumnsObj}
-					className='my-masonry-grid'
-					columnClassName='my-masonry-grid_column'>
+					className="my-masonry-grid"
+					columnClassName="my-masonry-grid_column"
+				>
 					{restPosts.map((post) => {
 						return <BlogCard post={post} key={post.slug} />;
 					})}
 				</Masonry>
 			</div>
-			<div className='footer-wrapper'>
+			<div className="footer-wrapper">
 				<Footer showLink={false} />
 			</div>
 		</ListPage>
@@ -62,22 +63,22 @@ export default function Document({ newOneContent, allPosts }) {
 }
 
 const BlogCard = ({ post }) => (
-	<BlogCardWrapper bgImg={post.coverImage}>
-		<div className='fixed'>
+	<BlogCardWrapper>
+		<div className="fixed">
 			<Share />
 		</div>
 		<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-			<img src={post.coverImage} alt='' />
+			<img src={post.coverImage} alt="" />
 		</Link>
-		<div className='blog-info'>
+		<div className="blog-info">
 			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<a className='link' title={post.title}>
+				<a className="link" title={post.title}>
 					{post.title}
 				</a>
 			</Link>
-			<div className='blog-sub'>
-				<span className='username'>@{post.author.name} </span>
-				<span className='date'>
+			<div className="blog-sub">
+				<span className="username">@{post.author.name} </span>
+				<span className="date">
 					{formatDate(new Date(post.date), "yyyy-MM-dd")}
 				</span>
 			</div>
@@ -88,25 +89,29 @@ const BlogCard = ({ post }) => (
 const NewBlog = ({ post }) => {
 	return (
 		<NewBlogWrapper>
-			<div className='expand'>
+			<div className="expand">
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<Expand />
 				</Link>
 			</div>
-			<div className='img'>
-				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-					<img src={post.ogImage} alt='' />
-				</Link>
+			<div>
+				<div className="img">
+					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
+						<img src={post.coverImage} alt="" />
+					</Link>
+				</div>
+				<div className="title">{post.title}</div>
+				<div className="info">
+					<div className="username">@{post.author.name}</div>
+					<div>{formatDate(new Date(post.date), "yyyy-MM-dd")}</div>
+				</div>
 			</div>
-			<div className='title'>{post.title}</div>
-			<div className='info'>
-				<div className='username'>@{post.author.name}</div>
-				<div>{formatDate(new Date(post.date), "yyyy-MM-dd")}</div>
+			<div>
+				<section
+					className="content"
+					dangerouslySetInnerHTML={{ __html: post.content.slice(0, 800) }}
+				/>
 			</div>
-			<section
-				className='content'
-				dangerouslySetInnerHTML={{ __html: post.content.slice(0, 800) }}
-			/>
 		</NewBlogWrapper>
 	);
 };
@@ -263,10 +268,11 @@ const NewBlogWrapper = styled.div`
 	}
 	margin: 0 auto;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 	position: relative;
-	padding: 16px 0 2rem;
+	padding: 0 0 2rem;
 	margin: 12px 8px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
