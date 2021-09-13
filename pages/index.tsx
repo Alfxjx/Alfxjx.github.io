@@ -29,7 +29,7 @@ export default function Home() {
 const SelfIntro = () => {
 	const router = useRouter();
 	const handleNew = () => {
-		router.push("/blogs/loading-in-css");
+		router.push("/posts/loading-in-css%20copy%202");
 	};
 	const handleBlogs = () => {
 		router.push("/docs");

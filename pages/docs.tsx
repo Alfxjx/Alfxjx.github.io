@@ -16,46 +16,46 @@ import Expand from "../public/expand.svg";
 export default function Document({ newOneContent, allPosts }) {
 	const router = useRouter();
 	const breakpointColumnsObj = {
-		default: 2,
-		1800: 2,
-		1000: 1,
+		default: 3,
+		1800: 3,
+		1200: 2,
+		960: 1,
 	};
 	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
-			<div className="header">
+			<div className='header'>
 				<Avatar
 					onClick={() => {
 						router.push("/");
 					}}
-					src="/Patrick.jpg"
-					alt="avatar"
+					src='/Patrick.jpg'
+					alt='avatar'
 				/>
-				<div className="links">
-					<a href="https://github.com/alfxjx">
+				<div className='links'>
+					<a href='https://github.com/alfxjx'>
 						<Github />
 					</a>
-					<a href="https://weibo.com/u/1950371745">
+					<a href='https://weibo.com/u/1950371745'>
 						<Weibo />
 					</a>
-					<a href="https://juejin.cn/user/2330620383728551">
+					<a href='https://juejin.cn/user/2330620383728551'>
 						<Juejin />
 					</a>
 				</div>
 			</div>
-			<div className="blog-list">
+			<div className='blog-list'>
 				<NewBlog post={newOneContent} />
 				<Masonry
 					breakpointCols={breakpointColumnsObj}
-					className="my-masonry-grid"
-					columnClassName="my-masonry-grid_column"
-				>
+					className='my-masonry-grid'
+					columnClassName='my-masonry-grid_column'>
 					{restPosts.map((post) => {
 						return <BlogCard post={post} key={post.slug} />;
 					})}
 				</Masonry>
 			</div>
-			<div className="footer-wrapper">
+			<div className='footer-wrapper'>
 				<Footer showLink={false} />
 			</div>
 		</ListPage>
@@ -64,21 +64,21 @@ export default function Document({ newOneContent, allPosts }) {
 
 const BlogCard = ({ post }) => (
 	<BlogCardWrapper>
-		<div className="fixed">
+		<div className='fixed'>
 			<Share />
 		</div>
 		<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-			<img src={post.coverImage} alt="" />
+			<img src={post.coverImage} alt='' />
 		</Link>
-		<div className="blog-info">
+		<div className='blog-info'>
 			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<a className="link" title={post.title}>
+				<a className='link' title={post.title}>
 					{post.title}
 				</a>
 			</Link>
-			<div className="blog-sub">
-				<span className="username">@{post.author.name} </span>
-				<span className="date">
+			<div className='blog-sub'>
+				<span className='username'>@{post.author.name} </span>
+				<span className='date'>
 					{formatDate(new Date(post.date), "yyyy-MM-dd")}
 				</span>
 			</div>
@@ -89,26 +89,26 @@ const BlogCard = ({ post }) => (
 const NewBlog = ({ post }) => {
 	return (
 		<NewBlogWrapper>
-			<div className="expand">
+			<div className='expand'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<Expand />
 				</Link>
 			</div>
-			<div>
-				<div className="img">
+			<div className='left-part'>
+				<div className='img'>
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-						<img src={post.coverImage} alt="" />
+						<img src={post.coverImage} alt='' />
 					</Link>
 				</div>
-				<div className="title">{post.title}</div>
-				<div className="info">
-					<div className="username">@{post.author.name}</div>
+				<div className='title'>{post.title}</div>
+				<div className='info'>
+					<div className='username'>@{post.author.name}</div>
 					<div>{formatDate(new Date(post.date), "yyyy-MM-dd")}</div>
 				</div>
 			</div>
-			<div>
+			<div className='right-part'>
 				<section
-					className="content"
+					className='content'
 					dangerouslySetInnerHTML={{ __html: post.content.slice(0, 800) }}
 				/>
 			</div>
@@ -119,9 +119,10 @@ const NewBlog = ({ post }) => {
 const ListPage = styled.div`
 	position: relative;
 	width: 100%;
-	height: 100vh;
+	/* height: 100vh; */
 	display: flex;
 	flex-direction: column;
+	background: #ffffff;
 	.header {
 		margin: 0.5rem 0 0 1rem;
 		position: fixed;
@@ -172,7 +173,7 @@ const ListPage = styled.div`
 			}
 			width: 75%;
 			display: flex;
-			justify-content: center;
+			justify-content: flex-start;
 			margin: 0 auto;
 		}
 	}
@@ -202,6 +203,7 @@ const BlogCardWrapper = styled.div`
 	position: relative;
 	padding: 0px;
 	margin: 12px 8px;
+	background: #fff;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	.fixed {
@@ -274,6 +276,7 @@ const NewBlogWrapper = styled.div`
 	position: relative;
 	padding: 0 0 2rem;
 	margin: 12px 8px;
+	background: #fff;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	.expand {
@@ -286,35 +289,45 @@ const NewBlogWrapper = styled.div`
 			cursor: pointer;
 		}
 	}
-	.img {
-		width: 100%;
-		img {
-			width: 100%;
-		}
-	}
-	.title {
-		width: 100%;
-		font-size: 1.5rem;
-		font-weight: 700;
-		text-align: left;
-		margin: 0.5rem 0;
-		padding: 6px 12px;
-		box-sizing: border-box;
-	}
-	.info {
-		width: 100%;
+	.left-part {
+		height: 100%;
+		flex: 4;
 		display: flex;
-		justify-content: space-between;
-		padding: 6px 12px;
-		box-sizing: border-box;
-		.username {
-			color: #447bdb;
+		flex-direction: column;
+		justify-content: flex-end;
+		.img {
+			width: 100%;
+			img {
+				width: 100%;
+			}
+		}
+		.title {
+			width: 100%;
+			font-size: 1.5rem;
+			font-weight: 700;
+			text-align: left;
+			margin: 1.5rem 0 0.75rem;
+			padding: 6px 12px;
+			box-sizing: border-box;
+		}
+		.info {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			padding: 6px 12px;
+			box-sizing: border-box;
+			.username {
+				color: #447bdb;
+			}
 		}
 	}
-	.content {
-		padding: 6px 12px;
-		box-sizing: border-box;
-		line-height: 1.5rem;
+	.right-part {
+		flex: 6;
+		.content {
+			padding: 6px 12px;
+			box-sizing: border-box;
+			line-height: 1.5rem;
+		}
 	}
 `;
 
