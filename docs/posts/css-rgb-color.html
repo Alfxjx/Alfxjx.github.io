@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/68b325cd48e1bda6f336.css" as="style"/><link rel="stylesheet" href="/_next/static/css/68b325cd48e1bda6f336.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-a54b4f32bdc1ef890ddd.js"></script><script src="/_next/static/chunks/webpack-61095c13c5984b221292.js" defer=""></script><script src="/_next/static/chunks/framework-92300432a1172ef1338b.js" defer=""></script><script src="/_next/static/chunks/main-588261c74baf7142d208.js" defer=""></script><script src="/_next/static/chunks/pages/_app-c6124d60cfc5384adb83.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bslug%5D-efafde6cbb61898113ab.js" defer=""></script><script src="/_next/static/JqxcpW_mHmD0HFyPtS0mI/_buildManifest.js" defer=""></script><script src="/_next/static/JqxcpW_mHmD0HFyPtS0mI/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div><h1>CSS 的 RGB 颜色覆盖</h1>
+<blockquote>
+<p>最近逛论坛，看到一个<a href="https://www.v2ex.com/t/653679#reply73">帖子</a>，里面有一个回复很有意思：</p>
+<p>举一个刁钻的例子
+背景：
+CSS 也算是 GUI 开发里应用最广泛的“语言”，讲到 GUI 就可以深入到计算机图形学，取 CSS 里最常见的颜色部分
+问题：
+两层元素 底层 (c1=rgb) 上层 (c2=rgba) 叠加之后，呈现为什么颜色？</p>
+</blockquote>
+<p>自己<a href="https://codepen.io/alfxjx/pen/KKpevpQ">试验</a>了一下，查了一下相关的<a href="https://www.cnblogs.com/xiyanhuakai/p/20200102_1625.html">笔记</a>，还有关于图形学的<a href="https://www.jianshu.com/p/6d9a3f39bb53">知识</a></p>
+<p><strong>总结：</strong></p>
+<ol>
+<li>只有底色为不透明（rgb 或者 rgba 的透明度为 1）、覆盖层半透明时，会有颜色变化</li>
+<li>都是不透明，不会出现色彩叠加的问题</li>
+<li>都是透明也不会（这就有点难理解...</li>
+</ol>
+<p>叠加的方法和上面的<a href="https://www.cnblogs.com/xiyanhuakai/p/20200102_1625.html">笔记</a>里面说的差不多：</p>
+<ol>
+<li>底色的 rgb 记为<code>r1,g1,b1</code></li>
+<li>覆盖色 rgba 记为<code>r2,g2,b2,alpha</code></li>
+<li>则覆盖处计算得到的最终显示 rgba 可以表示为：</li>
+</ol>
+<pre><code class="language-css">background-color: rgba(
+	r1 * (1-alpha) + r2 * alpha,
+	g1 * (1-alpha) + g2 * alpha,
+	b1 * (1-alpha) + b2 * alpha,
+	1
+);
+</code></pre>
+<p>~~浅薄的研究了一下，希望可以和我讨论~~</p>
+</div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"title":"CSS 的 RGB 颜色覆盖","date":"2020-09-27T08:18:39.741Z","slug":"css-rgb-color","author":{"name":"Alfxjx","picture":"/assets/blog/authors/alfxjx.jpeg"},"content":"\u003ch1\u003eCSS 的 RGB 颜色覆盖\u003c/h1\u003e\n\u003cblockquote\u003e\n\u003cp\u003e最近逛论坛，看到一个\u003ca href=\"https://www.v2ex.com/t/653679#reply73\"\u003e帖子\u003c/a\u003e，里面有一个回复很有意思：\u003c/p\u003e\n\u003cp\u003e举一个刁钻的例子\r\n背景：\r\nCSS 也算是 GUI 开发里应用最广泛的“语言”，讲到 GUI 就可以深入到计算机图形学，取 CSS 里最常见的颜色部分\r\n问题：\r\n两层元素 底层 (c1=rgb) 上层 (c2=rgba) 叠加之后，呈现为什么颜色？\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e自己\u003ca href=\"https://codepen.io/alfxjx/pen/KKpevpQ\"\u003e试验\u003c/a\u003e了一下，查了一下相关的\u003ca href=\"https://www.cnblogs.com/xiyanhuakai/p/20200102_1625.html\"\u003e笔记\u003c/a\u003e，还有关于图形学的\u003ca href=\"https://www.jianshu.com/p/6d9a3f39bb53\"\u003e知识\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e总结：\u003c/strong\u003e\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e只有底色为不透明（rgb 或者 rgba 的透明度为 1）、覆盖层半透明时，会有颜色变化\u003c/li\u003e\n\u003cli\u003e都是不透明，不会出现色彩叠加的问题\u003c/li\u003e\n\u003cli\u003e都是透明也不会（这就有点难理解...\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e叠加的方法和上面的\u003ca href=\"https://www.cnblogs.com/xiyanhuakai/p/20200102_1625.html\"\u003e笔记\u003c/a\u003e里面说的差不多：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e底色的 rgb 记为\u003ccode\u003er1,g1,b1\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e覆盖色 rgba 记为\u003ccode\u003er2,g2,b2,alpha\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e则覆盖处计算得到的最终显示 rgba 可以表示为：\u003c/li\u003e\n\u003c/ol\u003e\n\u003cpre\u003e\u003ccode class=\"language-css\"\u003ebackground-color: rgba(\r\n\tr1 * (1-alpha) + r2 * alpha,\r\n\tg1 * (1-alpha) + g2 * alpha,\r\n\tb1 * (1-alpha) + b2 * alpha,\r\n\t1\r\n);\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e~~浅薄的研究了一下，希望可以和我讨论~~\u003c/p\u003e\n","coverImage":"/assets/blog/css-rgb.jpeg"}},"__N_SSG":true},"page":"/posts/[slug]","query":{"slug":"css-rgb-color"},"buildId":"JqxcpW_mHmD0HFyPtS0mI","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
