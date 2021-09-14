@@ -4,7 +4,11 @@ npm run export:osx
 
 git add .
 
+echo "git add ."
+
 git commit -m "build: blog deploy"
+
+echo "git push start"
 
 git push origin master
 git push gitee master
