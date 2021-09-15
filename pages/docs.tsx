@@ -91,13 +91,17 @@ const NewBlog = ({ post }) => {
 		<NewBlogWrapper>
 			<div className='expand'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-					<Expand />
+					<a>
+						<Expand />
+					</a>
 				</Link>
 			</div>
 			<div className='left-part'>
 				<div className='img'>
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-						<img src={post.coverImage} alt='' />
+						<a>
+							<img src={post.coverImage} alt='' />
+						</a>
 					</Link>
 				</div>
 				<div className='title'>{post.title}</div>
