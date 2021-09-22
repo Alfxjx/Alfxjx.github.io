@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useDarkMode, Toggle } from "../components/theme/Toggle";
 import Masonry from "react-masonry-css";
 import { getPostBySlug, getAllPosts } from "../utils/api";
 import Link from "next/link";
@@ -11,10 +12,13 @@ import Weibo from "../public/weibo.svg";
 import Juejin from "../public/juejin.svg";
 import Share from "../public/share.svg";
 import Expand from "../public/expand.svg";
+import { MyContext } from "./_app";
 
 // @note react-reveal 之后文章多了可以用
 export default function Document({ newOneContent, allPosts }) {
 	const router = useRouter();
+	const [theme] = useDarkMode();
+	const { themeToggler } = useContext(MyContext);
 	const breakpointColumnsObj = {
 		default: 3,
 		1800: 3,
@@ -24,6 +28,11 @@ export default function Document({ newOneContent, allPosts }) {
 	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
+			<div className='btn-wrapper'>
+				<Toggle toggleTheme={() => themeToggler()}>
+					{theme === "light" ? "dark" : "light"}
+				</Toggle>
+			</div>
 			<div className='header'>
 				<Avatar
 					onClick={() => {
@@ -126,16 +135,26 @@ const ListPage = styled.div`
 	/* height: 100vh; */
 	display: flex;
 	flex-direction: column;
-	background: #ffffff;
+	background: ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.text};
+	.btn-wrapper {
+		position: fixed;
+		right: 1rem;
+		top: 1rem;
+		button {
+			margin: 0 2px;
+		}
+	}
 	.header {
 		margin: 0.5rem 0 0 1rem;
 		position: fixed;
 		top: 0;
 		left: 0;
+		background: ${({ theme }) => theme.background};
+		color: ${({ theme }) => theme.text};
 		@media (max-width: 600px) {
 			margin: 0;
 			width: 100%;
-			background: #fff;
 			box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px,
 				rgb(0 0 0 / 8%) 0px 0px 0px 1px;
 			z-index: 20;
@@ -207,7 +226,8 @@ const BlogCardWrapper = styled.div`
 	position: relative;
 	padding: 0px;
 	margin: 12px 8px;
-	background: #fff;
+	background: ${({ theme }) => theme.backgroundLight};
+	color: ${({ theme }) => theme.text};
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	.fixed {
@@ -245,7 +265,7 @@ const BlogCardWrapper = styled.div`
 			overflow: hidden;
 			line-height: 3rem;
 			text-decoration: none;
-			color: #000;
+			color: ${({ theme }) => theme.text};
 			font-weight: 600;
 			&:hover {
 				color: #447bdb;
@@ -280,7 +300,8 @@ const NewBlogWrapper = styled.div`
 	position: relative;
 	padding: 0 0 2rem;
 	margin: 12px 8px;
-	background: #fff;
+	background: ${({ theme }) => theme.backgroundLight};
+	color: ${({ theme }) => theme.text};
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
 		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	.expand {

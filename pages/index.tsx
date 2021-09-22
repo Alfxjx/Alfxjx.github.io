@@ -1,12 +1,15 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/Button/index";
-import { useDarkMode } from "../components/theme/Toggle";
+import { Toggle, useDarkMode } from "../components/theme/Toggle";
+import { MyContext } from "./_app";
 export default function Home() {
 	const [whichWeb, setWeb] = useState("");
+	const [theme] = useDarkMode();
+	const { themeToggler } = useContext(MyContext);
 	useEffect(() => {
 		decideWebName();
 		console.log("hello nextjs");
@@ -42,6 +45,9 @@ export default function Home() {
 			<FullPage>
 				<div className='btn-wrapper'>
 					<Button onClick={handleWebChange}>{whichWeb}</Button>
+					<Toggle toggleTheme={() => themeToggler()}>
+						{theme === "light" ? "dark" : "light"}
+					</Toggle>
 				</div>
 				<Avatar src='/Patrick.jpg' alt='avatar' />
 				<SelfIntro />
@@ -91,7 +97,7 @@ const FullPage = styled.div`
 	background: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.text};
 	.btn-wrapper {
-		position: absolute;
+		position: fixed;
 		right: 1rem;
 		top: 1rem;
 		button {

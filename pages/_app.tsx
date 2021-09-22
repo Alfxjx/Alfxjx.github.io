@@ -1,7 +1,8 @@
 import "../styles/base.css";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/theme/theme";
-import { useDarkMode, Toggle } from "../components/theme/Toggle";
+import { useDarkMode } from "../components/theme/Toggle";
+import { createContext } from "react";
 const FontStyles = createGlobalStyle`
 @font-face {
 	font-family: "GreenHome";
@@ -15,26 +16,17 @@ const FontStyles = createGlobalStyle`
 
 `;
 
+export const MyContext = createContext(null);
+
 function MyApp({ Component, pageProps }) {
 	const [theme, themeToggler] = useDarkMode();
 	const themeMode = theme === "light" ? lightTheme : darkTheme;
-	const handleToggle = () => {
-		themeToggler();
-	};
 	return (
 		<ThemeProvider theme={themeMode}>
-			<FontStyles />
-			<div style={{
-				position: "fixed",
-				right: 0,
-				top: 0,
-				zIndex: 100
-			}}>
-				<Toggle toggleTheme={handleToggle}>
-					{theme === "light" ? "dark" : "light"}
-				</Toggle>
-			</div>
-			<Component {...pageProps} />
+			<MyContext.Provider value={{themeToggler}}>
+				<FontStyles />
+				<Component {...pageProps} />
+			</MyContext.Provider>
 		</ThemeProvider>
 	);
 }
