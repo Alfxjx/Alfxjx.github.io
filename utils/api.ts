@@ -35,7 +35,7 @@ export function getPostBySlug(slug, fields = []) {
 		}
 	});
 
-	return items;
+	return items as any;
 }
 
 export function getAllPosts(fields = []) {

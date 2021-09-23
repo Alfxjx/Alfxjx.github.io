@@ -17,7 +17,7 @@ export const useDarkMode: () => [string, () => void, () => String] = () => {
 		return theme;
 	};
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const localTheme = window.localStorage.getItem("theme");
 		if (window.matchMedia("(prefers-color-scheme)").media === "not all") {
 			localTheme ? setMode(localTheme) : setMode("light");
