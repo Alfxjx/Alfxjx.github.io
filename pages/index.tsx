@@ -57,7 +57,7 @@ export default function Home() {
 const SelfIntro = () => {
 	const router = useRouter();
 	const handleNew = () => {
-		router.push("/posts/loading-in-css%20copy%202");
+		router.push("/posts/clamp-design");
 	};
 	const handleBlogs = () => {
 		router.push("/docs");
