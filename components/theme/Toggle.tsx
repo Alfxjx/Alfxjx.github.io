@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Button } from "../Button/index";
 
-export const useDarkMode: () => [string, () => void] = () => {
+export const useDarkMode: () => [string, () => void, () => String] = () => {
 	const [theme, setTheme] = useState("light");
 
 	const setMode = (mode) => {
@@ -13,11 +13,24 @@ export const useDarkMode: () => [string, () => void] = () => {
 		theme === "light" ? setMode("dark") : setMode("light");
 	};
 
-	useEffect(() => {
+	const getNowTheme = () => {
+		return theme;
+	};
+
+	useLayoutEffect(() => {
 		const localTheme = window.localStorage.getItem("theme");
-		localTheme && setTheme(localTheme);
+		if (window.matchMedia("(prefers-color-scheme)").media === "not all") {
+			localTheme ? setMode(localTheme) : setMode("light");
+		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			setMode("dark");
+		} else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+			setMode("light");
+		} else {
+			setMode("light");
+		}
 	}, []);
-	return [theme, themeToggler];
+
+	return [theme, themeToggler, getNowTheme];
 };
 
 export const Toggle = ({ children, toggleTheme }) => {

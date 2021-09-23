@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useDarkMode, Toggle } from "../components/theme/Toggle";
+import React, { useContext, useState } from "react";
+import { Toggle } from "../components/theme/Toggle";
 import Masonry from "react-masonry-css";
 import { getPostBySlug, getAllPosts } from "../utils/api";
 import Link from "next/link";
@@ -17,8 +17,8 @@ import { MyContext } from "./_app";
 // @note react-reveal 之后文章多了可以用
 export default function Document({ newOneContent, allPosts }) {
 	const router = useRouter();
-	const [theme] = useDarkMode();
-	const { themeToggler } = useContext(MyContext);
+	const { themeToggler, getNowTheme } = useContext(MyContext);
+
 	const breakpointColumnsObj = {
 		default: 3,
 		1800: 3,
@@ -29,9 +29,7 @@ export default function Document({ newOneContent, allPosts }) {
 	return (
 		<ListPage>
 			<div className='btn-wrapper'>
-				<Toggle toggleTheme={() => themeToggler()}>
-					{theme === "light" ? "dark" : "light"}
-				</Toggle>
+				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 			</div>
 			<div className='header'>
 				<Avatar
@@ -42,15 +40,8 @@ export default function Document({ newOneContent, allPosts }) {
 					alt='avatar'
 				/>
 				<div className='links'>
-					<a href='https://github.com/alfxjx'>
-						<Github />
-					</a>
-					<a href='https://weibo.com/u/1950371745'>
-						<Weibo />
-					</a>
-					<a href='https://juejin.cn/user/2330620383728551'>
-						<Juejin />
-					</a>
+					<Link href='/about'>About</Link>
+					<Link href='/archive'>Archive</Link>
 				</div>
 			</div>
 			<div className='blog-list'>
@@ -65,7 +56,7 @@ export default function Document({ newOneContent, allPosts }) {
 				</Masonry>
 			</div>
 			<div className='footer-wrapper'>
-				<Footer showLink={false} />
+				<Footer showLink={true} />
 			</div>
 		</ListPage>
 	);
@@ -172,11 +163,12 @@ const ListPage = styled.div`
 				justify-content: flex-start;
 			}
 			a {
-				margin: 0.25rem;
-			}
-			svg {
-				width: 1.75rem;
-				height: 1.75rem;
+				margin: 0.5rem 0;
+				color: ${({ theme }) => theme.themeColor};
+				text-decoration: none;
+				&:hover {
+					color: ${({ theme }) => theme.textHover};
+				}
 			}
 		}
 	}
@@ -242,7 +234,7 @@ const BlogCardWrapper = styled.div`
 		svg {
 			width: 2rem;
 			height: 2rem;
-			color: #fff;
+			fill: ${({ theme }) => theme.text};
 			cursor: pointer;
 		}
 	}
@@ -268,7 +260,7 @@ const BlogCardWrapper = styled.div`
 			color: ${({ theme }) => theme.text};
 			font-weight: 600;
 			&:hover {
-				color: #447bdb;
+				color: ${({ theme }) => theme.themeColor};
 			}
 		}
 		.blog-sub {
@@ -279,7 +271,7 @@ const BlogCardWrapper = styled.div`
 			justify-content: flex-start;
 			line-height: 1.618rem;
 			.username {
-				color: #447bdb;
+				color: ${({ theme }) => theme.themeColor};
 				margin-right: 1rem;
 			}
 		}
@@ -312,6 +304,10 @@ const NewBlogWrapper = styled.div`
 			width: 1.5rem;
 			height: 1.5rem;
 			cursor: pointer;
+			fill: ${({ theme }) => theme.text};
+			path {
+				fill: inherit;
+			}
 		}
 	}
 	.left-part {
@@ -342,7 +338,7 @@ const NewBlogWrapper = styled.div`
 			padding: 6px 12px;
 			box-sizing: border-box;
 			.username {
-				color: #447bdb;
+				color: ${({ theme }) => theme.themeColor};
 			}
 		}
 	}

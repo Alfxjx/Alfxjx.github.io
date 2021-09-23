@@ -19,11 +19,11 @@ const FontStyles = createGlobalStyle`
 export const MyContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
-	const [theme, themeToggler] = useDarkMode();
+	const [theme, themeToggler, getNowTheme] = useDarkMode();
 	const themeMode = theme === "light" ? lightTheme : darkTheme;
 	return (
 		<ThemeProvider theme={themeMode}>
-			<MyContext.Provider value={{themeToggler}}>
+			<MyContext.Provider value={{themeToggler, getNowTheme}}>
 				<FontStyles />
 				<Component {...pageProps} />
 			</MyContext.Provider>

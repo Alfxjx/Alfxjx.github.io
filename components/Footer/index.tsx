@@ -9,7 +9,7 @@ import Juejin from "../../public/juejin.svg";
 export const Footer = ({ showLink }) => {
 	return (
 		<FooterWrapper>
-			<div className='my-main-font flex-inital text-center text-gray-300 text-xs pb-2'>
+			<div className='my-main-font text'>
 				<span>Powerd by Next.js on gh-pages, </span>
 				<Link href='http://www.anbandon.work'>More in old blog</Link>
 			</div>
@@ -34,11 +34,14 @@ const FooterWrapper = styled.div`
 	align-items: center;
 	letter-spacing: 2px;
 	font-weight: 600;
+	.text{
+		padding: 2rem 0 6px 0;
+	}
 	a {
-		color: #447bdb;
+		color: ${({ theme }) => theme.themeColor};
 		text-decoration: none;
 		&:hover {
-			color: #025cf7;
+			color: ${({ theme }) => theme.textHover};
 		}
 	}
 `;
@@ -53,5 +56,6 @@ const IconList = styled.div`
 	svg.icon {
 		width: 24px;
 		height: 24px;
+		fill: ${({ theme }) => theme.text};
 	}
 `;

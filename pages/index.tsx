@@ -4,12 +4,11 @@ import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/Button/index";
-import { Toggle, useDarkMode } from "../components/theme/Toggle";
+import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
 export default function Home() {
 	const [whichWeb, setWeb] = useState("");
-	const [theme] = useDarkMode();
-	const { themeToggler } = useContext(MyContext);
+	const { themeToggler, getNowTheme } = useContext(MyContext);
 	useEffect(() => {
 		decideWebName();
 		console.log("hello nextjs");
@@ -45,9 +44,7 @@ export default function Home() {
 			<FullPage>
 				<div className='btn-wrapper'>
 					<Button onClick={handleWebChange}>{whichWeb}</Button>
-					<Toggle toggleTheme={() => themeToggler()}>
-						{theme === "light" ? "dark" : "light"}
-					</Toggle>
+					<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 				</div>
 				<Avatar src='/Patrick.jpg' alt='avatar' />
 				<SelfIntro />
