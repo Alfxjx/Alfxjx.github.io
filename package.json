@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3002",
     "build": "next build",
+    "export": "next export -o docs",
     "start": "next start",
     "export:osx": "next build && next export -o docs && cd docs && touch .nojekyll",
     "deploy": "sh ./scripts/deploy.sh"
