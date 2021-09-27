@@ -1,16 +1,19 @@
-import React, { useContext, useState } from "react";
-import { Toggle } from "../components/theme/Toggle";
-import Masonry from "react-masonry-css";
-import { getPostBySlug, getAllPosts } from "../utils/api";
+import React, { useContext, useState, useEffect } from "react";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+import Masonry from "react-masonry-css";
 import styled from "styled-components";
+
+import { Toggle } from "../components/theme/Toggle";
 import { Footer } from "../components/Footer/index";
 import { Post as PostStyles } from "../components/Post/index";
 
+import { getPostBySlug, getAllPosts } from "../utils/api";
+import markdownToHtml from "../utils/markdownToHtml";
 import { formatDate } from "../utils/formatDate";
 import { MyContext } from "./_app";
-import markdownToHtml from "../utils/markdownToHtml";
 
 import Share from "../public/svg/share.svg";
 import Expand from "../public/svg/expand.svg";
@@ -22,7 +25,15 @@ import About from "../public/svg/about.svg";
 export default function Document({ newOneContent, allPosts }) {
 	const router = useRouter();
 	const { themeToggler, getNowTheme } = useContext(MyContext);
-
+	const [NowTheme, setNowTheme] = useState("");
+	useEffect(() => {
+		const theme = getNowTheme();
+		if(theme==="light"){
+			setNowTheme("L")
+		} else {	
+			setNowTheme("D")
+		}
+	}, [getNowTheme()]);
 	const breakpointColumnsObj = {
 		default: 3,
 		1800: 3,
@@ -33,7 +44,7 @@ export default function Document({ newOneContent, allPosts }) {
 	return (
 		<ListPage>
 			<div className='btn-wrapper'>
-				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
+				<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
 			</div>
 			<div className='header'>
 				<div title='home'>

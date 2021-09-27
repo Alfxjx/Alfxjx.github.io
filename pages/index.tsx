@@ -10,11 +10,20 @@ import { MyContext } from "./_app";
 export default function Home({ newPost }) {
 	const [whichWeb, setWeb] = useState("");
 	const { themeToggler, getNowTheme } = useContext(MyContext);
+
+	const [NowTheme, setNowTheme] = useState("");
+	useEffect(() => {
+		const theme = getNowTheme();
+		if (theme === "light") {
+			setNowTheme("L");
+		} else {
+			setNowTheme("D");
+		}
+	}, [getNowTheme()]);
 	useEffect(() => {
 		decideWebName();
 		console.log("hello nextjs");
 	}, []);
-
 	const handleWebChange = () => {
 		decideWebName();
 		if (whichWeb === "github") {
@@ -45,7 +54,7 @@ export default function Home({ newPost }) {
 			<FullPage>
 				<div className='btn-wrapper'>
 					<Button onClick={handleWebChange}>{whichWeb}</Button>
-					<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
+					<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
 				</div>
 				<Avatar src='/me.jpg' alt='avatar' />
 				<SelfIntro newPost={newPost} />
