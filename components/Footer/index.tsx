@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import Github from "../../public/github.svg";
-import Weibo from "../../public/weibo.svg";
-import Juejin from "../../public/juejin.svg";
+import Github from "../../public/svg/github.svg";
+import Weibo from "../../public/svg/weibo.svg";
+import Juejin from "../../public/svg/juejin.svg";
 
 export const Footer = ({ showLink }) => {
 	return (
