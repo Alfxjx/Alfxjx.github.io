@@ -9,7 +9,6 @@ author:
   picture: "/assets/blog/authors/alfxjx.jpeg"
 ---
 
-# CSS 的 RGB 颜色覆盖
 
 > 最近逛论坛，看到一个[帖子](https://www.v2ex.com/t/653679#reply73)，里面有一个回复很有意思：
 >

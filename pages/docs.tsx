@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Footer } from "../components/Footer/index";
+import { Post as PostStyles } from "../components/Post/index";
+
 import { formatDate } from "../utils/formatDate";
 import { MyContext } from "./_app";
 import markdownToHtml from "../utils/markdownToHtml";
@@ -34,7 +36,7 @@ export default function Document({ newOneContent, allPosts }) {
 				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 			</div>
 			<div className='header'>
-				<div title="home">
+				<div title='home'>
 					<Home
 						onClick={() => {
 							router.push("/");
@@ -76,15 +78,21 @@ const BlogCard = ({ post }) => (
 		<div className='fixed'>
 			<Share />
 		</div>
-		<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-			<img src={post.coverImage} alt='' />
-		</Link>
+		<div className='img-dark-wrapper'>
+			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
+				<>
+					<img src={post.coverImage} alt='' />
+					<div className='img-dark'></div>
+				</>
+			</Link>
+		</div>
 		<div className='blog-info'>
 			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 				<a className='link' title={post.title}>
 					{post.title}
 				</a>
 			</Link>
+			<div className='blog-excerpt'>{post.excerpt}</div>
 			<div className='blog-sub'>
 				<span className='username'>@{post.author.name} </span>
 				<span className='date'>
@@ -110,6 +118,7 @@ const NewBlog = ({ post }) => {
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>
 							<img src={post.coverImage} alt='' />
+							<div className='img-dark'></div>
 						</a>
 					</Link>
 				</div>
@@ -124,7 +133,7 @@ const NewBlog = ({ post }) => {
 				</div>
 			</div>
 			<div className='right-part'>
-				<section
+				<PostWrapper
 					className='content'
 					dangerouslySetInnerHTML={{ __html: post.content.slice(0, 1500) }}
 				/>
@@ -237,8 +246,10 @@ const BlogCardWrapper = styled.div`
 	margin: 12px 8px;
 	background: ${({ theme }) => theme.backgroundLight};
 	color: ${({ theme }) => theme.text};
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	border-radius: 1rem;
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 	.fixed {
 		position: absolute;
 		bottom: 0;
@@ -255,9 +266,24 @@ const BlogCardWrapper = styled.div`
 			cursor: pointer;
 		}
 	}
+	.img-dark-wrapper {
+		width: 100%;
+		position: relative;
+		.img-dark {
+			display: ${({ theme }) => (theme.theme === "light" ? "none" : "block")};
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.3);
+			z-index: 10;
+		}
+	}
 	img {
 		width: 100%;
 		cursor: pointer;
+		border-radius: 1rem 1rem 0 0;
 	}
 	.blog-info {
 		width: 100%;
@@ -268,17 +294,24 @@ const BlogCardWrapper = styled.div`
 		padding: 8px 8px 4px 8px;
 		box-sizing: border-box;
 		.link {
-			width: 80%;
-			text-overflow: ellipsis;
+			width: 100%;
+			margin: 0.5rem 0;
+			/* text-overflow: ellipsis;
 			white-space: nowrap;
-			overflow: hidden;
-			line-height: 3rem;
+			overflow: hidden; */
+			line-height: 2rem;
+			font-size: 1rem;
 			text-decoration: none;
 			color: ${({ theme }) => theme.text};
 			font-weight: 600;
 			&:hover {
 				color: ${({ theme }) => theme.themeColor};
 			}
+		}
+		.blog-excerpt {
+			margin: 0 0 0.5rem 0;
+			line-height: 1rem;
+			font-size: 0.75rem;
 		}
 		.blog-sub {
 			width: 100%;
@@ -300,8 +333,8 @@ const NewBlogWrapper = styled.div`
 	width: 75%;
 	@media (max-width: 600px) {
 		width: 95%;
+		flex-direction: column;
 	}
-	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -311,8 +344,10 @@ const NewBlogWrapper = styled.div`
 	margin: 12px 8px;
 	background: ${({ theme }) => theme.backgroundLight};
 	color: ${({ theme }) => theme.text};
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	border-radius: 1rem;
+	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 	.expand {
 		position: absolute;
 		bottom: 10px;
@@ -334,9 +369,20 @@ const NewBlogWrapper = styled.div`
 		flex-direction: column;
 		justify-content: flex-end;
 		.img {
-			width: 100%;
 			img {
 				width: 100%;
+			}
+			width: 100%;
+			position: relative;
+			.img-dark {
+				display: ${({ theme }) => (theme.theme === "light" ? "none" : "block")};
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.3);
+				z-index: 10;
 			}
 		}
 		a {
@@ -349,6 +395,7 @@ const NewBlogWrapper = styled.div`
 		.title {
 			width: 100%;
 			font-size: 1.5rem;
+			line-height: 2rem;
 			font-weight: 700;
 			text-align: left;
 			margin: 1.5rem 0 0.75rem;
@@ -387,6 +434,10 @@ const NewBlogWrapper = styled.div`
 			padding: 3px 12px;
 		}
 	}
+`;
+
+const PostWrapper = styled(PostStyles)`
+	padding: 5px;
 `;
 
 export async function getStaticProps() {

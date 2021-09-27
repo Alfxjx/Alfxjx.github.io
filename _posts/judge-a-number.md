@@ -9,8 +9,6 @@ author:
   picture: '/assets/blog/authors/alfxjx.jpeg'
 ---
 
-# 如何用正则表达式判断一个数是否是质数
-
 本文展示了一种判断一个数是否是质数的奇技淫巧，采用的是正则表达式方法。
 
 太长不看
