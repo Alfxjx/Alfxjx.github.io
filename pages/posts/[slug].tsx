@@ -2,12 +2,13 @@ import { getPostBySlug, getAllPosts } from "../../utils/api";
 import markdownToHtml from "../../utils/markdownToHtml";
 import styled from "styled-components";
 import hljs from "highlight.js";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import "highlight.js/styles/atom-one-dark.css";
-import Arrow from "../../public/arrow.svg";
 import { MyContext } from "../_app";
 import { Toggle } from "../../components/theme/Toggle";
 import { useRouter } from "next/router";
+import { Footer } from "../../components/Footer/index";
+import Arrow from "../../public/svg/arrow.svg";
 
 export default function Post({ post }) {
 	const router = useRouter();
@@ -29,12 +30,14 @@ export default function Post({ post }) {
 				</div>
 				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 			</div>
+			<div style={{height: "3.25rem"}}></div>
 			<PostWrapper>
 				<div
 					className='post'
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
 			</PostWrapper>
+			<Footer showLink={true}></Footer>
 		</Wrapper>
 	);
 }
@@ -65,7 +68,16 @@ const Wrapper = styled.div`
 `;
 
 const PostWrapper = styled.div`
-	margin: 0 10%;
+	margin: 0 15%;
+	background: ${({ theme }) => theme.backgroundLight};
+	@media (max-width: 1280px) {
+		padding: 3rem 1rem;
+		margin: 0 10%;
+	}
+	@media (max-width: 600px) {
+		padding: 3rem 0.75rem;
+		margin: 0 2%;
+	}
 	padding: 5rem 2rem;
 	border-radius: 6px;
 	box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
@@ -119,15 +131,22 @@ const PostWrapper = styled.div`
 	ol {
 		line-height: 1.5rem;
 		list-style: circle;
-		padding: 0 0 0 2.5rem;
+		padding: 0 0 0 1.5rem;
+		@media (max-width: 600px) {
+			padding: 0 0 0 0.5rem;
+		}
 	}
 	ul {
 		line-height: 1.5rem;
 		list-style: lower-roman;
-		padding: 0 0 0 2.5rem;
+		padding: 0 0 0 1.5rem;
+		@media (max-width: 600px) {
+			padding: 0 0 0 0.5rem;
+		}
 	}
 	li {
 		margin: 5px 0;
+		overflow: hidden;
 	}
 `;
 

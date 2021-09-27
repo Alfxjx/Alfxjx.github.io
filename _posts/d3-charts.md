@@ -9,7 +9,7 @@ author:
   picture: "/assets/blog/authors/alfxjx.jpeg"
 ---
 
-# 如何基于 D3.js 使用外部数据源创建图表
+# [译] 如何基于 D3.js 使用外部数据源创建图表
 
 > - 原文地址：[How to Create Charts from External Data Sources with D3.js](https://blog.bitsrc.io/how-to-create-charts-from-external-data-sources-with-d3-js-4abbcb574706)
 > - 原文作者：[Shaumik Daityari](https://medium.com/@ds_mik)

@@ -2,11 +2,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
+import { getPostBySlug, getAllPosts } from "../utils/api";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/Button/index";
 import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
-export default function Home() {
+export default function Home({ newPost }) {
 	const [whichWeb, setWeb] = useState("");
 	const { themeToggler, getNowTheme } = useContext(MyContext);
 	useEffect(() => {
@@ -46,18 +47,18 @@ export default function Home() {
 					<Button onClick={handleWebChange}>{whichWeb}</Button>
 					<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 				</div>
-				<Avatar src='/Patrick.jpg' alt='avatar' />
-				<SelfIntro />
+				<Avatar src='/me.jpg' alt='avatar' />
+				<SelfIntro newPost={newPost} />
 				<Footer showLink={true} />
 			</FullPage>
 		</div>
 	);
 }
 
-const SelfIntro = () => {
+const SelfIntro = ({ newPost }) => {
 	const router = useRouter();
 	const handleNew = () => {
-		router.push("/posts/clamp-design");
+		router.push(`/posts/${newPost.slug}`);
 	};
 	const handleBlogs = () => {
 		router.push("/docs");
@@ -151,3 +152,13 @@ const Buttons = styled.div`
 		width: 6rem;
 	}
 `;
+
+export async function getStaticProps() {
+	const allPosts = getAllPosts(["slug"]);
+	const [newPost, ...restPosts] = allPosts;
+	return {
+		props: {
+			newPost,
+		},
+	};
+}

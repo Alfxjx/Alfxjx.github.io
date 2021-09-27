@@ -4,12 +4,12 @@ export const lightTheme = {
 	textHover: "#025cf7",
 	background: "#fff",
 	backgroundLight: "#fff",
-	themeColor: "#447bdb",
+	themeColor: "#2e317c",
 };
 export const darkTheme = {
 	text: "#f1f2f3",
 	textReverse:"#000",
-	textHover: "#f4eeee",
+	textHover: "#bec936",
 	background: "#363537",
 	backgroundLight: "#666",
 	themeColor: "#f4ea2a",

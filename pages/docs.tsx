@@ -7,12 +7,14 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Footer } from "../components/Footer/index";
 import { formatDate } from "../utils/formatDate";
-
-import Share from "../public/share.svg";
-import Expand from "../public/expand.svg";
 import { MyContext } from "./_app";
 import markdownToHtml from "../utils/markdownToHtml";
 
+import Share from "../public/svg/share.svg";
+import Expand from "../public/svg/expand.svg";
+import Home from "../public/svg/home.svg";
+import Archive from "../public/svg/archive.svg";
+import About from "../public/svg/about.svg";
 
 // @note react-reveal 之后文章多了可以用
 export default function Document({ newOneContent, allPosts }) {
@@ -28,35 +30,41 @@ export default function Document({ newOneContent, allPosts }) {
 	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
-			<div className="btn-wrapper">
+			<div className='btn-wrapper'>
 				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 			</div>
-			<div className="header">
-				<Avatar
-					onClick={() => {
-						router.push("/");
-					}}
-					src="/Patrick.jpg"
-					alt="avatar"
-				/>
-				<div className="links">
-					<Link href="/about">About</Link>
-					<Link href="/archive">Archive</Link>
+			<div className='header'>
+				<div title="home">
+					<Home
+						onClick={() => {
+							router.push("/");
+						}}></Home>
+				</div>
+				<div className='links'>
+					<div title='about me'>
+						<Link href='/about'>
+							<About />
+						</Link>
+					</div>
+					<div title='archives'>
+						<Link href='/archive'>
+							<Archive title='archives' />
+						</Link>
+					</div>
 				</div>
 			</div>
-			<div className="blog-list">
+			<div className='blog-list'>
 				<NewBlog post={newOneContent} />
 				<Masonry
 					breakpointCols={breakpointColumnsObj}
-					className="my-masonry-grid"
-					columnClassName="my-masonry-grid_column"
-				>
+					className='my-masonry-grid'
+					columnClassName='my-masonry-grid_column'>
 					{restPosts.map((post) => {
 						return <BlogCard post={post} key={post.slug} />;
 					})}
 				</Masonry>
 			</div>
-			<div className="footer-wrapper">
+			<div className='footer-wrapper'>
 				<Footer showLink={true} />
 			</div>
 		</ListPage>
@@ -65,21 +73,21 @@ export default function Document({ newOneContent, allPosts }) {
 
 const BlogCard = ({ post }) => (
 	<BlogCardWrapper>
-		<div className="fixed">
+		<div className='fixed'>
 			<Share />
 		</div>
 		<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-			<img src={post.coverImage} alt="" />
+			<img src={post.coverImage} alt='' />
 		</Link>
-		<div className="blog-info">
+		<div className='blog-info'>
 			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<a className="link" title={post.title}>
+				<a className='link' title={post.title}>
 					{post.title}
 				</a>
 			</Link>
-			<div className="blog-sub">
-				<span className="username">@{post.author.name} </span>
-				<span className="date">
+			<div className='blog-sub'>
+				<span className='username'>@{post.author.name} </span>
+				<span className='date'>
 					{formatDate(new Date(post.date), "yyyy-MM-dd")}
 				</span>
 			</div>
@@ -90,37 +98,37 @@ const BlogCard = ({ post }) => (
 const NewBlog = ({ post }) => {
 	return (
 		<NewBlogWrapper>
-			<div className="expand">
+			<div className='expand'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<a>
 						<Expand />
 					</a>
 				</Link>
 			</div>
-			<div className="left-part">
-				<div className="img">
+			<div className='left-part'>
+				<div className='img'>
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>
-							<img src={post.coverImage} alt="" />
+							<img src={post.coverImage} alt='' />
 						</a>
 					</Link>
 				</div>
-				<div className="title">
+				<div className='title'>
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>{post.title}</a>
 					</Link>
 				</div>
-				<div className="info">
-					<div className="username">@{post.author.name}</div>
+				<div className='info'>
+					<div className='username'>@{post.author.name}</div>
 					<div>{formatDate(new Date(post.date), "yyyy-MM-dd")}</div>
 				</div>
 			</div>
-			<div className="right-part">
+			<div className='right-part'>
 				<section
-					className="content"
+					className='content'
 					dangerouslySetInnerHTML={{ __html: post.content.slice(0, 1500) }}
 				/>
-				<span className="ellip">...</span>
+				<span className='ellip'>...</span>
 			</div>
 		</NewBlogWrapper>
 	);
@@ -137,7 +145,7 @@ const ListPage = styled.div`
 	.btn-wrapper {
 		position: fixed;
 		right: 1rem;
-		top: 0.5rem;
+		top: 0.25rem;
 		z-index: 100;
 		button {
 			margin: 0 2px;
@@ -159,6 +167,16 @@ const ListPage = styled.div`
 			display: flex;
 			padding: 5px 3%;
 			justify-content: flex-start;
+		}
+		svg {
+			margin: 10px 3px;
+			width: 1.5rem;
+			height: 1.5rem;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.themeColor};
+			@media (max-width: 600px) {
+				margin: 3px 10px;
+			}
 		}
 		.links {
 			display: flex;
@@ -208,17 +226,6 @@ const ListPage = styled.div`
 		justify-content: center;
 		padding: 0.25rem 0;
 	}
-`;
-
-const Avatar = styled.img`
-	border-radius: 50%;
-	width: 4rem;
-	height: 4rem;
-	@media (max-width: 600px) {
-		width: 2.4rem;
-		height: 2.4rem;
-	}
-	cursor: pointer;
 `;
 
 const BlogCardWrapper = styled.div`
@@ -368,8 +375,15 @@ const NewBlogWrapper = styled.div`
 			img {
 				display: none;
 			}
+			a {
+				color: ${({ theme }) => theme.themeColor};
+				margin: 0 2px;
+				&:hover {
+					color: ${({ theme }) => theme.textHover};
+				}
+			}
 		}
-		.ellip{
+		.ellip {
 			padding: 3px 12px;
 		}
 	}
@@ -396,12 +410,15 @@ export async function getStaticProps() {
 		"ogImage",
 		"coverImage",
 	]);
-	const {content, ...rest} = newOneContent;
+	const { content, ...rest } = newOneContent;
 	const contentMarked = await markdownToHtml(content || "");
 	return {
-		props: { newOneContent:{
-			content: contentMarked,
-			...rest
-		}, allPosts: [...allPosts] },
+		props: {
+			newOneContent: {
+				content: contentMarked,
+				...rest,
+			},
+			allPosts: [...allPosts],
+		},
 	};
 }

@@ -9,6 +9,8 @@ author:
   picture: '/assets/blog/authors/alfxjx.jpeg'
 ---
 
+# [译] 使用 clamp() 进行响应式设计
+
 > * 原文地址：[clamp() for Responsive Design](https://calebhearth.com/clamp-for-responsive-design)
 > * 原文作者：[Caleb Hearth](https://calebhearth.com/)
 > * 译文出自：[掘金翻译计划](https://github.com/xitu/gold-miner)
@@ -16,7 +18,6 @@ author:
 > * 译者：[Alfxjx](https://github.com/Alfxjx)
 > * 校对者：[z0gSh1u](https://github.com/z0gSh1u)、[HurryOwen](https://github.com/HurryOwen)
 
-# 使用 clamp() 进行响应式设计
 
 新的 CSS 函数 `clamp()` 提供了一种通过给目标值设置最大最小值的范围来计算实际值方法。它的语法是 `clamp([min], [calculated], [max])`。当你基于屏幕尺寸，使用长度单位 `vw` 来缩放一些值时，这个函数很有用。
 
