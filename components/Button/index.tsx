@@ -14,9 +14,20 @@ const InsideButton = styled.button<{ primary?: boolean }>`
 	cursor: pointer;
 `;
 
+const TextButtonStyles = styled.button<{showUnderLine?:boolean}>`
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	color: ${(props) => props.theme.themeColor};
+	text-align: center;
+	text-decoration: ${({showUnderLine})=>showUnderLine?'underline':'none'};
+	text-decoration-color: ${(props) => props.theme.themeColor};
+`;
+
 export type ButtonProps = {
 	children: ReactNode;
 	btnType?: "primary" | "ghost";
+	showUnderLine?: boolean;
 };
 
 export function Button({
@@ -29,4 +40,12 @@ export function Button({
 			{children}
 		</InsideButton>
 	);
+}
+
+export function TextButton({
+	children,
+	showUnderLine,
+	...props
+}: ButtonProps & ButtonHTMLAttributes<HTMLElement>) {
+	return <TextButtonStyles showUnderLine={showUnderLine} {...props}>{children}</TextButtonStyles>;
 }

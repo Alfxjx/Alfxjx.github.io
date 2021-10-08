@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { getPostBySlug, getAllPosts } from "../utils/api";
 import { Footer } from "../components/Footer";
-import { Button } from "../components/Button/index";
+import { Button, TextButton } from "../components/Button/index";
 import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
 export default function Home({ newPost }) {
@@ -83,21 +83,15 @@ const SelfIntro = ({ newPost }) => {
 				a frontend developer who work for his passion
 			</p>
 			<Buttons>
-				<Button className='my-main-font btn' onClick={handleNew}>
+				<Button className='my-main-font btn' btnType='primary' onClick={handleNew}>
 					Latest
 				</Button>
-				<Button
-					className='my-main-font btn'
-					onClick={handleBlogs}
-					btnType='primary'>
+				<TextButton className='my-main-font btn' showUnderLine={true} onClick={handleBlogs}>
 					Blogs
-				</Button>
-				<Button
-					className='my-main-font btn'
-					onClick={handleTechs}
-					btnType='primary'>
+				</TextButton>
+				<TextButton className='my-main-font btn' showUnderLine={true} onClick={handleTechs}>
 					Techs
-				</Button>
+				</TextButton>
 			</Buttons>
 		</FullPageMain>
 	);
