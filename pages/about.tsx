@@ -1,10 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { BaseLayout } from "../components/Layout/base";
+
 const About = () => {
-	return <AboutMe>about me</AboutMe>;
+	return (
+		<BaseLayout>
+			<AboutWrapper>
+				this is About
+			</AboutWrapper>
+		</BaseLayout>
+	);
 };
 
-const AboutMe = styled.div``;
+const AboutWrapper = styled.div``;
 
 export default About;
-

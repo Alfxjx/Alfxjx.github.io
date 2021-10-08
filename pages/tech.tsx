@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import { Toggle } from "../components/theme/Toggle";
 import { Footer } from "../components/Footer/index";
+import { Header } from "../components/Header/index";
 import { Post as PostStyles } from "../components/Post/index";
 
 import { getPostBySlug, getAllPosts } from "../utils/api";
@@ -17,9 +18,6 @@ import { MyContext } from "./_app";
 
 import Share from "../public/svg/share.svg";
 import Expand from "../public/svg/expand.svg";
-import Home from "../public/svg/home.svg";
-import Archive from "../public/svg/archive.svg";
-import About from "../public/svg/about.svg";
 
 // @note react-reveal 之后文章多了可以用
 export default function Document({ newOneContent, allPosts }) {
@@ -46,26 +44,7 @@ export default function Document({ newOneContent, allPosts }) {
 			<div className='btn-wrapper'>
 				<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
 			</div>
-			<div className='header'>
-				<div title='home'>
-					<Home
-						onClick={() => {
-							router.push("/");
-						}}></Home>
-				</div>
-				<div className='links'>
-					<div title='about me'>
-						<Link href='/about'>
-							<About />
-						</Link>
-					</div>
-					<div title='archives'>
-						<Link href='/archive'>
-							<Archive title='archives' />
-						</Link>
-					</div>
-				</div>
-			</div>
+			<Header></Header>
 			<div className='blog-list'>
 				<NewBlog post={newOneContent} />
 				<Masonry
@@ -157,7 +136,7 @@ const NewBlog = ({ post }) => {
 const ListPage = styled.div`
 	position: relative;
 	width: 100%;
-	/* height: 100vh; */
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	background: ${({ theme }) => theme.background};
@@ -171,60 +150,11 @@ const ListPage = styled.div`
 			margin: 0 2px;
 		}
 	}
-	.header {
-		margin: 0.5rem 0 0 1rem;
-		position: fixed;
-		top: 0;
-		left: 0;
-		background: ${({ theme }) => theme.background};
-		color: ${({ theme }) => theme.text};
-		@media (max-width: 600px) {
-			margin: 0;
-			width: 100%;
-			box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px,
-				rgb(0 0 0 / 8%) 0px 0px 0px 1px;
-			z-index: 20;
-			display: flex;
-			padding: 5px 3%;
-			justify-content: flex-start;
-		}
-		svg {
-			margin: 10px 3px;
-			width: 1.5rem;
-			height: 1.5rem;
-			cursor: pointer;
-			fill: ${({ theme }) => theme.themeColor};
-			@media (max-width: 600px) {
-				margin: 3px 10px;
-			}
-		}
-		.links {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			@media (max-width: 600px) {
-				display: flex;
-				flex-direction: row;
-				justify-content: flex-start;
-			}
-			a {
-				margin: 0.5rem 0;
-				color: ${({ theme }) => theme.themeColor};
-				text-decoration: none;
-				&:hover {
-					color: ${({ theme }) => theme.textHover};
-				}
-				@media (max-width: 600px) {
-					margin: 0.5rem 10px;
-				}
-			}
-		}
-	}
 	.blog-list {
 		@media (max-width: 600px) {
 			margin: 0 10px;
 		}
-		margin: 0 5%;
+		margin: 0 4rem;
 		padding: 2rem 0 0 0;
 		flex: 1;
 		display: flex;
@@ -342,6 +272,10 @@ const BlogCardWrapper = styled.div`
 const NewBlogWrapper = styled.div`
 	position: relative;
 	width: 75%;
+	@media (max-width: 1200px) {
+		width: 90%;
+		flex-direction: column;
+	}
 	@media (max-width: 600px) {
 		width: 95%;
 		flex-direction: column;

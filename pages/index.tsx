@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { getPostBySlug, getAllPosts } from "../utils/api";
@@ -56,7 +57,9 @@ export default function Home({ newPost }) {
 					<Button onClick={handleWebChange}>{whichWeb}</Button>
 					<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
 				</div>
-				<Avatar src='/me.jpg' alt='avatar' />
+				<Link href='/about'>
+					<Avatar src='/me.jpg' alt='avatar' />
+				</Link>
 				<SelfIntro newPost={newPost} />
 				<Footer showLink={true} />
 			</FullPage>
@@ -162,6 +165,7 @@ const Avatar = styled.img`
 	height: 12rem;
 	margin-top: 6.2rem;
 	box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+	cursor: pointer;
 `;
 
 const Buttons = styled.div`

@@ -1,0 +1,97 @@
+import React from "react";
+import styled from "styled-components";
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+import Home from "../../public/svg/home.svg";
+import Archive from "../../public/svg/archive.svg";
+import About from "../../public/svg/about.svg";
+import Book from "../../public/svg/book.svg";
+import Code from "../../public/svg/code.svg";
+
+export const Header = () => {
+	const router = useRouter();
+
+	return (
+		<HeaderStyle>
+			<div title='home'>
+				<Home
+					onClick={() => {
+						router.push("/");
+					}}></Home>
+			</div>
+			<div className='links'>
+				<div title='about me'>
+					<Link href='/about'>
+						<About />
+					</Link>
+				</div>
+				<div title='archives'>
+					<Link href='/archive'>
+						<Archive title='archives' />
+					</Link>
+				</div>
+				<div title='life'>
+					<Link href='/life'>
+						<Book title='life' />
+					</Link>
+				</div>
+				<div title='tech'>
+					<Link href='/tech'>
+						<Code title='tech' />
+					</Link>
+				</div>
+			</div>
+		</HeaderStyle>
+	);
+};
+
+const HeaderStyle = styled.div`
+	margin: 0.5rem 0 0 1rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: ${({ theme }) => theme.background};
+	color: ${({ theme }) => theme.text};
+	@media (max-width: 600px) {
+		margin: 0;
+		width: 100%;
+		box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px,
+			rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+		z-index: 20;
+		display: flex;
+		padding: 5px 3%;
+		justify-content: flex-start;
+	}
+	svg {
+		margin: 10px 3px;
+		width: 1.5rem;
+		height: 1.5rem;
+		cursor: pointer;
+		fill: ${({ theme }) => theme.themeColor};
+		@media (max-width: 600px) {
+			margin: 3px 10px;
+		}
+	}
+	.links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		@media (max-width: 600px) {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+		}
+		a {
+			margin: 0.5rem 0;
+			color: ${({ theme }) => theme.themeColor};
+			text-decoration: none;
+			&:hover {
+				color: ${({ theme }) => theme.textHover};
+			}
+			@media (max-width: 600px) {
+				margin: 0.5rem 10px;
+			}
+		}
+	}
+`;
