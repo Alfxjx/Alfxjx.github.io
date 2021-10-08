@@ -83,14 +83,23 @@ const SelfIntro = ({ newPost }) => {
 				a frontend developer who work for his passion
 			</p>
 			<Buttons>
-				<Button className='my-main-font btn' btnType='primary' onClick={handleNew}>
+				<TextButton
+					className='my-main-font btn'
+					showUnderLine={true}
+					onClick={handleBlogs}>
+					About Life
+				</TextButton>
+				<Button
+					className='my-main-font btn'
+					btnType='primary'
+					onClick={handleNew}>
 					Latest
 				</Button>
-				<TextButton className='my-main-font btn' showUnderLine={true} onClick={handleBlogs}>
-					Blogs
-				</TextButton>
-				<TextButton className='my-main-font btn' showUnderLine={true} onClick={handleTechs}>
-					Techs
+				<TextButton
+					className='my-main-font btn'
+					showUnderLine={true}
+					onClick={handleTechs}>
+					About Code
 				</TextButton>
 			</Buttons>
 		</FullPageMain>
