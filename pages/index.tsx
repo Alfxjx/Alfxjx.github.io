@@ -67,10 +67,13 @@ export default function Home({ newPost }) {
 const SelfIntro = ({ newPost }) => {
 	const router = useRouter();
 	const handleNew = () => {
-		router.push(`/posts/${newPost.slug}`);
+		router.push(`/${newPost.type}/${newPost.slug}`);
+	};
+	const handleTechs = () => {
+		router.push("/tech");
 	};
 	const handleBlogs = () => {
-		router.push("/docs");
+		router.push("/life");
 	};
 	return (
 		<FullPageMain>
@@ -88,6 +91,12 @@ const SelfIntro = ({ newPost }) => {
 					onClick={handleBlogs}
 					btnType='primary'>
 					Blogs
+				</Button>
+				<Button
+					className='my-main-font btn'
+					onClick={handleTechs}
+					btnType='primary'>
+					Techs
 				</Button>
 			</Buttons>
 		</FullPageMain>
@@ -163,7 +172,7 @@ const Buttons = styled.div`
 `;
 
 export async function getStaticProps() {
-	const allPosts = getAllPosts(["slug"]);
+	const allPosts = getAllPosts(["slug", "type"]);
 	const [newPost, ...restPosts] = allPosts;
 	return {
 		props: {

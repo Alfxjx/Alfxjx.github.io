@@ -3,7 +3,7 @@ title: '如何用正则表达式判断一个数是否是质数'
 excerpt: '本文展示了一种判断一个数是否是质数的奇技淫巧，采用的是正则表达式方法。'
 coverImage: ''
 date: '2020-10-08T12:44:58.817Z'
-type: posts
+type: tech
 author:
   name: Alfxjx
   picture: '/assets/blog/authors/alfxjx.jpeg'

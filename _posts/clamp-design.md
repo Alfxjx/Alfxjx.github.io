@@ -3,7 +3,7 @@ title: '[译] 使用 clamp() 进行响应式设计'
 excerpt: '新的 CSS 函数 `clamp()` 提供了一种通过给目标值设置最大最小值的范围来计算实际值方法。它的语法是 `clamp([min], [calculated], [max])`。当你基于屏幕尺寸，使用长度单位 `vw` 来缩放一些值时，这个函数很有用。'
 coverImage: '/assets/blog/css-math-functions.jpg'
 date: '2020-11-05T14:52:42.712Z'
-type: posts
+type: tech
 author:
   name: Alfxjx
   picture: '/assets/blog/authors/alfxjx.jpeg'

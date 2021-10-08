@@ -3,7 +3,7 @@ title: "[译] 如何基于 D3.js 使用外部数据源创建图表"
 excerpt: "D3 是一个运行于 web 端的 Javascript 可视化库。D3 的第一个版本发布于 2011 年，并且随着社区支持的增加而成熟。对于早期版本的 D3，学习曲线有些陡峭，但对于 JavaScript 初学者来说，最新版本学习起来更容易。大多数为 Web 构建的可视化都依赖于动态数据源 —— 因此，本文的目的是使您能够在 D3 中使用外部数据源创建图表。"
 date: "2020-09-27T08:18:39.741Z"
 coverImage: "/assets/blog/d3.png"
-type: posts
+type: tech
 author:
   name: Alfxjx
   picture: "/assets/blog/authors/alfxjx.jpeg"

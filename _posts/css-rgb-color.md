@@ -3,7 +3,7 @@ title: "CSS 的 RGB 颜色覆盖"
 excerpt: "浅薄的研究了一下，希望可以和我讨论"
 date: "2020-09-27T08:18:39.741Z"
 coverImage: "/assets/blog/css-rgb.jpeg"
-type: posts
+type: tech
 author:
   name: Alfxjx
   picture: "/assets/blog/authors/alfxjx.jpeg"
