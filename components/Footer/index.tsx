@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Github from "../../public/svg/github.svg";
 import Weibo from "../../public/svg/weibo.svg";
 import Juejin from "../../public/svg/juejin.svg";
+import theme from "@chakra-ui/theme";
 
 export const Footer = ({ showLink }) => {
 	return (
@@ -34,7 +35,7 @@ const FooterWrapper = styled.div`
 	align-items: center;
 	letter-spacing: 2px;
 	font-weight: 600;
-	.text{
+	.text {
 		padding: 2rem 0 6px 0;
 	}
 	a {

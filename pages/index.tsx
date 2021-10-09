@@ -151,7 +151,7 @@ const FullPage = styled.div`
 		left: 0;
 		width: 100vw;
 		height: 500px;
-		transform: skewY(14deg) translateY(-50%);
+		transform: skewY(8deg) translateY(-50%);
 	}
 `;
 
