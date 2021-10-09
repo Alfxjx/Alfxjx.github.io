@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Header } from "../Header/index";
 import { Toggle } from "../theme/Toggle";
 import { Footer } from "../Footer/index";
+import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 import { MyContext } from "../../pages/_app";
 
 const BaseLayout = ({ children }) => {
@@ -20,7 +21,9 @@ const BaseLayout = ({ children }) => {
 		<LayoutWrapper>
 			<Header></Header>
 			<div className='btn-wrapper'>
-				<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
+				<Toggle toggleTheme={() => themeToggler()}>
+					<LightDarkSwitcher type={NowTheme} />
+				</Toggle>
 			</div>
 			<div className='main'>{children}</div>
 			<div className='footer-wrapper'>
@@ -51,7 +54,7 @@ const LayoutWrapper = styled.div`
 		flex: 1;
 		margin: 0 4rem;
 		@media (max-width: 600px) {
-      margin: 0 10px;
+			margin: 0 10px;
 		}
 	}
 	.footer-wrapper {

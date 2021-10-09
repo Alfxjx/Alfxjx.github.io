@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { getPostBySlug, getAllPosts } from "../../utils/api";
 import markdownToHtml from "../../utils/markdownToHtml";
 import styled from "styled-components";
@@ -7,6 +8,8 @@ import { useEffect, useContext } from "react";
 import "highlight.js/styles/atom-one-dark.css";
 import { MyContext } from "../_app";
 import { Toggle } from "../../components/theme/Toggle";
+import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
+
 import { useRouter } from "next/router";
 import { Footer } from "../../components/Footer/index";
 import { Post as PostStyles } from "../../components/Post/index";
@@ -16,6 +19,15 @@ import Code from "../../public/svg/code.svg";
 export default function Post({ post }) {
 	const router = useRouter();
 	const { themeToggler, getNowTheme } = useContext(MyContext);
+	const [NowTheme, setNowTheme] = useState("");
+	useEffect(() => {
+		const theme = getNowTheme();
+		if (theme === "light") {
+			setNowTheme("L");
+		} else {
+			setNowTheme("D");
+		}
+	}, [getNowTheme()]);
 	useEffect(() => {
 		document.querySelectorAll("pre").forEach((el) => {
 			// then highlight each
@@ -43,7 +55,9 @@ export default function Post({ post }) {
 				</div>
 			</div>
 			<div className='toggle'>
-				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
+				<Toggle toggleTheme={() => themeToggler()}>
+					<LightDarkSwitcher type={NowTheme} />
+				</Toggle>
 			</div>
 			<div style={{ height: "3.25rem" }}></div>
 			<PostWrapper>

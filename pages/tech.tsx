@@ -10,6 +10,7 @@ import { Toggle } from "../components/theme/Toggle";
 import { Footer } from "../components/Footer/index";
 import { Header } from "../components/Header/index";
 import { Post as PostStyles } from "../components/Post/index";
+import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 
 import { getPostBySlug, getAllPosts } from "../utils/api";
 import markdownToHtml from "../utils/markdownToHtml";
@@ -26,10 +27,10 @@ export default function Document({ newOneContent, allPosts }) {
 	const [NowTheme, setNowTheme] = useState("");
 	useEffect(() => {
 		const theme = getNowTheme();
-		if(theme==="light"){
-			setNowTheme("L")
-		} else {	
-			setNowTheme("D")
+		if (theme === "light") {
+			setNowTheme("L");
+		} else {
+			setNowTheme("D");
 		}
 	}, [getNowTheme()]);
 	const breakpointColumnsObj = {
@@ -42,7 +43,9 @@ export default function Document({ newOneContent, allPosts }) {
 	return (
 		<ListPage>
 			<div className='btn-wrapper'>
-				<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
+				<Toggle toggleTheme={() => themeToggler()}>
+					<LightDarkSwitcher type={NowTheme} />
+				</Toggle>
 			</div>
 			<Header></Header>
 			<div className='blog-list'>

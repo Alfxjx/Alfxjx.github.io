@@ -7,6 +7,7 @@ import { getAllBlogs, getAllPosts } from "@/utils/api";
 import { Footer } from "@/components/Footer";
 import { Button, TextButton } from "@/components/Button/index";
 import { StripeHeader } from "@/components/StripeHeader";
+import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
 export default function Home({ newPost }) {
@@ -55,8 +56,12 @@ export default function Home({ newPost }) {
 
 			<FullPage>
 				<div className='btn-wrapper'>
-					<Button onClick={handleWebChange}>{whichWeb}</Button>
-					<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
+					<TextButton onClick={handleWebChange} showUnderLine={true}>
+						<span className='my-main-font web-title'>{whichWeb}</span>
+					</TextButton>
+					<Toggle toggleTheme={() => themeToggler()}>
+						<LightDarkSwitcher type={NowTheme} />
+					</Toggle>
 				</div>
 				<div className='header-wrapper'>
 					<StripeHeader></StripeHeader>
@@ -127,8 +132,17 @@ const FullPage = styled.div`
 		right: 1rem;
 		top: 1rem;
 		z-index: 10;
+		display: flex;
+		align-items: center;
 		button {
 			margin: 0 2px;
+		}
+		.web-title {
+			font-size: 1.5rem;
+			font-weight: 700;
+			:hover{
+				color: ${({theme})=>theme.textHover};
+			}
 		}
 	}
 	.header-wrapper {

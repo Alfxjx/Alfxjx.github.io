@@ -35,7 +35,7 @@ export const useDarkMode: () => [string, () => void, () => String] = () => {
 
 export const Toggle = ({ children, toggleTheme }) => {
 	return (
-		<Button btnType='primary' onClick={toggleTheme}>
+		<Button btnType='primary' round="round" onClick={toggleTheme}>
 			{children}
 		</Button>
 	);
