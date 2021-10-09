@@ -1,6 +1,7 @@
 export const lightTheme = {
 	theme:"light",
 	text: "#000",
+	textGray:"#777",
 	textReverse:"#f1f2f3",
 	textHover: "#025cf7",
 	background: "#fff",
@@ -10,6 +11,7 @@ export const lightTheme = {
 export const darkTheme = {
 	theme:"dark",
 	text: "#f1f2f3",
+	textGray:"#ddd",
 	textReverse:"#000",
 	textHover: "#bec936",
 	background: "#363537",

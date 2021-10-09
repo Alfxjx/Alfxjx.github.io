@@ -15,30 +15,39 @@ export const Header = () => {
 	return (
 		<HeaderStyle>
 			<div title='home'>
-				<Home
-					onClick={() => {
-						router.push("/");
-					}}></Home>
+				<Link href="/">
+					<a>
+						<Home />
+					</a>
+				</Link>
 			</div>
 			<div className='links'>
 				<div title='about me'>
 					<Link href='/about'>
-						<About />
+						<a>
+							<About />
+						</a>
 					</Link>
 				</div>
 				<div title='archives'>
 					<Link href='/archive'>
-						<Archive title='archives' />
+						<a>
+							<Archive title='archives' />
+						</a>
 					</Link>
 				</div>
 				<div title='life'>
 					<Link href='/life'>
-						<Book title='life' />
+						<a>
+							<Book title='life' />
+						</a>
 					</Link>
 				</div>
 				<div title='tech'>
 					<Link href='/tech'>
-						<Code title='tech' />
+						<a>
+							<Code title='tech' />
+						</a>
 					</Link>
 				</div>
 			</div>
