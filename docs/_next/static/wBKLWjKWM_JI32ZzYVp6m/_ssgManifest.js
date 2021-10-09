@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Farchive","\u002F","\u002Flife","\u002Ftech","\u002Ftech\u002F[slug]","\u002Flife\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
