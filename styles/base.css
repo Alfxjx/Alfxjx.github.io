@@ -2,7 +2,9 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+body,html{   
+  -webkit-overflow-scrolling: touch;
+}
 html,
 body,
 div,

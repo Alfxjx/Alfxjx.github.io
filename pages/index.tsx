@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import { getPostBySlug, getAllPosts } from "../utils/api";
-import { Footer } from "../components/Footer";
-import { Button, TextButton } from "../components/Button/index";
+import { getPostBySlug, getAllPosts } from "@/utils/api";
+import { Footer } from "@/components/Footer";
+import { Button, TextButton } from "@/components/Button/index";
+import { StripeHeader } from "@/components/StripeHeader";
 import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
 export default function Home({ newPost }) {
@@ -56,6 +57,9 @@ export default function Home({ newPost }) {
 				<div className='btn-wrapper'>
 					<Button onClick={handleWebChange}>{whichWeb}</Button>
 					<Toggle toggleTheme={() => themeToggler()}>{NowTheme}</Toggle>
+				</div>
+				<div className='header-wrapper'>
+					<StripeHeader></StripeHeader>
 				</div>
 				<Link href='/about'>
 					<Avatar src='/me.jpg' alt='avatar' />
@@ -122,9 +126,18 @@ const FullPage = styled.div`
 		position: fixed;
 		right: 1rem;
 		top: 1rem;
+		z-index: 10;
 		button {
 			margin: 0 2px;
 		}
+	}
+	.header-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 500px;
+		transform: skewY(20deg) translateY(-50%);
 	}
 `;
 
@@ -138,6 +151,7 @@ const FullPageMain = styled.div`
 	p {
 		&.title {
 			color: ${({ theme }) => theme.text};
+			font-weight: 700;
 			margin-top: 1rem;
 			font-size: 2rem;
 			letter-spacing: 2px;
@@ -166,15 +180,29 @@ const Avatar = styled.img`
 	margin-top: 6.2rem;
 	box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 	cursor: pointer;
+	z-index: 10;
+	// 适配 iPhone se1
+	@media (max-height: 600px) {
+		width: 10rem;
+		height: 10rem;
+		margin-top: 4rem;
+	}
 `;
 
 const Buttons = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	@media (max-width: 400px) {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 	button {
 		margin: 3rem 1rem;
 		width: 6rem;
+		@media (max-width: 400px) {
+			margin: 16px;
+		}
 	}
 `;
 
