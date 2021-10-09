@@ -2,6 +2,7 @@ import { getPostBySlug, getAllPosts } from "../../utils/api";
 import markdownToHtml from "../../utils/markdownToHtml";
 import styled from "styled-components";
 import hljs from "highlight.js";
+import Link from "next/link";
 import { useEffect, useContext } from "react";
 import "highlight.js/styles/atom-one-dark.css";
 import { MyContext } from "../_app";
@@ -10,6 +11,7 @@ import { useRouter } from "next/router";
 import { Footer } from "../../components/Footer/index";
 import { Post as PostStyles } from "../../components/Post/index";
 import Arrow from "../../public/svg/arrow.svg";
+import Code from "../../public/svg/code.svg";
 
 export default function Post({ post }) {
 	const router = useRouter();
@@ -23,12 +25,24 @@ export default function Post({ post }) {
 	return (
 		<Wrapper>
 			<div className='header'>
-				<div
-					onClick={() => {
-						router.back();
-					}}>
-					<Arrow />
+				<div className='icon-wrapper'>
+					<div
+						className='icons'
+						onClick={() => {
+							router.back();
+						}}>
+						<Arrow />
+					</div>
+					<div className='icons'>
+						<Link href='/tech'>
+							<a>
+								<Code />
+							</a>
+						</Link>
+					</div>
 				</div>
+			</div>
+			<div className='toggle'>
 				<Toggle toggleTheme={() => themeToggler()}>{getNowTheme()}</Toggle>
 			</div>
 			<div style={{ height: "3.25rem" }}></div>
@@ -47,29 +61,46 @@ export default function Post({ post }) {
 const Wrapper = styled.div`
 	background: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.text};
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 	.header {
+		z-index: 100;
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100%;
 		padding-top: 12px;
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		div,
-		button {
-			margin: 0 1rem;
+		justify-content: flex-end;
+		align-items: flex-end;
+		.icon-wrapper {
+			display: flex;
+			margin: 0 0 0 10px;
+			border-radius: 30px;
+			border: 2px solid ${({ theme }) => theme.themeColor};
+			background: ${({ theme }) => theme.background};
+			.icons {
+				margin: 0 10px;
+			}
 		}
 		svg {
 			width: 1.5rem;
 			height: 1.5rem;
 			cursor: pointer;
 			fill: ${({ theme }) => theme.themeColor};
+			margin: 3px 0;
 		}
+	}
+	.toggle {
+		position: fixed;
+		top: 0;
+		right: 10px;
+		padding-top: 12px;
 	}
 `;
 
 const PostWrapper = styled(PostStyles)`
+	flex: 1 0 auto;
 	margin: 0 15%;
 	background: ${({ theme }) => theme.backgroundLight};
 	@media (max-width: 1280px) {

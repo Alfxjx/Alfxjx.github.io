@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import { getPostBySlug, getAllPosts } from "@/utils/api";
+import { getAllBlogs, getAllPosts } from "@/utils/api";
 import { Footer } from "@/components/Footer";
 import { Button, TextButton } from "@/components/Button/index";
 import { StripeHeader } from "@/components/StripeHeader";
@@ -207,11 +207,16 @@ const Buttons = styled.div`
 `;
 
 export async function getStaticProps() {
-	const allPosts = getAllPosts(["slug", "type"]);
-	const [newPost, ...restPosts] = allPosts;
+	const allPosts = getAllPosts(["title", "date", "type", "slug"]);
+	const allBlogs = getAllBlogs(["title", "date", "type", "slug"]);
+	const posts = [...allBlogs, ...allPosts]
+		.sort((a, b) => {
+			return new Date(a.date).getTime() - new Date(b.date).getTime();
+		})
+		.reverse();
 	return {
 		props: {
-			newPost,
+			newPost: posts[0],
 		},
 	};
 }
