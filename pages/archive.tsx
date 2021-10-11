@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { BaseLayout } from "@/components/Layout/base";
+import { Button } from "@/components/Button/index";
 import { getAllBlogs, getAllPosts } from "@/utils/api";
 import { formatDate } from "@/utils/formatDate";
 
@@ -10,20 +11,24 @@ export default function Archive({ posts }) {
 		<BaseLayout>
 			<ArchiveWrapper>
 				<div className='card'>
+					<div className='switch'>
+						<Button>Life</Button>
+						<Button style={{ marginLeft: "5px" }}>Tech</Button>
+					</div>
 					{posts.map((post) => {
 						return (
 							<div className='post-item' key={post.slug}>
-								<Link
-									as={`/${post.type}/${post.slug}`}
-									href={`/${post.type}/[slug]`}>
-									<a className='link'>
-										<span className='date'>
-											{formatDate(new Date(post.date), "yyyy-MM-dd")}
-										</span>
+								<a className='link'>
+									<span className='date'>
+										{formatDate(new Date(post.date), "yyyy-MM-dd")}
+									</span>
+									<Link
+										as={`/${post.type}/${post.slug}`}
+										href={`/${post.type}/[slug]`}>
 										<span className='title'>{post.title}</span>
-										<span className='type'>{post.type}</span>
-									</a>
-								</Link>
+									</Link>
+									<span className='type'>{post.type}</span>
+								</a>
 							</div>
 						);
 					})}
@@ -79,6 +84,7 @@ const ArchiveWrapper = styled.div`
 				}
 				.title {
 					font-weight: 400;
+					cursor: pointer;
 				}
 			}
 		}
