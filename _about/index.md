@@ -3,7 +3,7 @@ title: 'About me'
 date: '2021-10-08T14:52:42.712Z'
 author:
   name: Alfxjx
-  picture: '/assets/blog/authors/alfxjx.jpeg'
+  picture: '/assets/authors/alfxjx.jpg'
 ---
 
 ## Hello 

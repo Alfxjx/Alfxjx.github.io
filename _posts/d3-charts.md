@@ -6,7 +6,7 @@ coverImage: "/assets/blog/d3.png"
 type: tech
 author:
   name: Alfxjx
-  picture: "/assets/blog/authors/alfxjx.jpeg"
+  picture: "/assets/authors/alfxjx.jpg"
 ---
 
 

@@ -6,7 +6,7 @@ date: '2020-11-05T14:52:42.712Z'
 type: tech
 author:
   name: Alfxjx
-  picture: '/assets/blog/authors/alfxjx.jpeg'
+  picture: '/assets/authors/alfxjx.jpg'
 ---
 
 > * 原文地址：[clamp() for Responsive Design](https://calebhearth.com/clamp-for-responsive-design)

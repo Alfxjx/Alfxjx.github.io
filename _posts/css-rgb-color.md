@@ -6,7 +6,7 @@ coverImage: "/assets/blog/css-rgb.jpeg"
 type: tech
 author:
   name: Alfxjx
-  picture: "/assets/blog/authors/alfxjx.jpeg"
+  picture: "/assets/authors/alfxjx.jpg"
 ---
 
 
