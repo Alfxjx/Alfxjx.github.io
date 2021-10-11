@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getBlogBySlug, getAllBlogs } from "@/utils/api";
 import markdownToHtml from "@/utils/markdownToHtml";
+import { formatDate } from "@/utils/formatDate";
 import styled from "styled-components";
 import hljs from "highlight.js";
 import Link from "next/link";
@@ -61,7 +62,20 @@ export default function Post({ post }) {
 			</div>
 			<div style={{ height: "3.25rem" }}></div>
 			<PostWrapper>
-				<h1>{post.title}</h1>
+				<div className='info'>
+					<h1>{post.title}</h1>
+					<div className='user'>
+						<img
+							className='img'
+							src={post.author.picture}
+							alt={post.author.name}
+						/>
+						<span className='title'>{post.author.name}</span>
+						<div className='date'>
+							{formatDate(new Date(post.date), "yyyy-MM-dd")}
+						</div>
+					</div>
+				</div>
 				<div
 					className='post'
 					dangerouslySetInnerHTML={{ __html: post.content }}
@@ -128,6 +142,32 @@ const PostWrapper = styled(PostStyles)`
 	padding: 3rem 2rem;
 	border-radius: 6px;
 	box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+	.info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		.user {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			.img {
+				width: 1.5rem;
+				height: 1.5rem;
+				margin: 0;
+				left: auto;
+				transform: translateX(0);
+			}
+			.title {
+				margin-left: 0.5rem;
+				color: ${({ theme }) => theme.themeColor};
+			}
+		}
+		.date {
+			margin: 0 0 0 0.5rem;
+			color: ${({ theme }) => theme.textGray};
+		}
+	}
 `;
 
 export async function getStaticProps({ params }) {
