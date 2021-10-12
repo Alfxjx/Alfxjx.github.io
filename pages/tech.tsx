@@ -6,6 +6,9 @@ import { useRouter } from "next/router";
 import Masonry from "react-masonry-css";
 import styled from "styled-components";
 
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "@/components/Toast/index";
+
 import { Toggle } from "../components/theme/Toggle";
 import { Footer } from "../components/Footer/index";
 import { Header } from "../components/Header/index";
@@ -69,37 +72,59 @@ export default function Document({ newOneContent, allPosts }) {
 	);
 }
 
-const BlogCard = ({ post }) => (
-	<BlogCardWrapper>
-		<div className='fixed'>
-			<Share />
-		</div>
-		<div className='img-dark-wrapper'>
-			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<>
-					<img src={post.coverImage} alt='' />
-					<div className='img-dark'></div>
-				</>
-			</Link>
-		</div>
-		<div className='blog-info'>
-			<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-				<a className='link' title={post.title}>
-					{post.title}
-				</a>
-			</Link>
-			<div className='blog-excerpt'>{post.excerpt}</div>
-			<div className='blog-sub'>
-				<span className='username'>@{post.author.name} </span>
-				<span className='date'>
-					{formatDate(new Date(post.date), "yyyy-MM-dd")}
-				</span>
+const BlogCard = ({ post }) => {
+	const [link, setLink] = useState("");
+	const handleText = (post) => {
+		return `${post.title} ${link}/${post.slug}`;
+	};
+	useEffect(() => {
+		setLink(window.location.href);
+	}, []);
+	return (
+		<BlogCardWrapper>
+			<div className='fixed' title='share/分享'>
+				<CopyToClipboard
+					text={handleText(post)}
+					onCopy={() => {
+						toast.success("copied!");
+					}}>
+					<Share />
+				</CopyToClipboard>
 			</div>
-		</div>
-	</BlogCardWrapper>
-);
+			<div className='img-dark-wrapper'>
+				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
+					<>
+						<img src={post.coverImage} alt='' />
+						<div className='img-dark'></div>
+					</>
+				</Link>
+			</div>
+			<div className='blog-info'>
+				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
+					<a className='link' title={post.title}>
+						{post.title}
+					</a>
+				</Link>
+				<div className='blog-excerpt'>{post.excerpt}</div>
+				<div className='blog-sub'>
+					<span className='username'>@{post.author.name} </span>
+					<span className='date'>
+						{formatDate(new Date(post.date), "yyyy-MM-dd")}
+					</span>
+				</div>
+			</div>
+		</BlogCardWrapper>
+	);
+};
 
 const NewBlog = ({ post }) => {
+	const [link, setLink] = useState("");
+	const handleText = (post) => {
+		return `${post.title} ${link}/${post.slug}`;
+	};
+	useEffect(() => {
+		setLink(window.location.href);
+	}, []);
 	return (
 		<NewBlogWrapper>
 			<div className='expand'>
@@ -108,6 +133,13 @@ const NewBlog = ({ post }) => {
 						<Expand />
 					</a>
 				</Link>
+				<CopyToClipboard
+					text={handleText(post)}
+					onCopy={() => {
+						toast.success("copied!");
+					}}>
+					<Share />
+				</CopyToClipboard>
 			</div>
 			<div className='left-part'>
 				<div className='img'>
@@ -199,16 +231,16 @@ const BlogCardWrapper = styled.div`
 		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 	.fixed {
 		position: absolute;
-		bottom: 0;
-		right: 0%;
+		bottom: 5px;
+		right: 5px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border-radius: 6px;
 		padding: 5px 3px 0;
 		svg {
-			width: 2rem;
-			height: 2rem;
+			width: 1.5rem;
+			height: 1.5rem;
 			fill: ${({ theme }) => theme.text};
 			cursor: pointer;
 		}

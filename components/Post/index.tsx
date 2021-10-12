@@ -43,7 +43,7 @@ export const Post = styled.div`
 		position: relative;
 	}
 	img {
-		width: 100%;
+		max-width: 75%;
 		position: relative;
 		top: 0;
 		left: 50%;

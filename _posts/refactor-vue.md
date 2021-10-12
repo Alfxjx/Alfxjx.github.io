@@ -394,8 +394,8 @@ export default new Vuex.Store({
 - 保存上述样式的时候保存在src/styles下，文件名以一个下划线开头的，最后会被合并到index.scss文件中。
 - 另外，使用element-ui的时候将自定义的样式等也放在这里的element-variables.scss中。[参考](https://element.eleme.cn/#/zh-CN/component/custom-theme#zai-xiang-mu-zhong-gai-bian-scss-bian-liang)
 
-![image.png](/assets/blog/vue-jquery-1.png)
-样式文件夹
+![样式文件夹](/assets/blog/vue-jquery-1.png)
+
 #### 修改element-ui的样式
 现在我们来说说怎么覆盖 element-ui 样式。由于 element-ui 的样式我们是在全局引入的，所以你想在某个页面里面覆盖它的样式就不能加 scoped，但你又想只覆盖这个页面的 element 样式，你就可在它的父级加一个 class，用命名空间来解决问题。
 ```css

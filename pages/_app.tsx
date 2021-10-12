@@ -2,6 +2,7 @@ import "../styles/base.css";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../components/theme/theme";
 import { useDarkMode } from "../components/theme/Toggle";
+import { StyledContainer } from '../components/Toast/index';
 import { createContext } from "react";
 const FontStyles = createGlobalStyle`
 @font-face {
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }) {
 			<MyContext.Provider value={{themeToggler, getNowTheme}}>
 				<FontStyles />
 				<Component {...pageProps} />
+				<StyledContainer />
 			</MyContext.Provider>
 		</ThemeProvider>
 	);
