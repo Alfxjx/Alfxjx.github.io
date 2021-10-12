@@ -7,7 +7,7 @@ import { Post as PostStyles } from "@/components/Post/index";
 
 const About = ({ post }) => {
 	return (
-		<BaseLayout>
+		<BaseLayout title="About">
 			<AboutWrapper>
 				<div className='card'>
 					<h1>{post.title}</h1>

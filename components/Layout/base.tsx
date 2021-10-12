@@ -6,7 +6,7 @@ import { Footer } from "../Footer/index";
 import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 import { MyContext } from "../../pages/_app";
 
-const BaseLayout = ({ children }) => {
+const BaseLayout = ({ title, children }) => {
 	const { themeToggler, getNowTheme } = useContext(MyContext);
 	const [NowTheme, setNowTheme] = useState("");
 	useEffect(() => {
@@ -17,6 +17,9 @@ const BaseLayout = ({ children }) => {
 			setNowTheme("D");
 		}
 	}, [getNowTheme()]);
+	useEffect(() => {
+		document.title = title;
+	}, [title]);
 	return (
 		<LayoutWrapper>
 			<Header></Header>

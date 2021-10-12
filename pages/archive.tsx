@@ -32,7 +32,7 @@ export default function Archive({ posts, allPosts, allBlogs }) {
 		}
 	}, [LifeFoucs, TechFoucs]);
 	return (
-		<BaseLayout>
+		<BaseLayout title="Archive">
 			<ArchiveWrapper>
 				<div className='card'>
 					<div className='switch'>

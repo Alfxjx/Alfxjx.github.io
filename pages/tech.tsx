@@ -33,6 +33,9 @@ export default function Document({ newOneContent, allPosts }) {
 			setNowTheme("D");
 		}
 	}, [getNowTheme()]);
+	useEffect(() => {
+		document.title = "Blog-Tech";
+	}, []);
 	const breakpointColumnsObj = {
 		default: 3,
 		1800: 3,

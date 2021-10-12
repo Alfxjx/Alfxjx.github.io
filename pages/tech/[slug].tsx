@@ -35,6 +35,9 @@ export default function Post({ post }) {
 			hljs.highlightElement(el);
 		});
 	}, []);
+	useEffect(() => {
+		document.title = post.title;
+	}, [post.title]);
 	return (
 		<Wrapper>
 			<div className='header'>
