@@ -1,21 +1,66 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { BaseLayout } from "@/components/Layout/base";
-import { Button } from "@/components/Button/index";
+import { Button, TextButton } from "@/components/Button/index";
 import { getAllBlogs, getAllPosts } from "@/utils/api";
 import { formatDate } from "@/utils/formatDate";
 
-export default function Archive({ posts }) {
+export default function Archive({ posts, allPosts, allBlogs }) {
+	const [LifeFoucs, setLife] = useState<"primary" | "ghost">("primary");
+	const [TechFoucs, setTech] = useState<"primary" | "ghost">("primary");
+	const handleArchive = (type) => {
+		if (type === "Life") {
+			setLife("ghost");
+			setTech("primary");
+		} else if (type === "Tech") {
+			setLife("primary");
+			setTech("ghost");
+		} else if (type === "All") {
+			setLife("primary");
+			setTech("primary");
+		}
+	};
+	const [filterPosts, setPosts] = useState(posts);
+	useEffect(() => {
+		if (LifeFoucs === "primary" && TechFoucs === "ghost") {
+			setPosts(allBlogs);
+		} else if (TechFoucs === "primary" && LifeFoucs === "ghost") {
+			setPosts(allPosts);
+		} else {
+			setPosts(posts);
+		}
+	}, [LifeFoucs, TechFoucs]);
 	return (
 		<BaseLayout>
 			<ArchiveWrapper>
 				<div className='card'>
 					<div className='switch'>
-						<Button>Life</Button>
-						<Button style={{ marginLeft: "5px" }}>Tech</Button>
+						<Button
+							btnType={LifeFoucs}
+							onClick={() => {
+								handleArchive("Life");
+							}}>
+							Life {LifeFoucs === "primary" ? "x" : ""}
+						</Button>
+						<Button
+							btnType={TechFoucs}
+							onClick={() => {
+								handleArchive("Tech");
+							}}
+							style={{ marginLeft: "5px" }}>
+							Tech {TechFoucs === "primary" ? "x" : ""}
+						</Button>
+						<TextButton
+							showUnderLine={true}
+							onClick={() => {
+								handleArchive("All");
+							}}
+							style={{ marginLeft: "5px" }}>
+							All
+						</TextButton>
 					</div>
-					{posts.map((post) => {
+					{filterPosts.map((post) => {
 						return (
 							<div className='post-item' key={post.slug}>
 								<a className='link'>
@@ -53,6 +98,9 @@ const ArchiveWrapper = styled.div`
 		color: ${({ theme }) => theme.text};
 		@media (max-width: 600px) {
 			width: 90%;
+		}
+		.switch {
+			margin-bottom: 0.5rem;
 		}
 		.post-item {
 			display: flex;
@@ -102,6 +150,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			posts,
+			allPosts,
+			allBlogs,
 		},
 	};
 }
