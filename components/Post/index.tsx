@@ -25,6 +25,18 @@ export const Post = styled.div`
 		font-weight: 700;
 		margin: 10px 0;
 	}
+	h3 {
+		font-size: 1.125rem;
+		line-height: 1.5rem;
+		font-weight: 700;
+		margin: 10px 0;
+	}
+	h4 {
+		font-size: 1.125rem;
+		line-height: 1.5rem;
+		font-weight: 500;
+		margin: 3px 0;
+	}
 	p {
 		margin: 10px 0;
 		line-height: 1.5rem;
