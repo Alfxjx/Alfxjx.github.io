@@ -57,6 +57,9 @@ export const Post = styled.div`
 		span {
 			line-height: 1.5rem;
 		}
+		::-webkit-scrollbar{
+			display: none;
+		}
 	}
 	a {
 		color: ${({ theme }) => theme.themeColor};
