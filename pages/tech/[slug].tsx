@@ -14,6 +14,8 @@ import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 import { useRouter } from "next/router";
 import { Footer } from "../../components/Footer/index";
 import { Post as PostStyles } from "../../components/Post/index";
+import { Comments } from "@/components/Comments/index";
+
 import Arrow from "../../public/svg/arrow.svg";
 import Code from "../../public/svg/code.svg";
 
@@ -83,6 +85,7 @@ export default function Post({ post }) {
 					className='post'
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
+				<Comments />
 			</PostWrapper>
 			<Footer showLink={true}></Footer>
 		</Wrapper>

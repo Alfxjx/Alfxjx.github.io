@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css";
+
 import { getBlogBySlug, getAllBlogs } from "@/utils/api";
 import markdownToHtml from "@/utils/markdownToHtml";
 import { formatDate } from "@/utils/formatDate";
-import styled from "styled-components";
-import hljs from "highlight.js";
-import Link from "next/link";
-import { useEffect, useContext } from "react";
-import "highlight.js/styles/atom-one-dark.css";
+
 import { MyContext } from "../_app";
 import { Toggle } from "@/components/theme/Toggle";
 import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
-
-import { useRouter } from "next/router";
 import { Footer } from "@/components/Footer/index";
 import { Post as PostStyles } from "@/components/Post/index";
+import { Comments } from "@/components/Comments/index";
+
 import Arrow from "../../public/svg/arrow.svg";
 import Book from "../../public/svg/book.svg";
 
 export default function Post({ post }) {
 	const router = useRouter();
 	const { themeToggler, getNowTheme } = useContext(MyContext);
-	const [NowTheme, setNowTheme] = useState("");
+	const [NowTheme, setNowTheme] = useState("L");
 	useEffect(() => {
 		const theme = getNowTheme();
 		if (theme === "light") {
@@ -83,6 +85,7 @@ export default function Post({ post }) {
 					className='post'
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
+				<Comments />
 			</PostWrapper>
 			<Footer showLink={true}></Footer>
 		</Wrapper>
