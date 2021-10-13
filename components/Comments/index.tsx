@@ -2,7 +2,7 @@ import React from "react";
 import { MyContext } from "../../pages/_app";
 
 const commentNodeId = "comments";
-const REPO_NAME = "alfxjx/Alfxjx";
+const REPO_NAME = "Alfxjx/Alfxjx.github.io";
 export const Comments = () => {
 	const commentBox = React.useRef<HTMLDivElement>();
 	const { themeToggler, getNowTheme } = React.useContext(MyContext);
