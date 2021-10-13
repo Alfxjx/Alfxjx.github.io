@@ -397,6 +397,7 @@ const NewBlogWrapper = styled.div`
 		}
 	}
 	.right-part {
+		width: 100%;
 		flex: 6;
 		.content {
 			padding: 6px 12px;
