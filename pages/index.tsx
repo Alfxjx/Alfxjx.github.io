@@ -10,6 +10,17 @@ import { StripeHeader } from "@/components/StripeHeader";
 import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
+import { Doodle } from "../components/Doodle/index";
+
+const FancyDoodle = Doodle`
+	@grid: 96 / 100vw;
+
+	@size: 1px calc(141.4% + 1px);
+	transform: rotate(@p(±45deg));
+	background: #f2f2f2;
+	margin: auto;
+`;
+
 export default function Home({ newPost }) {
 	const [whichWeb, setWeb] = useState("");
 	const { themeToggler, getNowTheme } = useContext(MyContext);
@@ -55,6 +66,9 @@ export default function Home({ newPost }) {
 			</Head>
 
 			<FullPage>
+				<div className="bg-under">
+					<FancyDoodle />
+				</div>
 				<div className='btn-wrapper'>
 					<TextButton onClick={handleWebChange} showUnderLine={true}>
 						<span className='my-main-font web-title'>{whichWeb}</span>
@@ -127,6 +141,14 @@ const FullPage = styled.div`
 	position: relative;
 	background: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.text};
+	.bg-under {
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
 	.btn-wrapper {
 		position: fixed;
 		right: 1rem;
@@ -140,8 +162,8 @@ const FullPage = styled.div`
 		.web-title {
 			font-size: 1.5rem;
 			font-weight: 700;
-			:hover{
-				color: ${({theme})=>theme.textHover};
+			:hover {
+				color: ${({ theme }) => theme.textHover};
 			}
 		}
 	}
@@ -151,6 +173,7 @@ const FullPage = styled.div`
 		left: 0;
 		width: 100vw;
 		height: 500px;
+		z-index: 2;
 		transform: skewY(8deg) translateY(-50%);
 	}
 `;
@@ -162,6 +185,7 @@ const FullPageMain = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	z-index: 10;
 	p {
 		&.title {
 			color: ${({ theme }) => theme.text};

@@ -18,3 +18,8 @@ declare module "*.gif";
 
 declare module "*.woff2";
 declare module "*.ttf";
+declare namespace JSX {
+	interface IntrinsicElements {
+		"css-doodle": {};
+	}
+}

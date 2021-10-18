@@ -1594,6 +1594,11 @@ css-color-keywords@^1.0.0:
   resolved "http://6.18.5.41:8084/repository/npm/css-color-keywords/-/css-color-keywords-1.0.0.tgz#fea2616dc676b2962686b3af8dbdbe180b244e05"
   integrity sha1-/qJhbcZ2spYmhrOvjb2+GAskTgU=
 
+css-doodle@^0.20.2:
+  version "0.20.2"
+  resolved "http://6.18.5.41:8084/repository/npm/css-doodle/-/css-doodle-0.20.2.tgz#cdecf04803d1a36c49f5b37766bd7db7731882d7"
+  integrity sha512-197i1cYO0ydhribQPOaHlMmcLyWUOeJev52E7jvWQMevOaFSFspS5Lo0Z7ptoOFLQdtoUX2CoFFDkgV5m7pOrA==
+
 css-to-react-native@^3.0.0:
   version "3.0.0"
   resolved "http://6.18.5.41:8084/repository/npm/css-to-react-native/-/css-to-react-native-3.0.0.tgz#62dbe678072a824a689bcfee011fc96e02a7d756"
