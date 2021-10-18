@@ -35,6 +35,7 @@ const FooterWrapper = styled.div`
 	align-items: center;
 	letter-spacing: 2px;
 	font-weight: 600;
+	z-index: 10;
 	.text {
 		padding: 2rem 0 6px 0;
 	}

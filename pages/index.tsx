@@ -13,7 +13,10 @@ import { MyContext } from "./_app";
 import { Doodle } from "../components/Doodle/index";
 
 const FancyDoodle = Doodle`
-	@grid: 96 / 100vw;
+	:doodle {
+		width: 100vw; height: 100vh;
+	}
+	@grid: 72 / 100%;
 
 	@size: 1px calc(141.4% + 1px);
 	transform: rotate(@p(±45deg));
@@ -66,7 +69,7 @@ export default function Home({ newPost }) {
 			</Head>
 
 			<FullPage>
-				<div className="bg-under">
+				<div className='bg-under'>
 					<FancyDoodle />
 				</div>
 				<div className='btn-wrapper'>

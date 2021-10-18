@@ -8,7 +8,7 @@ const Doodle = (rule) => () => {
 		script.src = "https://unpkg.com/css-doodle@0.20.2/css-doodle.min.js";
 		document.body.appendChild(script);
 	}, []);
-	return <css-doodle>{rule}</css-doodle>;
+	return <css-doodle click-to-update>{rule}</css-doodle>;
 };
 
 export { Doodle };
