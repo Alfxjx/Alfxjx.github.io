@@ -81,7 +81,7 @@ export default function Document({ newOneContent, allPosts }) {
 const BlogCard = ({ post }) => {
 	const [link, setLink] = useState("");
 	const handleText = (post) => {
-		return `${post.title} ${link}/${post.slug}`;
+		return `「${post.title}」 ${link}/${post.slug}`;
 	};
 	useEffect(() => {
 		setLink(window.location.href);
@@ -127,7 +127,7 @@ const BlogCard = ({ post }) => {
 const NewBlog = ({ post }) => {
 	const [link, setLink] = useState("");
 	const handleText = (post) => {
-		return `${post.title} ${link}/${post.slug}`;
+		return `「${post.title}」 ${link}/${post.slug}`;
 	};
 	useEffect(() => {
 		setLink(window.location.href);
