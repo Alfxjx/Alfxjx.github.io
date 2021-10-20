@@ -16,11 +16,11 @@ const FancyDoodle = Doodle`
 	:doodle {
 		width: 100vw; height: 100vh;
 	}
-	@grid: 72 / 100%;
+	@grid: 72 / 100vw 100vh;
 
 	@size: 1px calc(141.4% + 1px);
 	transform: rotate(@p(±45deg));
-	background: #f2f2f2;
+	background: #f1f1f1;
 	margin: auto;
 `;
 
