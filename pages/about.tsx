@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { BaseLayout } from "../components/Layout/base";
 import markdownToHtml from "@/utils/markdownToHtml";
 import { Post as PostStyles } from "@/components/Post/index";
+import { Comments } from "@/components/Comments/index";
 
 const About = ({ post }) => {
 	return (
-		<BaseLayout title="About">
+		<BaseLayout title='About'>
 			<AboutWrapper>
 				<div className='card'>
 					<h1>{post.title}</h1>
@@ -15,6 +16,7 @@ const About = ({ post }) => {
 						className='post'
 						dangerouslySetInnerHTML={{ __html: post.content }}
 					/>
+					<Comments />
 				</div>
 			</AboutWrapper>
 		</BaseLayout>
@@ -49,7 +51,7 @@ export async function getStaticProps() {
 		props: {
 			post: {
 				...post,
-				content
+				content,
 			},
 		},
 	};
