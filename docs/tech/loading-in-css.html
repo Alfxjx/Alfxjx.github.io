@@ -1,0 +1,260 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/6ac04af9c34471e28ed7.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6ac04af9c34471e28ed7.css" data-n-g=""/><link rel="preload" href="/_next/static/css/8fa755d3830e88407993.css" as="style"/><link rel="stylesheet" href="/_next/static/css/8fa755d3830e88407993.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-a54b4f32bdc1ef890ddd.js"></script><script src="/_next/static/chunks/webpack-61095c13c5984b221292.js" defer=""></script><script src="/_next/static/chunks/framework-2191d16384373197bc0a.js" defer=""></script><script src="/_next/static/chunks/main-588261c74baf7142d208.js" defer=""></script><script src="/_next/static/chunks/pages/_app-ba362a84ebeb8af99e09.js" defer=""></script><script src="/_next/static/chunks/218-9c9954576784832dc5a8.js" defer=""></script><script src="/_next/static/chunks/pages/tech/%5Bslug%5D-1a74977523aadef2cc86.js" defer=""></script><script src="/_next/static/Bbtf7Lx5b5XGcJRwMfn3P/_buildManifest.js" defer=""></script><script src="/_next/static/Bbtf7Lx5b5XGcJRwMfn3P/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div class="slug__Wrapper-sc-16v6d1-0 bLilqO"><div class="header"><div class="icon-wrapper"><div class="icons"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200" height="200"><path d="M872 474H286.9l350.2-304c5.6-4.9 2.2-14-5.2-14h-88.5c-3.9 0-7.6 1.4-10.5 3.9L155 487.8c-14.7 12.8-14.7 35.6 0 48.3L535.1 866c1.5 1.3 3.3 2 5.2 2h91.5c7.4 0 10.8-9.2 5.2-14L286.9 550H872c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"></path></svg></div><div class="icons"><a href="/tech"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200" height="200"><path d="M541.141 268.864l61.718 16.939-132.395 482.474-61.717-16.938L541.14 268.864zm-212.138 29.803l44.885 45.61-175.36 172.587 175.04 167.573-44.267 46.23-222.634-213.163 222.336-218.837zm355.882 0l222.336 218.837-222.634 213.163-44.267-46.23 175.019-167.573L640 344.277l44.885-45.61z"></path></svg></a></div></div></div><div class="toggle"><button class="Button__InsideButton-sc-19071w6-0 cyRVLS"><div class="LightDarkSwitcher__Switcher-sc-hbms9j-0 cBdTSF"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200" height="200"><path d="M448 64v195.2a224.832 224.832 0 0 0-100.992 42.24L208.512 163.2l-45.248 45.312 138.24 138.496A218.624 218.624 0 0 0 259.008 448H64v64h195.008c5.504 37.76 20.48 72 42.496 100.992l-138.24 138.496 45.248 45.248L347.008 658.24C376 680 410.496 695.232 448 700.736V896h64V700.8a222.4 222.4 0 0 0 100.992-42.56l138.496 138.496 45.248-45.248L658.24 612.992A216.32 216.32 0 0 0 700.992 512H896v-64H700.992a216.32 216.32 0 0 0-42.752-100.992l138.496-138.496-45.248-45.248-138.496 138.24A224.832 224.832 0 0 0 512 259.2V64zm32 256c88.768 0 160 71.232 160 160s-71.232 160-160 160a159.488 159.488 0 0 1-160-160c0-88.768 71.232-160 160-160z"></path></svg></div></button></div><div style="height:3.25rem"></div><div class="Post-sc-1u8x57o-0 slug__PostWrapper-sc-16v6d1-1 fbyABu eOoovR"><div class="info"><h1>[CSS]矩形进度条的两种实现</h1><div class="user"><img class="img" src="/assets/authors/alfxjx.jpg" alt="Alfxjx"/><span class="title">Alfxjx</span><div class="date">2021-07-20</div></div></div><div class="post"><p>最近开发接到一个需求，前端展示付款的验证码，验证码时效 10 分钟，到期过期，同时在二维码的外侧有一个倒计时条，原本的实现方式是通过 JS 来控制，设置左上，左下，右上，右下四个矩形，每个矩形只显示一个折角的边框，从而模拟整个外框。</p>
+<p>根据倒计时的时间轮询计算比例，分别控制四个矩形的宽高，从而实现倒计时的 <code>CountDown</code> 效果。这样的实现方式有几个问题：</p>
+<ol>
+<li>使用4个元素来模拟，导致加入了很多不必要的数据</li>
+<li>js 轮询操作，代码很冗长。</li>
+</ol>
+<p>本文主要介绍两种非 js 控制的矩形倒计时条的实现方法。</p>
+<h2>CSS 实现</h2>
+<p>css 实现方法的原理是：</p>
+<ol>
+<li>设置四个<code>background</code>，使用<code>linear-gradient</code> 形成纯色的图片背景。</li>
+<li>设置background的 <code>size</code> &#x26; <code>position</code>，使他们分布在元素的四周。</li>
+<li>设置一个动画，均分成 4 个阶段，每个阶段将背景的位置按照顺时针平移。</li>
+</ol>
+<p>具体可以看代码</p>
+<pre><code class="language-css">.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--height);
+  width: var(--width);
+  border-radius: calc(var(--line) / 2);
+  background: 
+    linear-gradient(to right, var(--green) 99.99%, var(--blue))
+    calc(-1 * var(--width)) 0rem 
+    / 100% var(--line),
+    linear-gradient(to bottom, var(--green) 99.99%, var(--blue))
+    calc(var(--width) - var(--line)) calc(-1 * var(--height)) 
+    / var(--line) 100%,
+    linear-gradient(to right, var(--green) 99.99%, var(--blue)) 
+    var(--width) calc(var(--height) - var(--line)) 
+    / 100% var(--line),
+    linear-gradient(to top, var(--green), 99.99%, var(--blue)) 
+    0rem var(--height) 
+    / var(--line) 100%;
+  background-repeat: no-repeat;
+  animation: progress var(--time) linear forwards infinite;
+}
+
+@keyframes progress {
+  0% {
+    background-position: 
+      calc(-1 * var(--width)) 0rem,
+      calc(var(--width) - var(--line)) calc(-1 * var(--height)),
+      var(--width) calc(var(--height) - var(--line)), 
+      0rem var(--height);
+  }
+  25% {
+    background-position: 
+      0rem 0rem,
+      calc(var(--width) - var(--line)) calc(-1 * var(--height)),
+      var(--width) calc(var(--height) - var(--line)), 
+      0rem var(--height);
+  }
+  50% {
+    background-position: 
+      0rem 0rem, 
+      calc(var(--width) - var(--line)) 0rem,
+      var(--width) calc(var(--height) - var(--line)), 
+      0rem var(--height);
+  }
+  75% {
+    background-position: 
+      0rem 0rem, 
+      calc(var(--width) - var(--line)) 0rem,
+      0rem calc(var(--height) - var(--line)), 
+      0rem var(--height);
+  }
+  100% {
+    background-position: 
+      0rem 0rem, 
+      calc(var(--width) - var(--line)) 0rem,
+      0rem calc(var(--height) - var(--line)), 
+      0rem 0rem;
+  }
+}
+
+</code></pre>
+<h2>SVG 实现</h2>
+<p><code>svg</code>的实现则是hack了<code>stroke-dasharray</code>利用这个属性造出间断线来模拟倒计时，只要这个线足够长那么从视觉来看就是可以形成从全满变成全空的效果，这里的代码是这样的：</p>
+<pre><code class="language-html">&#x3C;div class="father">
+  &#x3C;svg class="progressSvg" style={{'--speed': speed, '--progress': progress}} viewBox="0 0 120 120">
+    &#x3C;rect width="100" height="100" x="10" y="10" rx="10" ry="10" />
+  &#x3C;/svg>
+  &#x3C;span class="son">{props.svg}&#x3C;/span>
+&#x3C;/div>
+</code></pre>
+<p>主要看rect部分，设置了一个圆角，所以矩形的起始位置设置成了<code>x="10" y="10"</code>，并且由于设置了矩形的尺寸，为了能放下，所以 <code>svg</code> 标签的 <code>viewBox="0 0 120 120"</code> 从而放下这个圆角矩形。</p>
+<p>这样以来，矩形的周长就是 400，所以设置<code>stroke-dasharray</code> 只要大于 400 即可，为了保险设置成 1000长度的实线，1000长度的虚线。</p>
+<pre><code class="language-css">.progressSvg rect {
+  fill: none;
+  stroke: blue;
+  stroke-width: 4; // 控制边框的宽度
+  /* 	stroke-linecap: round; */
+  stroke-dasharray: 1000 1000;
+  stroke-dashoffset: 0;
+  animation: spin 60s infinite linear;
+}
+
+</code></pre>
+<p>接着就是让它动起来，这里使用的是控制<code>stroke-offset</code>来控制，就从0（完全是边框）转到 -400（旋转了所有的边框），因为实线的前面是虚线，只要开始设置负的 <code>offset</code> 那么就会是类似于被吃掉的效果。</p>
+<pre><code class="language-css">@keyframes spin {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+</code></pre>
+<p>这样我们就实现了最简单的二维码倒计时进度条了。<a href="https://codepen.io/alfxjx/pen/jOBPeqX?editors=0010">在线演示 codepen.io</a></p>
+<h2>组件化 基于 React</h2>
+<p>样式基本不需要修改，修改一下js 文件，主要通过 css 变量来对倒计时时间，进度进行控制。</p>
+<p>这里根据需求：</p>
+<ol>
+<li>页面在加载的时候会给出过期时间，例如总共支付时间10分钟的话，当进度条走了 60% 之后，进度条颜色变成红色。</li>
+<li>根据给出的过期时间，页面刷新的时候，保持当前的进度。</li>
+</ol>
+<pre><code class="language-jsx">const CountedDown = (props) => {
+  const [color, setColor] = React.useState("green");
+  const [speed, setSpeed] = React.useState('100s');
+  const [progress] = React.useState('0.75');
+  return (
+    &#x3C;div>
+      &#x3C;div class="flex" style={{ "--bg": color, "--time": speed }}>
+        &#x3C;div class="countdown">
+          &#x3C;div class="progress">
+            &#x3C;div class="inner">
+              {props.css}
+            &#x3C;/div>
+          &#x3C;/div>
+        &#x3C;/div>
+      &#x3C;/div>
+      &#x3C;div class="father">
+        &#x3C;svg class="progressSvg" style={{'--speed': speed, '--progress': progress}} viewBox="0 0 120 120">
+          &#x3C;rect width="100" height="100" x="10" y="10" rx="10" ry="10" />
+        &#x3C;/svg>
+        &#x3C;span class="son">{props.svg}&#x3C;/span>
+      &#x3C;/div>
+    &#x3C;/div>
+  );
+}  
+</code></pre>
+<p>从上面的代码中，可以看出我们给 <code>css</code> 传入了 <code>--bg</code> 控制进度条的颜色，<code>--time</code>控制倒计时，读者可以自行查看在线演示代码。由于css版本的拐角存在问题，主要介绍svg版本。</p>
+<p>在 svg 版本中， 传入了 <code>--speed</code> 控制速度，<code>--progress</code>控制进度，对应的 css :</p>
+<pre><code class="language-css">.progressSvg rect {
+  fill: none;
+  stroke: blue;
+  stroke-width: 4;
+  /* 	stroke-linecap: round; */
+  stroke-dasharray: 1000 1000;
+  - stroke-dashoffset: 0;
+  - animation: spin 60s infinite linear;
+  + stroke-dashoffset: calc((1 - var(--progress)) * (-400));
+  + animation: spin var(--speed) infinite linear;
+}
+</code></pre>
+<p><code>--speed</code>很好理解，主要解释<code>--progress</code>，上文中，我们知道使用动画就是让 <code>stroke-offset</code>按照逆时针旋转到 -400， 那么保存进度就是保存这个 offset 值，当我们认为现在的百分比进度是0.75的话，就需要提前 <strong>手动spin</strong> <code>(1-0.75)*(-400)</code> 。</p>
+<p>可以用于生产的 React 组件 可以参考下面的代码：</p>
+<pre><code class="language-css">/* CountDown.module.css */
+.father {
+  position: relative;
+}
+.son {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes spin {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+.progress rect {
+  fill: none;
+  stroke: var(--color);
+  stroke-width: 4;
+  /* 	stroke-linecap: round; */
+  stroke-dasharray: 1000 1000;
+  stroke-dashoffset: calc(-400 * var(--rate));
+  animation: spin 600s infinite linear;
+  /*   animation-direction: alternate; */
+}
+</code></pre>
+<pre><code class="language-tsx">import React from 'react';
+
+import styles from './CountDown.module.css';
+
+interface MyCSSProperties extends React.CSSProperties {
+  '--color': string;
+  '--rate': string;
+}
+
+const CountDown = ({
+  color,
+  timer,
+  children,
+}: {
+  color: string;
+  timer: number;
+  children: React.ReactNode;
+}) => {
+  const style: MyCSSProperties = {
+    // Add a CSS Custom Property
+    '--color': color,
+    '--rate': `${1 - timer / (600 * 1000)}`,
+  };
+
+  return (
+    &#x3C;div className={styles.father}>
+      &#x3C;svg className={styles.progress} viewBox="0 0 120 120">
+        &#x3C;rect style={style} width="100" height="100" x="10" y="10" rx="6" ry="6" />
+      &#x3C;/svg>
+      &#x3C;span className={styles.son}>{children}&#x3C;/span>
+    &#x3C;/div>
+  );
+};
+
+export { CountDown };
+
+</code></pre>
+<pre><code class="language-tsx">/* usage */
+import { useCountDown } from 'ahooks';
+import React, { useEffect, useState } from 'react';
+
+const Index = ()=>{
+  const [barColor, setBarColor] = useState('blue'); // red
+  const [expiryTimer, setTargetDate, formattedRes] = useCountDown({
+    targetDate: dataRes.expiredAt,
+    onEnd,
+  });
+  useEffect(() => {
+    if (timer !== 0 &#x26;&#x26; timer &#x3C; 600 * 0.35 * 1000) {
+      setBarColor('red');
+    }
+  }, [expiryTimer]);
+  return (
+  &#x3C;CountDown color={barColor} timer={timer}>
+    &#x3C;div
+      className={classNames({
+        hidden: show,
+      })}
+      id="qrcode"
+      ref={qrcodeRef}
+      />
+  &#x3C;/CountDown>
+  )
+}
+</code></pre>
+</div><div id="comments"></div></div><div class="Footer__FooterWrapper-sc-1ysspqt-0 dduiPc"><div class="my-main-font text"><span>Powerd by Next.js on gh-pages, </span><a href="http://www.anbandon.work">More in old blog</a></div><div class="Footer__IconList-sc-1ysspqt-1 iXsBAW"><a href="https://github.com/alfxjx"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><defs><style></style></defs><path d="M960 512c0 97.76-28.704 185.216-85.664 263.264-56.96 78.016-130.496 131.84-220.64 161.856-10.304 1.824-18.368.448-22.848-4.032a22.4 22.4 0 0 1-7.2-17.504v-122.88c0-37.632-10.304-65.44-30.464-82.912a409.856 409.856 0 0 0 59.616-10.368 222.752 222.752 0 0 0 54.72-22.816c18.848-10.784 34.528-23.36 47.104-38.592 12.544-15.232 22.848-35.904 30.912-61.44 8.096-25.568 12.128-54.688 12.128-87.904 0-47.072-15.232-86.976-46.208-120.16 14.368-35.456 13.024-74.912-4.48-118.848-10.752-3.616-26.432-1.344-47.072 6.272s-38.56 16.16-53.824 25.568l-21.984 13.888C587.776 285.088 550.56 280.16 512 280.16s-75.776 4.928-112.096 15.232a444.48 444.48 0 0 0-24.672-15.68c-10.336-6.272-26.464-13.888-48.896-22.432-21.952-8.96-39.008-11.232-50.24-8.064-17.024 43.936-18.368 83.424-4.032 118.848-30.496 33.632-46.176 73.536-46.176 120.608 0 33.216 4.032 62.336 12.128 87.456 8.032 25.12 18.368 45.76 30.496 61.44 12.544 15.68 28.224 28.704 47.072 39.04 18.848 10.304 37.216 17.92 54.72 22.816a409.6 409.6 0 0 0 59.648 10.368c-15.712 13.856-25.12 34.048-28.704 60.064a99.744 99.744 0 0 1-26.464 8.512 178.208 178.208 0 0 1-33.184 2.688c-13.024 0-25.568-4.032-38.144-12.544-12.544-8.512-23.296-20.64-32.256-36.32a97.472 97.472 0 0 0-28.256-30.496c-11.232-8.064-21.088-12.576-28.704-13.92l-11.648-1.792c-8.096 0-13.92.928-17.056 2.688-3.136 1.792-4.032 4.032-2.688 6.72s3.136 5.408 5.376 8.096 4.928 4.928 7.616 7.168l4.032 2.688c8.544 4.032 17.056 11.232 25.568 21.984 8.544 10.752 14.368 20.64 18.4 29.6l5.824 13.44c4.928 14.816 13.44 26.912 25.568 35.872 12.096 8.992 25.088 14.816 39.008 17.504 13.888 2.688 27.36 4.032 40.352 4.032s23.776-.448 32.288-2.24l13.472-2.24c0 14.784 0 32.288.416 52.032 0 19.744.48 30.496.48 31.392a22.624 22.624 0 0 1-7.648 17.472c-4.928 4.48-12.992 5.824-23.296 4.032-90.144-30.048-163.68-83.84-220.64-161.888C92.256 697.216 64 609.312 64 512c0-81.152 20.192-156.064 60.096-224.672s94.176-122.88 163.232-163.232C355.936 84.192 430.816 64 512 64s156.064 20.192 224.672 60.096 122.88 94.176 163.232 163.232C939.808 355.488 960 430.848 960 512"></path></svg></a><a href="https://weibo.com/u/1950371745"><svg class="icon" viewBox="0 0 1026 1024" xmlns="http://www.w3.org/2000/svg" width="32.063" height="32"><defs><style></style></defs><path d="M0 61.5zM780 577c-11-2-18-5.5-21-9.5-3-4.5-4-8-1.5-12l3-5.5c.5-.5 1.5-2 2-3 .5-1.5 2-4.5 4.5-9 2-4.5 4-9.5 5-14s2-10.5 2.5-17 .5-13.5-.5-19.5-3-12.5-6.5-20c-3.5-7-7.5-13.5-13.5-19.5-10-10-23-16.5-39.5-19.5-16-3-32.5-3-48.5-.5s-31.5 5.5-45.5 9.5c-14.5 4-26 7.5-35.5 11.5l-14 6.5c-7 2-13 3.5-18 4.5-4.5.5-8.5.5-11-.5s-4.5-2-6-3-2-3.5-1.5-7.5.5-7.5 1-10c.5-3 1.5-7.5 2.5-13.5 1.5-6 2.5-11 3-14.5 0-8.5-.5-16.5-1.5-24s-3.5-16-7-25.5-9-17-15.5-22.5c-7-5.5-15.5-10.5-26-14s-24-4.5-40.5-3-35 5.5-56 13c-25 8.5-50.5 21.5-76.5 38-26 17-48 34.5-67 52.5-19 18.5-36.5 36-52 53.5-16 17-28 31-36.5 42l-12 17c-23.5 31-41 61.5-52.5 92.5s-17 54-16 70V723c4.5 34.5 15 65.5 31.5 92.5 17 27.5 37 49.5 60 66 23.5 17 51 31 82.5 43s62 20.5 91 26 59.5 9 92 11.5c53 4.5 108 0 165-12.5s110-34.5 159-65c49-31 84-68 104-111 12-25 18.5-49 19-71s-3.5-40.5-11.5-54.5-18-26.5-30.5-37c-12.5-11-24.5-18.5-35.5-23.5-10-6-20-9.5-28.5-10.5zM452 911.5c-77.5 3.5-143.5-11.5-197.5-45s-81-76.5-81-128c0-51 27-95 80.5-132s120-57 198-61S596 555 650 584s80.5 69.5 80.5 120.5c0 51.5-27.5 98-82.5 139.5s-120 64-196 67.5zm-31.5-298c-21 2-39.5 7-56 14.5S335 644 326 654c-9.5 9.5-17 20-23.5 31s-11 22-13.5 33-4 20.5-5 29.5c-.5 9-1 16-1 21l1 8.5v4.5c0 2 .5 6.5 2 13s3.5 12.5 6 18 6.5 11.5 12.5 18 12.5 12 20.5 16c47.5 23 91.5 30 132.5 21s74-29.5 99-62c10-12 16.5-27.5 20-45 3-18 2.5-36-2-54.5s-12.5-35-24-50-28.5-26.5-51-35c-23.5-9-49.5-11-79-7.5zM382 817c-4.5.5-8.5 1-12.5.5s-7.5-1-11-2-6.5-2.5-9.5-4-6-3.5-8-6l-6-7.5c-2-2.5-3-5.5-4.5-8.5s-1.5-6.5-1.5-10c0-8 2-15.5 6.5-23s10-14 18-19.5c7.5-5.5 16-8.5 25.5-9 6.5-.5 12.5-.5 19 .5 6 1 11.5 3 15.5 5.5 4.5 2.5 8 5.5 11.5 8.5 3 3 5.5 7 7 11.5s2 9 2 14c0 8-2.5 15.5-7 22.5S416 804 408 809c-8 4-16.5 7-26 8zm91.5-77.5c-5 3.5-10 5-15.5 5-5.5-.5-9-2.5-11.5-7l-2-4.5c-.5-1.5-1-3-1-4.5V724c0-2 .5-4 1-5.5l2-4.5c.5-1.5 2-2.5 3-3l3-4.5c5.5-4.5 11.5-6 16.5-5.5s9 3.5 11.5 8.5c2 3 3 6 2.5 9.5s-1.5 7-3 10c-1.5 4.5-4 7.5-6.5 10.5zm382-225c4.5 0 8.5-1 12-3s6.5-5 8.5-8 3.5-6.5 4.5-10c.5-.5 1-2 1-3 8.5-82-20-128.5-86-140-19.5-3.5-37.5-4-54-1-5 0-9.5 1.5-13 4s-6.5 5.5-9 9.5-4 8-4 12.5c0 7 2.5 13.5 7.5 18.5s11 7.5 18.5 7.5c56-13 86 5 90.5 54 1.5 12 .5 23.5-2 34.5 0 7 2.5 13.5 7.5 18.5 4.5 3.5 10.5 6 18 6zM837 211c-31.5-7-74-5.5-127 4.5-.5 0-1.5.5-2 1l-1 2-1 1c-8 2-14.5 6.5-19.5 13.5s-7.5 14-7.5 22c0 11 3.5 19.5 11 27 7 7 16 11 26 11h3c.5 0 2.5-.5 5-1s5-1.5 8-1.5c3-.5 6-1 9-2s6-2 8.5-3S757 284 764 284s16 .5 26.5 1.5 22 4 34.5 8c12.5 4.5 25 9.5 37.5 16s25 15.5 37.5 27 23.5 24.5 33 40c18.5 42.5 22.5 83 11 122.5 0 .5 0 1.5-.5 2s-1 2.5-1.5 5.5-1.5 5.5-2 8-1.5 5.5-2 9.5-1 7.5-1 10c0 6.5 2 12 5.5 16 3.5 4.5 8 7.5 13.5 9 5.5 2 11.5 2.5 19 2.5 20 0 32-12 35.5-36.5 8.5-28 13.5-54.5 14.5-80s-.5-48-5.5-67c-4.5-19.5-11.5-37.5-21-54.5s-20-31-32.5-43c-12-12-26-22.5-41-32.5-15-9.5-29.5-17.5-43.5-23-15-5.5-29.5-10.5-44.5-14z"></path></svg></a><a href="https://juejin.cn/user/2330620383728551"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="200" height="200"><defs><style></style></defs><path d="M832 739.533h57.958v30.105H587.571v-30.105h48.538l-31.54-184.525-.819-4.506 4.608-.716 21.095-3.482 4.505-.717.82 4.506 32.46 189.645h49.87V510.874H571.391v-30.106h145.613V381.44H619.93v-30.106h228.556v30.106H747.52v99.328h162.918v30.106H747.622v228.659h53.453l32.461-189.543.717-4.505 4.505.717 21.095 3.481 4.608.717-.82 4.506L832 739.533zm-428.032-9.728V582.45h74.854V423.22h-30.617v129.127h-44.237V413.798H373.35v138.548h-43.52V423.219h-30.617v159.232h74.137v147.354h-43.52V602.624h-30.617V759.91H478.72V602.624h-30.618v127.18h-44.134zM148.89 582.45l-21.607 21.197-3.174 3.174-3.175-3.174L105.78 588.8l-3.379-3.277 3.38-3.277 43.11-42.393V364.237h-37.684V334.13h37.684V254.26h30.617v79.872h44.135v30.106h-44.135v145.715l25.6-25.088 3.175-3.174 3.174 3.174 15.155 14.746 3.38 3.276-3.38 3.277-47.104 46.285v65.024c0 33.178-5.12 65.024-13.824 94.413-5.325 18.022-10.547 31.13-14.745 39.629l-4.71 9.42-2.049 3.994-4.096-1.946-19.251-9.113-4.198-2.048 2.048-4.199 4.608-9.42c.716-1.332 2.252-4.813 3.993-9.319 2.97-7.475 5.94-15.974 8.704-25.497 7.885-26.932 12.698-56.013 12.698-86.016V582.45zm97.792 180.122l.921-4.506 2.15-10.24c12.8-61.645 17.511-195.584 16.999-358.605h220.672v-134.86H234.496l.102 4.71.205 10.65c.205 10.24.615 32.768.82 59.904.409 44.748.511 91.033.102 136.601-1.229 129.536-6.144 227.84-16.077 275.559l-2.15 10.24-.922 4.505 4.506.922 20.992 4.198 4.608.922zm19.865-403.456l-1.024-74.65h191.181v74.65H266.547zm634.266 31.437l3.072-3.277 14.54-15.36 3.175-3.38-3.482-3.174-121.344-109.875-3.072-1.229h-126.77l-3.073 1.229-121.241 109.875-3.482 3.175 3.174 3.379 14.541 15.36 3.072 3.277 3.38-2.97 115.2-103.014h103.833l115.2 103.014 3.277 2.97z"></path></svg></a></div></div></div><div class="Toast__StyledContainer-sc-1p228qg-0 iqCFQa"><div class="Toastify"></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"title":"[CSS]矩形进度条的两种实现","date":"2021-07-19T20:35:07.322Z","slug":"loading-in-css","author":{"name":"Alfxjx","picture":"/assets/authors/alfxjx.jpg"},"content":"\u003cp\u003e最近开发接到一个需求，前端展示付款的验证码，验证码时效 10 分钟，到期过期，同时在二维码的外侧有一个倒计时条，原本的实现方式是通过 JS 来控制，设置左上，左下，右上，右下四个矩形，每个矩形只显示一个折角的边框，从而模拟整个外框。\u003c/p\u003e\n\u003cp\u003e根据倒计时的时间轮询计算比例，分别控制四个矩形的宽高，从而实现倒计时的 \u003ccode\u003eCountDown\u003c/code\u003e 效果。这样的实现方式有几个问题：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e使用4个元素来模拟，导致加入了很多不必要的数据\u003c/li\u003e\n\u003cli\u003ejs 轮询操作，代码很冗长。\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e本文主要介绍两种非 js 控制的矩形倒计时条的实现方法。\u003c/p\u003e\n\u003ch2\u003eCSS 实现\u003c/h2\u003e\n\u003cp\u003ecss 实现方法的原理是：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e设置四个\u003ccode\u003ebackground\u003c/code\u003e，使用\u003ccode\u003elinear-gradient\u003c/code\u003e 形成纯色的图片背景。\u003c/li\u003e\n\u003cli\u003e设置background的 \u003ccode\u003esize\u003c/code\u003e \u0026#x26; \u003ccode\u003eposition\u003c/code\u003e，使他们分布在元素的四周。\u003c/li\u003e\n\u003cli\u003e设置一个动画，均分成 4 个阶段，每个阶段将背景的位置按照顺时针平移。\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e具体可以看代码\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-css\"\u003e.progress {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  height: var(--height);\r\n  width: var(--width);\r\n  border-radius: calc(var(--line) / 2);\r\n  background: \r\n    linear-gradient(to right, var(--green) 99.99%, var(--blue))\r\n    calc(-1 * var(--width)) 0rem \r\n    / 100% var(--line),\r\n    linear-gradient(to bottom, var(--green) 99.99%, var(--blue))\r\n    calc(var(--width) - var(--line)) calc(-1 * var(--height)) \r\n    / var(--line) 100%,\r\n    linear-gradient(to right, var(--green) 99.99%, var(--blue)) \r\n    var(--width) calc(var(--height) - var(--line)) \r\n    / 100% var(--line),\r\n    linear-gradient(to top, var(--green), 99.99%, var(--blue)) \r\n    0rem var(--height) \r\n    / var(--line) 100%;\r\n  background-repeat: no-repeat;\r\n  animation: progress var(--time) linear forwards infinite;\r\n}\r\n\r\n@keyframes progress {\r\n  0% {\r\n    background-position: \r\n      calc(-1 * var(--width)) 0rem,\r\n      calc(var(--width) - var(--line)) calc(-1 * var(--height)),\r\n      var(--width) calc(var(--height) - var(--line)), \r\n      0rem var(--height);\r\n  }\r\n  25% {\r\n    background-position: \r\n      0rem 0rem,\r\n      calc(var(--width) - var(--line)) calc(-1 * var(--height)),\r\n      var(--width) calc(var(--height) - var(--line)), \r\n      0rem var(--height);\r\n  }\r\n  50% {\r\n    background-position: \r\n      0rem 0rem, \r\n      calc(var(--width) - var(--line)) 0rem,\r\n      var(--width) calc(var(--height) - var(--line)), \r\n      0rem var(--height);\r\n  }\r\n  75% {\r\n    background-position: \r\n      0rem 0rem, \r\n      calc(var(--width) - var(--line)) 0rem,\r\n      0rem calc(var(--height) - var(--line)), \r\n      0rem var(--height);\r\n  }\r\n  100% {\r\n    background-position: \r\n      0rem 0rem, \r\n      calc(var(--width) - var(--line)) 0rem,\r\n      0rem calc(var(--height) - var(--line)), \r\n      0rem 0rem;\r\n  }\r\n}\r\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch2\u003eSVG 实现\u003c/h2\u003e\n\u003cp\u003e\u003ccode\u003esvg\u003c/code\u003e的实现则是hack了\u003ccode\u003estroke-dasharray\u003c/code\u003e利用这个属性造出间断线来模拟倒计时，只要这个线足够长那么从视觉来看就是可以形成从全满变成全空的效果，这里的代码是这样的：\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-html\"\u003e\u0026#x3C;div class=\"father\"\u003e\r\n  \u0026#x3C;svg class=\"progressSvg\" style={{'--speed': speed, '--progress': progress}} viewBox=\"0 0 120 120\"\u003e\r\n    \u0026#x3C;rect width=\"100\" height=\"100\" x=\"10\" y=\"10\" rx=\"10\" ry=\"10\" /\u003e\r\n  \u0026#x3C;/svg\u003e\r\n  \u0026#x3C;span class=\"son\"\u003e{props.svg}\u0026#x3C;/span\u003e\r\n\u0026#x3C;/div\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e主要看rect部分，设置了一个圆角，所以矩形的起始位置设置成了\u003ccode\u003ex=\"10\" y=\"10\"\u003c/code\u003e，并且由于设置了矩形的尺寸，为了能放下，所以 \u003ccode\u003esvg\u003c/code\u003e 标签的 \u003ccode\u003eviewBox=\"0 0 120 120\"\u003c/code\u003e 从而放下这个圆角矩形。\u003c/p\u003e\n\u003cp\u003e这样以来，矩形的周长就是 400，所以设置\u003ccode\u003estroke-dasharray\u003c/code\u003e 只要大于 400 即可，为了保险设置成 1000长度的实线，1000长度的虚线。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-css\"\u003e.progressSvg rect {\r\n  fill: none;\r\n  stroke: blue;\r\n  stroke-width: 4; // 控制边框的宽度\r\n  /* \tstroke-linecap: round; */\r\n  stroke-dasharray: 1000 1000;\r\n  stroke-dashoffset: 0;\r\n  animation: spin 60s infinite linear;\r\n}\r\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e接着就是让它动起来，这里使用的是控制\u003ccode\u003estroke-offset\u003c/code\u003e来控制，就从0（完全是边框）转到 -400（旋转了所有的边框），因为实线的前面是虚线，只要开始设置负的 \u003ccode\u003eoffset\u003c/code\u003e 那么就会是类似于被吃掉的效果。\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-css\"\u003e@keyframes spin {\r\n  to {\r\n    stroke-dashoffset: -400;\r\n  }\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e这样我们就实现了最简单的二维码倒计时进度条了。\u003ca href=\"https://codepen.io/alfxjx/pen/jOBPeqX?editors=0010\"\u003e在线演示 codepen.io\u003c/a\u003e\u003c/p\u003e\n\u003ch2\u003e组件化 基于 React\u003c/h2\u003e\n\u003cp\u003e样式基本不需要修改，修改一下js 文件，主要通过 css 变量来对倒计时时间，进度进行控制。\u003c/p\u003e\n\u003cp\u003e这里根据需求：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e页面在加载的时候会给出过期时间，例如总共支付时间10分钟的话，当进度条走了 60% 之后，进度条颜色变成红色。\u003c/li\u003e\n\u003cli\u003e根据给出的过期时间，页面刷新的时候，保持当前的进度。\u003c/li\u003e\n\u003c/ol\u003e\n\u003cpre\u003e\u003ccode class=\"language-jsx\"\u003econst CountedDown = (props) =\u003e {\r\n  const [color, setColor] = React.useState(\"green\");\r\n  const [speed, setSpeed] = React.useState('100s');\r\n  const [progress] = React.useState('0.75');\r\n  return (\r\n    \u0026#x3C;div\u003e\r\n      \u0026#x3C;div class=\"flex\" style={{ \"--bg\": color, \"--time\": speed }}\u003e\r\n        \u0026#x3C;div class=\"countdown\"\u003e\r\n          \u0026#x3C;div class=\"progress\"\u003e\r\n            \u0026#x3C;div class=\"inner\"\u003e\r\n              {props.css}\r\n            \u0026#x3C;/div\u003e\r\n          \u0026#x3C;/div\u003e\r\n        \u0026#x3C;/div\u003e\r\n      \u0026#x3C;/div\u003e\r\n      \u0026#x3C;div class=\"father\"\u003e\r\n        \u0026#x3C;svg class=\"progressSvg\" style={{'--speed': speed, '--progress': progress}} viewBox=\"0 0 120 120\"\u003e\r\n          \u0026#x3C;rect width=\"100\" height=\"100\" x=\"10\" y=\"10\" rx=\"10\" ry=\"10\" /\u003e\r\n        \u0026#x3C;/svg\u003e\r\n        \u0026#x3C;span class=\"son\"\u003e{props.svg}\u0026#x3C;/span\u003e\r\n      \u0026#x3C;/div\u003e\r\n    \u0026#x3C;/div\u003e\r\n  );\r\n}  \n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e从上面的代码中，可以看出我们给 \u003ccode\u003ecss\u003c/code\u003e 传入了 \u003ccode\u003e--bg\u003c/code\u003e 控制进度条的颜色，\u003ccode\u003e--time\u003c/code\u003e控制倒计时，读者可以自行查看在线演示代码。由于css版本的拐角存在问题，主要介绍svg版本。\u003c/p\u003e\n\u003cp\u003e在 svg 版本中， 传入了 \u003ccode\u003e--speed\u003c/code\u003e 控制速度，\u003ccode\u003e--progress\u003c/code\u003e控制进度，对应的 css :\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-css\"\u003e.progressSvg rect {\r\n  fill: none;\r\n  stroke: blue;\r\n  stroke-width: 4;\r\n  /* \tstroke-linecap: round; */\r\n  stroke-dasharray: 1000 1000;\r\n  - stroke-dashoffset: 0;\r\n  - animation: spin 60s infinite linear;\r\n  + stroke-dashoffset: calc((1 - var(--progress)) * (-400));\r\n  + animation: spin var(--speed) infinite linear;\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003ccode\u003e--speed\u003c/code\u003e很好理解，主要解释\u003ccode\u003e--progress\u003c/code\u003e，上文中，我们知道使用动画就是让 \u003ccode\u003estroke-offset\u003c/code\u003e按照逆时针旋转到 -400， 那么保存进度就是保存这个 offset 值，当我们认为现在的百分比进度是0.75的话，就需要提前 \u003cstrong\u003e手动spin\u003c/strong\u003e \u003ccode\u003e(1-0.75)*(-400)\u003c/code\u003e 。\u003c/p\u003e\n\u003cp\u003e可以用于生产的 React 组件 可以参考下面的代码：\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-css\"\u003e/* CountDown.module.css */\r\n.father {\r\n  position: relative;\r\n}\r\n.son {\r\n  position: absolute;\r\n  top: 50%;\r\n  left: 50%;\r\n  transform: translate(-50%, -50%);\r\n  width: 12rem;\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.progress {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n@keyframes spin {\r\n  to {\r\n    stroke-dashoffset: -400;\r\n  }\r\n}\r\n\r\n.progress rect {\r\n  fill: none;\r\n  stroke: var(--color);\r\n  stroke-width: 4;\r\n  /* \tstroke-linecap: round; */\r\n  stroke-dasharray: 1000 1000;\r\n  stroke-dashoffset: calc(-400 * var(--rate));\r\n  animation: spin 600s infinite linear;\r\n  /*   animation-direction: alternate; */\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"language-tsx\"\u003eimport React from 'react';\r\n\r\nimport styles from './CountDown.module.css';\r\n\r\ninterface MyCSSProperties extends React.CSSProperties {\r\n  '--color': string;\r\n  '--rate': string;\r\n}\r\n\r\nconst CountDown = ({\r\n  color,\r\n  timer,\r\n  children,\r\n}: {\r\n  color: string;\r\n  timer: number;\r\n  children: React.ReactNode;\r\n}) =\u003e {\r\n  const style: MyCSSProperties = {\r\n    // Add a CSS Custom Property\r\n    '--color': color,\r\n    '--rate': `${1 - timer / (600 * 1000)}`,\r\n  };\r\n\r\n  return (\r\n    \u0026#x3C;div className={styles.father}\u003e\r\n      \u0026#x3C;svg className={styles.progress} viewBox=\"0 0 120 120\"\u003e\r\n        \u0026#x3C;rect style={style} width=\"100\" height=\"100\" x=\"10\" y=\"10\" rx=\"6\" ry=\"6\" /\u003e\r\n      \u0026#x3C;/svg\u003e\r\n      \u0026#x3C;span className={styles.son}\u003e{children}\u0026#x3C;/span\u003e\r\n    \u0026#x3C;/div\u003e\r\n  );\r\n};\r\n\r\nexport { CountDown };\r\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"language-tsx\"\u003e/* usage */\r\nimport { useCountDown } from 'ahooks';\r\nimport React, { useEffect, useState } from 'react';\r\n\r\nconst Index = ()=\u003e{\r\n  const [barColor, setBarColor] = useState('blue'); // red\r\n  const [expiryTimer, setTargetDate, formattedRes] = useCountDown({\r\n    targetDate: dataRes.expiredAt,\r\n    onEnd,\r\n  });\r\n  useEffect(() =\u003e {\r\n    if (timer !== 0 \u0026#x26;\u0026#x26; timer \u0026#x3C; 600 * 0.35 * 1000) {\r\n      setBarColor('red');\r\n    }\r\n  }, [expiryTimer]);\r\n  return (\r\n  \u0026#x3C;CountDown color={barColor} timer={timer}\u003e\r\n    \u0026#x3C;div\r\n      className={classNames({\r\n        hidden: show,\r\n      })}\r\n      id=\"qrcode\"\r\n      ref={qrcodeRef}\r\n      /\u003e\r\n  \u0026#x3C;/CountDown\u003e\r\n  )\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n","coverImage":"/assets/blog/css-loading.png"}},"__N_SSG":true},"page":"/tech/[slug]","query":{"slug":"loading-in-css"},"buildId":"Bbtf7Lx5b5XGcJRwMfn3P","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
