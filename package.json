@@ -8,7 +8,9 @@
     "export": "next export -o docs",
     "start": "next start",
     "export:osx": "next build && next export -o docs && cd docs && touch .nojekyll",
-    "deploy": "sh ./scripts/deploy.sh"
+    "export:win": "next build && next export -o docs",
+    "deploy": "sh ./scripts/deploy.sh",
+    "deploy:win": "./scripts/deploy.bat"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.2",
