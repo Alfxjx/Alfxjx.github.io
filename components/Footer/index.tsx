@@ -45,6 +45,28 @@ const FooterWrapper = styled.div`
 		&:hover {
 			color: ${({ theme }) => theme.textHover};
 		}
+		svg {
+			animation-duration: 0.618s;
+			animation-iteration-count: infinite;
+			&:hover {
+				animation-name: jello;
+				animation-timing-function: ease;
+			}
+		}
+	}
+	@keyframes jello {
+		0% {
+			transform: scale(1, 1);
+		}
+		25% {
+			transform: scale(0.9, 1.1);
+		}
+		50% {
+			transform: scale(1.2, 0.8);
+		}
+		75% {
+			transform: scale(0.95, 1.05);
+		}
 	}
 `;
 

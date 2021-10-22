@@ -20,7 +20,7 @@ const FancyDoodle = Doodle`
 
 	@size: 1px calc(141.4% + 1px);
 	transform: rotate(@p(±45deg));
-	background: #f1f1f1;
+	background: rgba(0,0,0,0.1);
 	margin: auto;
 `;
 
