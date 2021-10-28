@@ -57,9 +57,13 @@ export const Post = styled.div`
 		span {
 			line-height: 1.5rem;
 		}
-		::-webkit-scrollbar{
+		::-webkit-scrollbar {
 			display: none;
 		}
+	}
+	pre > code {
+		-moz-tab-size: 2;
+		tab-size: 2;
 	}
 	a {
 		color: ${({ theme }) => theme.themeColor};
