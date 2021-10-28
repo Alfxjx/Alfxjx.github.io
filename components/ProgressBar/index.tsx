@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useProgress } from "./useProgress";
 
 const ProgressBarWrapper = styled.div<{ progress: number }>`
 	width: 100%;
@@ -18,19 +19,7 @@ const ProgressBarWrapper = styled.div<{ progress: number }>`
 `;
 
 const ProgressBar = () => {
-	const [progress, setProgress] = useState(0);
-	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			setProgress(
-				(document.documentElement.scrollTop /
-					(document.body.scrollHeight - window.innerHeight)) *
-					100
-			);
-		});
-		return () => {
-			window.removeEventListener("scroll", () => {});
-		};
-	});
+	const progress = useProgress();
 	return (
 		<ProgressBarWrapper progress={progress}>
 			<div className='bar-used'></div>
