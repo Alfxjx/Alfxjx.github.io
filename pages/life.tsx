@@ -17,6 +17,7 @@ export async function getStaticProps() {
 		"slug",
 		"author",
 		"type",
+		"tag",
 		"coverImage",
 		"excerpt",
 	]);
@@ -27,11 +28,13 @@ export async function getStaticProps() {
 		"slug",
 		"author",
 		"type",
+		"tag",
 		"content",
 		"ogImage",
 		"coverImage",
 	]);
 	const { content, ...rest } = newOneContent;
+
 	const contentMarked = await markdownToHtml(content || "");
 	return {
 		props: {

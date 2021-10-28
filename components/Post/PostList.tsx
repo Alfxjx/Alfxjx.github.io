@@ -15,6 +15,7 @@ import { Footer } from "@/components/Footer/index";
 import { Header } from "@/components/Header/index";
 import { Post as PostStyles } from "@/components/Post/index";
 import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
+import { Tag } from "@/components/Tag/index";
 
 import { formatDate } from "@/utils/formatDate";
 import { MyContext } from "../../pages/_app";
@@ -115,6 +116,11 @@ const BlogCard = ({ post }) => {
 						{formatDate(new Date(post.date), "yyyy-MM-dd")}
 					</span>
 				</div>
+				<div className='blog-tag'>
+					{post.tag.map((tag) => {
+						return <Tag key={tag}>{tag}</Tag>;
+					})}
+				</div>
 			</div>
 		</BlogCardWrapper>
 	);
@@ -132,7 +138,7 @@ const NewBlog = ({ post }) => {
 		<NewBlogWrapper>
 			<div className='expand'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-					<a>
+					<a style={{ marginRight: "20px" }}>
 						<Expand />
 					</a>
 				</Link>
@@ -170,6 +176,11 @@ const NewBlog = ({ post }) => {
 				/>
 				<span className='ellip'>...</span>
 			</div>
+			<div className='tag'>
+				{post.tag.map((tag) => {
+					return <Tag key={tag}>{tag}</Tag>;
+				})}
+			</div>
 		</NewBlogWrapper>
 	);
 };
@@ -202,6 +213,9 @@ const ListPage = styled.div`
 		flex-direction: column;
 		align-items: center;
 		.my-masonry-grid {
+			@media (max-width: 1500px) {
+				width: 90%;
+			}
 			@media (max-width: 600px) {
 				width: 95%;
 			}
@@ -306,6 +320,12 @@ const BlogCardWrapper = styled.div`
 				color: ${({ theme }) => theme.themeColor};
 				margin-right: 1rem;
 			}
+		}
+		.blog-tag {
+			margin: 0.25rem 0;
+			line-height: 1.25rem;
+			font-size: 0.875rem;
+			overflow: hidden;
 		}
 	}
 `;
@@ -418,6 +438,15 @@ const NewBlogWrapper = styled.div`
 		.ellip {
 			padding: 3px 12px;
 		}
+	}
+	.tag {
+		position: absolute;
+		bottom: 10px;
+		left: 20px;
+		line-height: 1.25rem;
+		font-size: 0.875rem;
+		overflow: hidden;
+		text-align: left;
 	}
 `;
 
