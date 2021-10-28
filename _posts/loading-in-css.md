@@ -4,6 +4,7 @@ excerpt: '最近开发接到一个需求，前端展示付款的验证码，验�
 coverImage: '/assets/blog/css-loading.png'
 date: '2021-07-19T20:35:07.322Z'
 type: tech
+tag: ['CSS','react']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

@@ -4,6 +4,7 @@ excerpt: '2018年就快要过去了，真的是一个漫长又充满着忙碌和
 coverImage: '/assets/blog/2019.jpg'
 date: '2018-12-29T21:47:42.712Z'
 type: life
+tag: ['年终总结','观点']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

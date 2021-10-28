@@ -4,6 +4,7 @@ excerpt: '最近公司在搭建部门的统一平台，我负责了统一登录�
 coverImage: '/assets/blog/chakra-ui.png'
 date: '2021-10-28T12:52:42.712Z'
 type: tech
+tag: ['ui','react']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'
