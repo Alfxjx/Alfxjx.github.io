@@ -322,8 +322,7 @@ const BlogCardWrapper = styled.div`
 			}
 		}
 		.blog-tag {
-			margin: 0.25rem 0;
-			line-height: 1.25rem;
+			line-height: 2rem;
 			font-size: 0.875rem;
 			overflow: hidden;
 		}
@@ -441,9 +440,9 @@ const NewBlogWrapper = styled.div`
 	}
 	.tag {
 		position: absolute;
-		bottom: 10px;
+		bottom: 5px;
 		left: 20px;
-		line-height: 1.25rem;
+		line-height: 2rem;
 		font-size: 0.875rem;
 		overflow: hidden;
 		text-align: left;
