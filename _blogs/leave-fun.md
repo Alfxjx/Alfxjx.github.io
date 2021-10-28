@@ -2,6 +2,7 @@
 title: '请远离重复娱乐'
 excerpt: '所有打牌类型的游戏，其爽点在哪里呢?'
 date: '2021-02-21T16:22:42.712Z'
+coverImage: '/assets/blog/what-reading.png'
 type: life
 author:
   name: Alfxjx
