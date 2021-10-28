@@ -49,19 +49,18 @@ export default function Document({ newOneContent, allPosts }) {
 	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
-			<div className="btn-wrapper">
+			<div className='btn-wrapper'>
 				<Toggle toggleTheme={() => themeToggler()}>
 					<LightDarkSwitcher type={NowTheme} />
 				</Toggle>
 			</div>
 			<Header></Header>
-			<div className="blog-list">
+			<div className='blog-list'>
 				<NewBlog post={newOneContent} />
 				<Masonry
 					breakpointCols={breakpointColumnsObj}
-					className="my-masonry-grid"
-					columnClassName="my-masonry-grid_column"
-				>
+					className='my-masonry-grid'
+					columnClassName='my-masonry-grid_column'>
 					{restPosts.map((post) => {
 						return (
 							<Slide left key={post.slug}>
@@ -71,7 +70,7 @@ export default function Document({ newOneContent, allPosts }) {
 					})}
 				</Masonry>
 			</div>
-			<div className="footer-wrapper">
+			<div className='footer-wrapper'>
 				<Footer showLink={true} />
 			</div>
 		</ListPage>
@@ -88,34 +87,33 @@ const BlogCard = ({ post }) => {
 	}, []);
 	return (
 		<BlogCardWrapper>
-			<div className="fixed" title="share/分享">
+			<div className='fixed' title='share/分享'>
 				<CopyToClipboard
 					text={handleText(post)}
 					onCopy={() => {
 						toast.success("copied!");
-					}}
-				>
+					}}>
 					<Share />
 				</CopyToClipboard>
 			</div>
-			<div className="img-dark-wrapper">
+			<div className='img-dark-wrapper'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<>
-						<img src={post.coverImage} alt="" />
-						<div className="img-dark"></div>
+						<img src={post.coverImage} alt='' />
+						<div className='img-dark'></div>
 					</>
 				</Link>
 			</div>
-			<div className="blog-info">
+			<div className='blog-info'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-					<a className="link" title={post.title}>
+					<a className='link' title={post.title}>
 						{post.title}
 					</a>
 				</Link>
-				<div className="blog-excerpt">{post.excerpt}</div>
-				<div className="blog-sub">
-					<span className="username">@{post.author.name} </span>
-					<span className="date">
+				<div className='blog-excerpt'>{post.excerpt}</div>
+				<div className='blog-sub'>
+					<span className='username'>@{post.author.name} </span>
+					<span className='date'>
 						{formatDate(new Date(post.date), "yyyy-MM-dd")}
 					</span>
 				</div>
@@ -134,7 +132,7 @@ const NewBlog = ({ post }) => {
 	}, []);
 	return (
 		<NewBlogWrapper>
-			<div className="expand">
+			<div className='expand'>
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<a>
 						<Expand />
@@ -144,36 +142,35 @@ const NewBlog = ({ post }) => {
 					text={handleText(post)}
 					onCopy={() => {
 						toast.success("copied!");
-					}}
-				>
+					}}>
 					<Share />
 				</CopyToClipboard>
 			</div>
-			<div className="left-part">
-				<div className="img">
+			<div className='left-part'>
+				<div className='img'>
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>
-							<img src={post.coverImage} alt="" />
-							<div className="img-dark"></div>
+							<img src={post.coverImage} alt='' />
+							<div className='img-dark'></div>
 						</a>
 					</Link>
 				</div>
-				<div className="title">
+				<div className='title'>
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>{post.title}</a>
 					</Link>
 				</div>
-				<div className="info">
-					<div className="username">@{post.author.name}</div>
+				<div className='info'>
+					<div className='username'>@{post.author.name}</div>
 					<div>{formatDate(new Date(post.date), "yyyy-MM-dd")}</div>
 				</div>
 			</div>
-			<div className="right-part">
+			<div className='right-part'>
 				<PostWrapper
-					className="content"
+					className='content'
 					dangerouslySetInnerHTML={{ __html: post.content.slice(0, 1500) }}
 				/>
-				<span className="ellip">...</span>
+				<span className='ellip'>...</span>
 			</div>
 		</NewBlogWrapper>
 	);
@@ -320,14 +317,12 @@ const NewBlogWrapper = styled.div`
 	width: 75%;
 	@media (max-width: 1200px) {
 		width: 90%;
-		flex-direction: column;
 	}
 	@media (max-width: 600px) {
 		width: 95%;
-		flex-direction: column;
 	}
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	position: relative;
