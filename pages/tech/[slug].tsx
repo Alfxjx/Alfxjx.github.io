@@ -4,7 +4,7 @@ import { getPostBySlug, getAllPosts } from "@/utils/api";
 import markdownToHtml from "@/utils/markdownToHtml";
 
 export default function LifePost({ post }) {
-	return <Post post={post}></Post>;
+	return <Post type='code' post={post}></Post>;
 }
 
 export async function getStaticProps({ params }) {
