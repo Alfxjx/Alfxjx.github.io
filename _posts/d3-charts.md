@@ -4,6 +4,7 @@ excerpt: "D3 是一个运行于 web 端的 Javascript 可视化库。D3 的第�
 date: "2020-09-27T08:18:39.741Z"
 coverImage: "/assets/blog/d3.png"
 type: tech
+tag: ['d3js','翻译']
 author:
   name: Alfxjx
   picture: "/assets/authors/alfxjx.jpg"

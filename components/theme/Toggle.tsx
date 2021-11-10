@@ -1,10 +1,12 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../Button/index";
+
+type themeType = "light" | "dark";
 
 export const useDarkMode: () => [string, () => void, () => String] = () => {
 	const [theme, setTheme] = useState("light");
 
-	const setMode = (mode) => {
+	const setMode = (mode: themeType) => {
 		window.localStorage.setItem("theme", mode);
 		setTheme(mode);
 	};
@@ -18,7 +20,7 @@ export const useDarkMode: () => [string, () => void, () => String] = () => {
 	};
 
 	useEffect(() => {
-		const localTheme = window.localStorage.getItem("theme");
+		const localTheme = window.localStorage.getItem("theme") as themeType;
 		if (window.matchMedia("(prefers-color-scheme)").media === "not all") {
 			localTheme ? setMode(localTheme) : setMode("light");
 		} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -33,9 +35,15 @@ export const useDarkMode: () => [string, () => void, () => String] = () => {
 	return [theme, themeToggler, getNowTheme];
 };
 
-export const Toggle = ({ children, toggleTheme }) => {
+export const Toggle = ({
+	children,
+	toggleTheme,
+}: {
+	children: React.ReactNode;
+	toggleTheme: () => void;
+}) => {
 	return (
-		<Button btnType='primary' round="round" onClick={toggleTheme}>
+		<Button btnType='primary' round='round' onClick={toggleTheme}>
 			{children}
 		</Button>
 	);

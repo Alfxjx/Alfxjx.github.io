@@ -4,6 +4,7 @@ excerpt: '《罗生门》是大师之作，也标识着一个重要的电影时�
 coverImage: '/assets/blog/luoshenmen.webp'
 date: '2018-10-24T12:00:00.000Z'
 type: life
+tag: ['电影']
 author:
   name: 饭团
   picture: '/assets/authors/fantuan.jpg'

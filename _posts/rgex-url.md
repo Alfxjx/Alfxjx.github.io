@@ -4,6 +4,7 @@ excerpt: '本文从如何使用正则去判断一个字符串是不是url地址�
 coverImage: '/assets/blog/regex.jpeg'
 date: '2021-01-22T22:15:42.712Z'
 type: tech
+tag: ['regex','javascript']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

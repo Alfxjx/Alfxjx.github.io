@@ -4,6 +4,7 @@ excerpt: '本文展示了一种判断一个数是否是质数的奇技淫巧，�
 coverImage: ''
 date: '2020-10-08T12:44:58.817Z'
 type: tech
+tag: ['regex','javascript']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

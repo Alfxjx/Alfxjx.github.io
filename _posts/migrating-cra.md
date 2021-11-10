@@ -4,6 +4,7 @@ excerpt: '公司的统一登录项目之前部署在私有云上采用的是 `ne
 coverImage: '/assets/blog/nextjs.jfif'
 date: '2021-09-20T17:10:00.000Z'
 type: tech
+tag: ['next.js','react']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

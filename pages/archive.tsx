@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { BaseLayout } from "@/components/Layout/base";
 import { Button, TextButton } from "@/components/Button/index";
+import { Tag } from "@/components/Tag/index";
 import { getAllBlogs, getAllPosts } from "@/utils/api";
 import { formatDate } from "@/utils/formatDate";
 
@@ -32,7 +33,7 @@ export default function Archive({ posts, allPosts, allBlogs }) {
 		}
 	}, [LifeFoucs, TechFoucs]);
 	return (
-		<BaseLayout title="Archive">
+		<BaseLayout title='Archive'>
 			<ArchiveWrapper>
 				<div className='card'>
 					<div className='switch'>
@@ -67,12 +68,15 @@ export default function Archive({ posts, allPosts, allBlogs }) {
 									<span className='date'>
 										{formatDate(new Date(post.date), "yyyy-MM-dd")}
 									</span>
+									<span className='type'>{post.type}</span>
 									<Link
 										as={`/${post.type}/${post.slug}`}
 										href={`/${post.type}/[slug]`}>
 										<span className='title'>{post.title}</span>
 									</Link>
-									<span className='type'>{post.type}</span>
+									{post.tag.map((tag) => {
+										return <Tag key={tag}>{tag}</Tag>;
+									})}
 								</a>
 							</div>
 						);
@@ -140,8 +144,8 @@ const ArchiveWrapper = styled.div`
 `;
 
 export async function getStaticProps() {
-	const allPosts = getAllPosts(["title", "date", "type", "slug"]);
-	const allBlogs = getAllBlogs(["title", "date", "type", "slug"]);
+	const allPosts = getAllPosts(["title", "date", "type", "tag", "slug"]);
+	const allBlogs = getAllBlogs(["title", "date", "type", "tag", "slug"]);
 	const posts = [...allBlogs, ...allPosts]
 		.sort((a, b) => {
 			return new Date(a.date).getTime() - new Date(b.date).getTime();

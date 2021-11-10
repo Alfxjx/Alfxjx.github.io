@@ -4,6 +4,7 @@ excerpt: '新的 CSS 函数 `clamp()` 提供了一种通过给目标值设置最
 coverImage: '/assets/blog/css-math-functions.jpg'
 date: '2020-11-05T14:52:42.712Z'
 type: tech
+tag: ['CSS','翻译']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

@@ -4,6 +4,7 @@ excerpt: "浅薄的研究了一下，希望可以和我讨论"
 date: "2020-09-27T08:18:39.741Z"
 coverImage: "/assets/blog/css-rgb.jpeg"
 type: tech
+tag: ['CSS']
 author:
   name: Alfxjx
   picture: "/assets/authors/alfxjx.jpg"

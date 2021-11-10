@@ -4,6 +4,7 @@ excerpt: '原有的旧项目原本时前后端不分离的，在开发过程中�
 coverImage: '/assets/blog/vue-jquery.jfif'
 date: '2021-04-13T16:35:07.322Z'
 type: tech
+tag: ['vue']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

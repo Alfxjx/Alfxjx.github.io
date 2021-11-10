@@ -4,6 +4,7 @@ excerpt: '之所以有了这篇文，完全就是前两天，老师又给大家�
 coverImage: '/assets/blog/puppeteer.jfif'
 date: '2020-05-03T16:35:07.322Z'
 type: tech
+tag: ['puppeteer','node.js']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'

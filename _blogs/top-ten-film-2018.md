@@ -4,6 +4,7 @@ excerpt: '第一次认真想写年度十佳，主要还是因2018今年看的电
 coverImage: '/assets/blog/film.jfif'
 date: '2019-01-02T12:00:00.000Z'
 type: life
+tag: ['电影']
 author:
   name: 饭团
   picture: '/assets/authors/fantuan.jpg'

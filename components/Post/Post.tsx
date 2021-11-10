@@ -5,7 +5,7 @@ import hljs from "highlight.js";
 import Link from "next/link";
 import { useEffect, useContext } from "react";
 import "highlight.js/styles/atom-one-dark.css";
-import { MyContext } from "../../pages/_app"
+import { MyContext } from "../../pages/_app";
 import { Toggle } from "@/components/theme/Toggle";
 import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 
@@ -17,8 +17,9 @@ import { ProgressBar } from "@/components/ProgressBar/index";
 
 import Arrow from "../../public/svg/arrow.svg";
 import Code from "../../public/svg/code.svg";
+import Life from "../../public/svg/book.svg";
 
-export default function Post({ post }) {
+export default function Post({ post, type }) {
 	const router = useRouter();
 	const { themeToggler, getNowTheme } = useContext(MyContext);
 	const [NowTheme, setNowTheme] = useState("");
@@ -41,7 +42,7 @@ export default function Post({ post }) {
 	}, [post.title]);
 	return (
 		<Wrapper>
-      <ProgressBar></ProgressBar>
+			<ProgressBar></ProgressBar>
 			<div className='header'>
 				<div className='icon-wrapper'>
 					<div
@@ -52,11 +53,19 @@ export default function Post({ post }) {
 						<Arrow />
 					</div>
 					<div className='icons'>
-						<Link href='/tech'>
-							<a>
-								<Code />
-							</a>
-						</Link>
+						{type === "code" ? (
+							<Link href='/tech'>
+								<a>
+									<Code />
+								</a>
+							</Link>
+						) : (
+							<Link href='/life'>
+								<a>
+									<Life />
+								</a>
+							</Link>
+						)}
 					</div>
 				</div>
 			</div>
