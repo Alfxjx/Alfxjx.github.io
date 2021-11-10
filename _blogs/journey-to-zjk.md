@@ -2,7 +2,9 @@
 title: '张家口毕业旅行游记'
 excerpt: '突然同步了一下备忘录，于是一篇4年(2017)前的文章就这么赫然出现在眼前，所有的故事已成过往。'
 date: '2021-11-10T23:10:42.712Z'
+coverImage: '/assets/blog/zhangjiakou-cover.jpeg'
 type: life
+tag: ['学生时代']
 author:
   name: Alfxjx
   picture: '/assets/authors/alfxjx.jpg'
@@ -80,3 +82,5 @@ pps 今晚党员和康柏注定是要纠结了 不知道党员和张旭阳会怎
 别的不说 感觉出去玩的朋友就是各具特色 但终归有一点是一样的 都是真诚得对待着所有人 这样我就感觉出门旅游 是一有意义的事情
 
 真的是谢谢诸位大佬了 
+
+![合影](/assets/blog/zhangjiakou.jpeg)
