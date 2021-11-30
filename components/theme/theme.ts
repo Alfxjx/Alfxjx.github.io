@@ -6,6 +6,7 @@ export const lightTheme = {
 	textHover: "#025cf7",
 	background: "#fff",
 	backgroundLight: "#fff",
+	backgroundSuperLight:"#fff",
 	themeColor: "#2e317c",
 };
 export const darkTheme = {
@@ -16,5 +17,6 @@ export const darkTheme = {
 	textHover: "#bec936",
 	background: "#363537",
 	backgroundLight: "#666",
+	backgroundSuperLight:"#999",
 	themeColor: "#f4ea2a",
 };

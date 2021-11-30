@@ -55,6 +55,7 @@ export const StyledContainer = styled(WrappedToastContainer).attrs({
 	}
 	.Toastify__toast--default {
 		background: #fff;
+		color: #000;
 	}
 	.Toastify__toast-body {
 	}

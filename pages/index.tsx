@@ -109,7 +109,7 @@ const SelfIntro = ({ newPost }) => {
 			<p className='my-main-font title main'>Hello, World.</p>
 			<p className='my-main-font title'>I'm Xu "Alfred" Jianxiang,</p>
 			<p className='my-main-font title'>
-				a frontend developer who work for his passion
+				a frontend developer who work for his <Link href="/water">passion</Link>
 			</p>
 			<Buttons>
 				<TextButton
