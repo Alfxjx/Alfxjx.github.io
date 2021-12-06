@@ -36,7 +36,7 @@ author:
 3. 对于某些需要用户登录权限的接口在拦截器中获取登录的权限并保持住登录状态。
 4. 根据环境变量控制请求的接口地址。
 
-这些改进需要配合后端的重构逐步实施，因为现在后台的请求不是完全统一，在后面的重构过程中需要将后台的返回统一化，这样也方便对数据的处理。目前针对此情况，对现有的接口做了一定的分类，按照请求的类型使用不同的axios实例具体可以参考[代码](http://192.168.86.17:8090/afin3/afin-portal-web/-/blob/dev/src/api/config.js), **在拦截器中使用MessageBox的单例模式（伪）参考**[我的笔记本的这个链接](https://www.yuque.com/alfxjx/gihbyq/odw8bw#rwKl0)
+这些改进需要配合后端的重构逐步实施，因为现在后台的请求不是完全统一，在后面的重构过程中需要将后台的返回统一化，这样也方便对数据的处理。目前针对此情况，对现有的接口做了一定的分类，按照请求的类型使用不同的axios实例具体可以参考[代码](), **在拦截器中使用MessageBox的单例模式（伪）参考**[我的笔记本的这个链接](https://www.yuque.com/alfxjx/gihbyq/odw8bw#rwKl0)
 ```javascript
 const baseUrl = NODE_ENV === "development" ? "/api" : `${VUE_APP_PROD_API}`;
 
@@ -204,7 +204,7 @@ let routes = [
 const routes = [
 	{
     path: "/bigdata/order/:id",
-    name: "乾坤大数据-查看详情",
+    name: "大数据-查看详情",
     component: BigdataOrderDetail,
     props: true
   },
@@ -273,7 +273,7 @@ router.beforeEach((to, from, next) => {
 #### 对可复用逻辑的封装
 对一些可能会使用到的逻辑进行封装，方便之后的复用
 
-1. 点击空白部分关闭 [v-clickout](http://192.168.86.17:8090/afin3/afin-portal-web/-/blob/dev/src/directives/clickOut.js), 原本的方式是在每个弹框中进行配置
+1. 点击空白部分关闭 [v-clickout](), 原本的方式是在每个弹框中进行配置
 ```javascript
 // clickout
 $(document).bind("click", function (e) {
