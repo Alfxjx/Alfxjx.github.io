@@ -46,6 +46,8 @@ const FooterWrapper = styled.div`
 			color: ${({ theme }) => theme.textHover};
 		}
 		svg {
+			width: 2rem;
+			height: 2rem;
 			animation-duration: 0.618s;
 			animation-iteration-count: infinite;
 			&:hover {
