@@ -35,6 +35,7 @@
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.2.0",
     "@types/highlight.js": "^10.1.0",
     "@types/react": "^17.0.9",
     "@types/react-lottie": "^1.2.6",
