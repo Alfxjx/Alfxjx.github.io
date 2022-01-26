@@ -24,7 +24,7 @@ Things I like to do:
 
 **Forever love girl**:  Miss Zhang.
 
-Contact me on [xjxtju@163.com](mailto:xjxtju@163.com)
+Contact me on [xjxtju@163.com](mailto:xjxtju@163.com) / [xujianxiang@abandon.work](mailto:xujianxiang@abandon.work)
 
 or weChat: eGp4NTg0OTcyMDI5
 
