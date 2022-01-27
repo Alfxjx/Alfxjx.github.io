@@ -10,18 +10,18 @@ import theme from "@chakra-ui/theme";
 export const Footer = ({ showLink }) => {
 	return (
 		<FooterWrapper>
-			<div className='my-main-font text'>
+			<div className="my-main-font text">
 				<span>Powerd by Next.js on gh-pages, </span>
-				<Link href='http://www.anbandon.work'>More in old blog</Link>
+				<Link href="/xujianxiang-resume.pdf">My Resume</Link>
 			</div>
 			<IconList show={showLink}>
-				<a href='https://github.com/alfxjx'>
+				<a href="https://github.com/alfxjx">
 					<Github />
 				</a>
-				<a href='https://weibo.com/u/1950371745'>
+				<a href="https://weibo.com/u/1950371745">
 					<Weibo />
 				</a>
-				<a href='https://juejin.cn/user/2330620383728551'>
+				<a href="https://juejin.cn/user/2330620383728551">
 					<Juejin />
 				</a>
 			</IconList>
