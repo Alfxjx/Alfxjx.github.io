@@ -10,7 +10,7 @@ const Switcher = styled.div`
 		width: 1rem;
 		height: 1rem;
 		cursor: pointer;
-		fill: ${({ theme }) => theme.textReverse};
+		fill: ${({ theme }) => theme.themeColor};
 	}
 `;
 

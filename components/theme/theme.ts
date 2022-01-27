@@ -1,6 +1,6 @@
 export const lightTheme = {
 	theme:"light",
-	text: "#000",
+	text: "#3a3a3a",
 	textGray:"#777",
 	textReverse:"#f1f2f3",
 	textHover: "#025cf7",
