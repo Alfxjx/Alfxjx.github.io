@@ -29,15 +29,15 @@ export default function Home({ newPost }) {
 	const options = [
 		{
 			label: "Gitee",
-			value: "https://alfxjx.gitee.io",
+			value: "https://alfxjx.gitee.io/",
 		},
 		{
 			label: "Github",
-			value: "https://alfxjx.github.io",
+			value: "https://alfxjx.github.io/",
 		},
 		{
 			label: "Site",
-			value: "https://www.abandon.work",
+			value: "https://www.abandon.work/",
 		},
 	];
 	const [focusSite, setFocus] = useState("");
