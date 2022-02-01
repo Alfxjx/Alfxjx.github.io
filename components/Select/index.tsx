@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 interface ISelect {
-	initialValue: string | number;
+	defaultValue: string | number;
 	optionList: { label: string; value: string | number }[];
 	onSelect: (val: string) => void;
 }
 
-export function Select({ initialValue, optionList, onSelect }: ISelect) {
+export function Select({ defaultValue, optionList, onSelect }: ISelect) {
 	return (
-		<SelectWrapper value={initialValue} onChange={onSelect}>
+		<SelectWrapper value={defaultValue} onChange={onSelect}>
 			{optionList.map((x) => {
 				return (
 					<OptionWrapper key={x.value} value={x.value}>

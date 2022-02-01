@@ -44,6 +44,7 @@ export default function Home({ newPost }) {
 	const { themeToggler, getNowTheme } = useContext(MyContext);
 
 	const [NowTheme, setNowTheme] = useState("");
+
 	useEffect(() => {
 		const theme = getNowTheme();
 		if (theme === "light") {
@@ -52,10 +53,9 @@ export default function Home({ newPost }) {
 			setNowTheme("D");
 		}
 	}, [getNowTheme()]);
-	useEffect(() => {
-		console.log("hello nextjs");
-		console.log(window.location.href);
 
+	useEffect(() => {
+		console.log(window.location.href);
 		setFocus(window.location.href);
 	}, []);
 
@@ -78,7 +78,7 @@ export default function Home({ newPost }) {
 				</div>
 				<div className="btn-wrapper">
 					<Select
-						initialValue={focusSite}
+						defaultValue={focusSite}
 						optionList={options}
 						onSelect={handleSelect}
 					></Select>
