@@ -200,6 +200,15 @@ const FullPage = styled.div`
 `;
 
 const FullPageMain = styled.div`
+	@font-face {
+		font-family: "GreenHome";
+		src: url("/fonts/GreenHome.ttf");
+		font-style: normal;
+		font-weight: 400;
+	}
+	.my-main-font {
+		font-family: "GreenHome";
+	}
 	flex: 1 1 auto;
 	width: 100vw;
 	height: 100%;

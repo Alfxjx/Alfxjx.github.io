@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<ThemeProvider theme={themeMode}>
 			<MyContext.Provider value={{ themeToggler, getNowTheme }}>
-				<FontStyles />
+				{/* <FontStyles /> */}
 				<Component {...pageProps} />
 				<StyledContainer />
 			</MyContext.Provider>
