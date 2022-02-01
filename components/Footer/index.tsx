@@ -30,15 +30,6 @@ export const Footer = ({ showLink }) => {
 };
 
 const FooterWrapper = styled.div`
-	@font-face {
-		font-family: "GreenHome";
-		src: url("/fonts/GreenHome.ttf");
-		font-style: normal;
-		font-weight: 400;
-	}
-	.my-main-font {
-		font-family: "GreenHome";
-	}
 	display: flex;
 	flex-direction: column;
 	align-items: center;

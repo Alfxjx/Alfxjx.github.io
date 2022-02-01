@@ -92,7 +92,6 @@ export default function Home({ newPost }) {
 				{/* <Link href='/about'>
 					<Avatar src='/me.jpg' alt='avatar' />
 				</Link> */}
-				<div className="header-list">123455</div>
 				<SelfIntro newPost={newPost} />
 				<Footer showLink={true} />
 			</FullPage>
@@ -200,15 +199,6 @@ const FullPage = styled.div`
 `;
 
 const FullPageMain = styled.div`
-	@font-face {
-		font-family: "GreenHome";
-		src: url("/fonts/GreenHome.ttf");
-		font-style: normal;
-		font-weight: 400;
-	}
-	.my-main-font {
-		font-family: "GreenHome";
-	}
 	flex: 1 1 auto;
 	width: 100vw;
 	height: 100%;

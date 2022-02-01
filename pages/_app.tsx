@@ -5,18 +5,6 @@ import { useDarkMode } from "../components/theme/Toggle";
 import { StyledContainer } from "../components/Toast/index";
 import { createContext } from "react";
 
-const FontStyles = createGlobalStyle`
-	@font-face {
-		font-family: "GreenHome";
-		src: url("/fonts/GreenHome.ttf");
-		font-style: normal;
-		font-weight: 400;
-	}
-	.my-main-font{
-		font-family: "GreenHome";
-	}
-`;
-
 export const MyContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
