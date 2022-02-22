@@ -7,6 +7,7 @@ export const lightTheme = {
 	background: "#fff",
 	backgroundLight: "#fff",
 	themeColor: "#2e317c",
+	inlineCodeBackground: "#f1f1fe",
 };
 export const darkTheme = {
 	theme: "dark",
@@ -17,4 +18,5 @@ export const darkTheme = {
 	background: "#363537",
 	backgroundLight: "#666",
 	themeColor: "#f4ea2a",
+	inlineCodeBackground: "#313131",
 };

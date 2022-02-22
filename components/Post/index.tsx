@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const Post = styled.div`
+	word-break: break-word;
 	blockquote {
 		border-left: 5px solid ${({ theme }) => theme.themeColor};
 		padding-left: 5px;
@@ -12,6 +13,9 @@ export const Post = styled.div`
 	pre {
 		font-family: consolas, sans-serif;
 		letter-spacing: 0.2px;
+	}
+	code {
+		background: ${({ theme }) => theme.inlineCodeBackground};
 	}
 	h1 {
 		font-size: 1.5rem;
