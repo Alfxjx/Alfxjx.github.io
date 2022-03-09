@@ -130,7 +130,7 @@ const SelfIntro = ({ newPost }) => {
 					btnType="ghost"
 					onClick={() => router.push("/about")}
 				>
-					About
+					About Me
 				</Button>
 				<TextButton
 					className="my-main-font btn"
@@ -267,10 +267,9 @@ const Buttons = styled.div`
 		justify-content: flex-start;
 	}
 	button {
-		margin: 5rem 1rem 1rem 0;
-		max-width: 6rem;
+		margin: 7rem 1rem 1rem 0;
 		@media (max-width: 400px) {
-			margin: 24px 12px 0px;
+			margin: 24px 6px 0px;
 		}
 	}
 `;

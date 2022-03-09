@@ -4,14 +4,14 @@ export const lightTheme = {
 	textGray: "#777",
 	textReverse: "#f1f2f3",
 	textHover: "#025cf7",
-	background: "#fff",
-	backgroundLight: "#fff",
+	background: "#feffff",
+	backgroundLight: "#feffff",
 	themeColor: "#2e317c",
 	inlineCodeBackground: "#f1f1fe",
 };
 export const darkTheme = {
 	theme: "dark",
-	text: "#d0d0d0",
+	text: "#dee4e9",
 	textGray: "#ddd",
 	textReverse: "#000",
 	textHover: "#bec936",

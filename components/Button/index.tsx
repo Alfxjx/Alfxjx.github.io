@@ -5,7 +5,7 @@ import styled from "styled-components";
 const InsideButton = styled.button<{ primary?: boolean; round?: boolean }>`
 	border: 1px solid ${(props) => props.theme.themeColor};
 	background: ${(props) =>
-		props.primary ? props.theme.themeColor : 'transparent'};
+		props.primary ? props.theme.themeColor : "transparent"};
 	color: ${(props) =>
 		props.primary ? props.theme.textReverse : props.theme.themeColor};
 	padding: ${({ round }) => (round ? "0.5rem" : "0.5rem 1rem")};
@@ -42,7 +42,8 @@ export function Button({
 		<InsideButton
 			round={round === "round"}
 			primary={btnType === "primary"}
-			{...props}>
+			{...props}
+		>
 			{children}
 		</InsideButton>
 	);
