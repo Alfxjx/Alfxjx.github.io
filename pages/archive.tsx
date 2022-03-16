@@ -33,15 +33,16 @@ export default function Archive({ posts, allPosts, allBlogs }) {
 		}
 	}, [LifeFoucs, TechFoucs]);
 	return (
-		<BaseLayout title='Archive'>
+		<BaseLayout title="Archive">
 			<ArchiveWrapper>
-				<div className='card'>
-					<div className='switch'>
+				<div className="card">
+					<div className="switch">
 						<Button
 							btnType={LifeFoucs}
 							onClick={() => {
 								handleArchive("Life");
-							}}>
+							}}
+						>
 							Life {LifeFoucs === "primary" ? "x" : ""}
 						</Button>
 						<Button
@@ -49,7 +50,8 @@ export default function Archive({ posts, allPosts, allBlogs }) {
 							onClick={() => {
 								handleArchive("Tech");
 							}}
-							style={{ marginLeft: "5px" }}>
+							style={{ marginLeft: "5px" }}
+						>
 							Tech {TechFoucs === "primary" ? "x" : ""}
 						</Button>
 						<TextButton
@@ -57,27 +59,37 @@ export default function Archive({ posts, allPosts, allBlogs }) {
 							onClick={() => {
 								handleArchive("All");
 							}}
-							style={{ marginLeft: "5px" }}>
+							style={{ marginLeft: "5px" }}
+						>
 							All
 						</TextButton>
 					</div>
 					{filterPosts.map((post) => {
 						return (
-							<div className='post-item' key={post.slug}>
-								<a className='link'>
-									<span className='date'>
+							<div className="post-item" key={post.slug}>
+								<a className="link">
+									<span className="date">
 										{formatDate(new Date(post.date), "yyyy-MM-dd")}
 									</span>
-									<span className='type'>{post.type}</span>
+									<span className="type">{post.type}</span>
 									<Link
 										as={`/${post.type}/${post.slug}`}
-										href={`/${post.type}/[slug]`}>
-										<span className='title'>{post.title}</span>
+										href={`/${post.type}/[slug]`}
+									>
+										<span className="title">{post.title}</span>
 									</Link>
-									{post.tag.map((tag) => {
-										return <Tag key={tag}>{tag}</Tag>;
-									})}
+									<div className="tags">
+										{post.tag.map((tag) => {
+											return <Tag key={tag}>{tag}</Tag>;
+										})}
+									</div>
 								</a>
+								<Link
+									as={`/${post.type}/${post.slug}`}
+									href={`/${post.type}/[slug]`}
+								>
+									<span className="title-small">{post.title}</span>
+								</Link>
 							</div>
 						);
 					})}
@@ -104,20 +116,30 @@ const ArchiveWrapper = styled.div`
 			width: 90%;
 		}
 		.switch {
-			margin-bottom: 0.5rem;
+			margin-bottom: 1rem;
+			@media (max-width: 600px) {
+				padding: 0.5rem 0;
+				position: sticky;
+				top: 3.25rem;
+				background: ${({ theme }) => theme.background};
+			}
 		}
 		.post-item {
 			display: flex;
+			flex-direction: column;
 			width: 100%;
-			align-items: center;
+			justify-content: center;
 			.link {
 				width: 100%;
-				margin: 0.25rem 0;
-				line-height: 2rem;
+				margin: 0.5rem 0;
+				line-height: 1.5rem;
 				font-size: 1rem;
 				text-decoration: none;
 				color: ${({ theme }) => theme.text};
-				font-weight: 500;
+				font-weight: 400;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
 				&:hover {
 					color: ${({ theme }) => theme.themeColor};
 				}
@@ -128,15 +150,45 @@ const ArchiveWrapper = styled.div`
 					padding: 2px 6px;
 					margin: 0 5px 0 10px;
 					font-family: consolas, sans-serif;
+					width: 2rem;
+					text-align: center;
+					@media (max-width: 600px) {
+						display: none;
+					}
 				}
 				.date {
+					display: inline-block;
 					margin: 0 10px 0 0;
 					color: ${({ theme }) => theme.textGray};
 					font-size: 0.875rem;
+					font-family: consolas, sans-serif;
+					width: 6rem;
+					min-width: 5rem;
 				}
 				.title {
 					font-weight: 400;
 					cursor: pointer;
+					@media (max-width: 960px) {
+						display: none;
+					}
+				}
+				.tags {
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					@media (max-width: 600px) {
+						/* display: none; */
+					}
+				}
+			}
+			.title-small {
+				display: none;
+				cursor: pointer;
+				@media (max-width: 960px) {
+					display: block;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
 				}
 			}
 		}

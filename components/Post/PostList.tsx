@@ -22,6 +22,7 @@ import { MyContext } from "../../pages/_app";
 
 import Share from "../../public/svg/share.svg";
 import Expand from "../../public/svg/expand.svg";
+import { theme } from "@chakra-ui/react";
 
 // @note react-reveal 之后文章多了可以用
 export function PostList({ newOneContent, allPosts }) {
@@ -48,28 +49,29 @@ export function PostList({ newOneContent, allPosts }) {
 	const [newOne, ...restPosts] = allPosts;
 	return (
 		<ListPage>
-			<div className='btn-wrapper'>
+			<div className="btn-wrapper">
 				<Toggle toggleTheme={() => themeToggler()}>
 					<LightDarkSwitcher type={NowTheme} />
 				</Toggle>
 			</div>
 			<Header></Header>
-			<div className='blog-list'>
+			<div className="blog-list">
 				<NewBlog post={newOneContent} />
 				<Masonry
 					breakpointCols={breakpointColumnsObj}
-					className='my-masonry-grid'
-					columnClassName='my-masonry-grid_column'>
+					className="my-masonry-grid"
+					columnClassName="my-masonry-grid_column"
+				>
 					{restPosts.map((post) => {
 						return (
-							<Slide left key={post.slug}>
+							<Slide bottom key={post.slug}>
 								<BlogCard post={post} />
 							</Slide>
 						);
 					})}
 				</Masonry>
 			</div>
-			<div className='footer-wrapper'>
+			<div className="footer-wrapper">
 				<Footer showLink={true} />
 			</div>
 		</ListPage>
@@ -86,37 +88,38 @@ const BlogCard = ({ post }) => {
 	}, []);
 	return (
 		<BlogCardWrapper>
-			<div className='fixed' title='share/分享'>
+			<div className="fixed" title="share/分享">
 				<CopyToClipboard
 					text={handleText(post)}
 					onCopy={() => {
 						toast.success("copied!");
-					}}>
+					}}
+				>
 					<Share />
 				</CopyToClipboard>
 			</div>
-			<div className='img-dark-wrapper'>
+			<div className="img-dark-wrapper">
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<>
-						<img src={post.coverImage} alt='' />
-						<div className='img-dark'></div>
+						<img src={post.coverImage} alt="" />
+						<div className="img-dark"></div>
 					</>
 				</Link>
 			</div>
-			<div className='blog-info'>
+			<div className="blog-info">
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
-					<a className='link' title={post.title}>
+					<a className="link" title={post.title}>
 						{post.title}
 					</a>
 				</Link>
-				<div className='blog-excerpt'>{post.excerpt}</div>
-				<div className='blog-sub'>
-					<span className='username'>@{post.author.name} </span>
-					<span className='date'>
+				<div className="blog-excerpt">{post.excerpt}</div>
+				<div className="blog-sub">
+					<span className="username">@{post.author.name} </span>
+					<span className="date">
 						{formatDate(new Date(post.date), "yyyy-MM-dd")}
 					</span>
 				</div>
-				<div className='blog-tag'>
+				<div className="blog-tag">
 					{post.tag.map((tag) => {
 						return <Tag key={tag}>{tag}</Tag>;
 					})}
@@ -136,7 +139,7 @@ const NewBlog = ({ post }) => {
 	}, []);
 	return (
 		<NewBlogWrapper>
-			<div className='expand'>
+			<div className="expand">
 				<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 					<a style={{ marginRight: "20px" }}>
 						<Expand />
@@ -146,37 +149,41 @@ const NewBlog = ({ post }) => {
 					text={handleText(post)}
 					onCopy={() => {
 						toast.success("copied!");
-					}}>
+					}}
+				>
 					<Share />
 				</CopyToClipboard>
 			</div>
-			<div className='left-part'>
-				<div className='img'>
+			<div className="left-part">
+				<div className="img">
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>
-							<img src={post.coverImage} alt='' />
-							<div className='img-dark'></div>
+							<img src={post.coverImage} alt="" />
+							<div className="img-dark"></div>
 						</a>
 					</Link>
 				</div>
-				<div className='title'>
+				<div className="title">
 					<Link as={`/${post.type}/${post.slug}`} href={`/${post.type}/[slug]`}>
 						<a>{post.title}</a>
 					</Link>
 				</div>
-				<div className='info'>
-					<div className='username'>@{post.author.name}</div>
+				<div className="info">
+					<div className="username">@{post.author.name}</div>
 					<div>{formatDate(new Date(post.date), "yyyy-MM-dd")}</div>
 				</div>
 			</div>
-			<div className='right-part'>
-				<PostWrapper
+			<div className="right-part">
+				{/* 删除了预览全文 */}
+				{/* <PostWrapper
 					className='content'
 					dangerouslySetInnerHTML={{ __html: post.content.slice(0, 1500) }}
-				/>
-				<span className='ellip'>...</span>
+				/> */}
+				<div className="blog-excerpt">{post.excerpt}</div>
+
+				<div className="ellip">...</div>
 			</div>
-			<div className='tag'>
+			<div className="tag">
 				{post.tag.map((tag) => {
 					return <Tag key={tag}>{tag}</Tag>;
 				})}
@@ -196,7 +203,7 @@ const ListPage = styled.div`
 	.btn-wrapper {
 		position: fixed;
 		right: 1rem;
-		top: 0.25rem;
+		top: 0.5rem;
 		z-index: 100;
 		button {
 			margin: 0 2px;
@@ -205,6 +212,7 @@ const ListPage = styled.div`
 	.blog-list {
 		@media (max-width: 600px) {
 			margin: 0 10px;
+			padding: 3rem 0 0 0;
 		}
 		margin: 0 4rem;
 		padding: 2rem 0 0 0;
@@ -242,10 +250,8 @@ const BlogCardWrapper = styled.div`
 	margin: 12px 8px;
 	background: ${({ theme }) => theme.backgroundLight};
 	color: ${({ theme }) => theme.text};
-	border-radius: 1rem;
-	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
-		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
-		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+	border-radius: ${({ theme }) => theme.borderRadius};
+	box-shadow: ${({ theme }) => theme.boxShadow};
 	.fixed {
 		position: absolute;
 		bottom: 5px;
@@ -253,7 +259,7 @@ const BlogCardWrapper = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-radius: 6px;
+		border-radius: ${({ theme }) => theme.borderRadius};
 		padding: 5px 3px 0;
 		svg {
 			width: 1.5rem;
@@ -279,7 +285,8 @@ const BlogCardWrapper = styled.div`
 	img {
 		width: 100%;
 		cursor: pointer;
-		border-radius: 1rem 1rem 0 0;
+		border-radius: ${({ theme }) => theme.borderRadius}
+			${({ theme }) => theme.borderRadius} 0 0;
 	}
 	.blog-info {
 		width: 100%;
@@ -347,10 +354,8 @@ const NewBlogWrapper = styled.div`
 	margin: 12px 8px;
 	background: ${({ theme }) => theme.backgroundLight};
 	color: ${({ theme }) => theme.text};
-	border-radius: 1rem;
-	box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
-		rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
-		rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+	border-radius: ${({ theme }) => theme.borderRadius};
+	box-shadow: ${({ theme }) => theme.boxShadow};
 	.expand {
 		position: absolute;
 		bottom: 10px;
@@ -419,7 +424,7 @@ const NewBlogWrapper = styled.div`
 	.right-part {
 		width: 100%;
 		flex: 6;
-		.content {
+		/* .content {
 			padding: 6px 12px;
 			box-sizing: border-box;
 			line-height: 1.5rem;
@@ -433,9 +438,14 @@ const NewBlogWrapper = styled.div`
 					color: ${({ theme }) => theme.textHover};
 				}
 			}
+		} */
+		.blog-excerpt {
+			padding: 6px 12px;
+			text-align: center;
 		}
 		.ellip {
-			padding: 3px 12px;
+			padding: 6px 12px;
+			text-align: center;
 		}
 	}
 	.tag {

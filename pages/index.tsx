@@ -55,7 +55,6 @@ export default function Home({ newPost }) {
 	}, [getNowTheme()]);
 
 	useEffect(() => {
-		console.log(window.location.href);
 		setFocus(window.location.href);
 	}, []);
 

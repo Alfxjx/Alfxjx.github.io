@@ -29,6 +29,7 @@ export async function getStaticProps() {
 		"author",
 		"type",
 		"tag",
+		"excerpt",
 		"content",
 		"ogImage",
 		"coverImage",

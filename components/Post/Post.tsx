@@ -43,24 +43,25 @@ export default function Post({ post, type }) {
 	return (
 		<Wrapper>
 			<ProgressBar></ProgressBar>
-			<div className='header'>
-				<div className='icon-wrapper'>
+			<div className="header">
+				<div className="icon-wrapper">
 					<div
-						className='icons'
+						className="icons"
 						onClick={() => {
 							router.back();
-						}}>
+						}}
+					>
 						<Arrow />
 					</div>
-					<div className='icons'>
+					<div className="icons">
 						{type === "code" ? (
-							<Link href='/tech'>
+							<Link href="/tech">
 								<a>
 									<Code />
 								</a>
 							</Link>
 						) : (
-							<Link href='/life'>
+							<Link href="/life">
 								<a>
 									<Life />
 								</a>
@@ -69,29 +70,29 @@ export default function Post({ post, type }) {
 					</div>
 				</div>
 			</div>
-			<div className='toggle'>
+			<div className="toggle">
 				<Toggle toggleTheme={() => themeToggler()}>
 					<LightDarkSwitcher type={NowTheme} />
 				</Toggle>
 			</div>
 			<div style={{ height: "3.25rem" }}></div>
 			<PostWrapper>
-				<div className='info'>
+				<div className="info">
 					<h1>{post.title}</h1>
-					<div className='user'>
+					<div className="user">
 						<img
-							className='img'
+							className="img"
 							src={post.author.picture}
 							alt={post.author.name}
 						/>
-						<span className='title'>{post.author.name}</span>
-						<div className='date'>
+						<span className="title">{post.author.name}</span>
+						<div className="date">
 							{formatDate(new Date(post.date), "yyyy-MM-dd")}
 						</div>
 					</div>
 				</div>
 				<div
-					className='post'
+					className="post"
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				/>
 				<Comments />
@@ -166,6 +167,7 @@ const PostWrapper = styled(PostStyles)`
 			display: flex;
 			align-items: center;
 			justify-content: flex-start;
+			margin: 0.75rem 0;
 			.img {
 				width: 1.5rem;
 				height: 1.5rem;

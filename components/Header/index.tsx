@@ -14,39 +14,39 @@ export const Header = () => {
 
 	return (
 		<HeaderStyle>
-			<div title='home'>
+			<div title="home">
 				<Link href="/">
 					<a>
 						<Home />
 					</a>
 				</Link>
 			</div>
-			<div className='links'>
-				<div title='about me'>
-					<Link href='/about'>
+			<div className="links">
+				<div title="about me">
+					<Link href="/about">
 						<a>
 							<About />
 						</a>
 					</Link>
 				</div>
-				<div title='archives'>
-					<Link href='/archive'>
+				<div title="archives">
+					<Link href="/archive">
 						<a>
-							<Archive title='archives' />
+							<Archive title="archives" />
 						</a>
 					</Link>
 				</div>
-				<div title='life'>
-					<Link href='/life'>
+				<div title="life">
+					<Link href="/life">
 						<a>
-							<Book title='life' />
+							<Book title="life" />
 						</a>
 					</Link>
 				</div>
-				<div title='tech'>
-					<Link href='/tech'>
+				<div title="tech">
+					<Link href="/tech">
 						<a>
-							<Code title='tech' />
+							<Code title="tech" />
 						</a>
 					</Link>
 				</div>
@@ -60,16 +60,16 @@ const HeaderStyle = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	background: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.text};
 	@media (max-width: 600px) {
+		background: ${({ theme }) => theme.headerBackground};
 		margin: 0;
 		width: 100%;
 		box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px,
 			rgb(0 0 0 / 8%) 0px 0px 0px 1px;
 		z-index: 20;
 		display: flex;
-		padding: 5px 3%;
+		padding: 10px 3%;
 		justify-content: flex-start;
 	}
 	svg {

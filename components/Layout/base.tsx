@@ -23,13 +23,13 @@ const BaseLayout = ({ title, children }) => {
 	return (
 		<LayoutWrapper>
 			<Header></Header>
-			<div className='btn-wrapper'>
+			<div className="btn-wrapper">
 				<Toggle toggleTheme={() => themeToggler()}>
 					<LightDarkSwitcher type={NowTheme} />
 				</Toggle>
 			</div>
-			<div className='main'>{children}</div>
-			<div className='footer-wrapper'>
+			<div className="main">{children}</div>
+			<div className="footer-wrapper">
 				<Footer showLink={true} />
 			</div>
 		</LayoutWrapper>
@@ -47,7 +47,7 @@ const LayoutWrapper = styled.div`
 	.btn-wrapper {
 		position: fixed;
 		right: 1rem;
-		top: 0.25rem;
+		top: 0.5rem;
 		z-index: 100;
 		button {
 			margin: 0 2px;

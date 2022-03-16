@@ -13,12 +13,14 @@ export const Post = styled.div`
 	pre {
 		font-family: consolas, sans-serif;
 		letter-spacing: 0.2px;
+		border-radius: 0.25rem;
+		padding: 1rem !important;
 	}
 	code {
 		background: ${({ theme }) => theme.inlineCodeBackground};
 	}
 	h1 {
-		font-size: 1.5rem;
+		font-size: 1.75rem;
 		line-height: 2rem;
 		font-weight: 700;
 		margin: 10px 0;
