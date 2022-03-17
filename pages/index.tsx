@@ -146,7 +146,7 @@ const HeaderBar = ({ newPost }) => {
 
 	return (
 		<HeaderBarWrapper>
-			<img src="/favicon.ico"></img>
+			<img width={48} src="/logo.png"></img>
 			<div className="width-800">
 				<ButtonsList newPost={newPost}></ButtonsList>
 			</div>
