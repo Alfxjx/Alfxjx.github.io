@@ -22,7 +22,6 @@ import { MyContext } from "../../pages/_app";
 
 import Share from "../../public/svg/share.svg";
 import Expand from "../../public/svg/expand.svg";
-import { theme } from "@chakra-ui/react";
 
 // @note react-reveal 之后文章多了可以用
 export function PostList({ newOneContent, allPosts }) {
@@ -313,7 +312,7 @@ const BlogCardWrapper = styled.div`
 		}
 		.blog-excerpt {
 			margin: 0 0 0.5rem 0;
-			line-height: 1rem;
+			line-height: 1.2rem;
 			font-size: 0.75rem;
 		}
 		.blog-sub {
@@ -424,23 +423,9 @@ const NewBlogWrapper = styled.div`
 	.right-part {
 		width: 100%;
 		flex: 6;
-		/* .content {
-			padding: 6px 12px;
-			box-sizing: border-box;
-			line-height: 1.5rem;
-			img {
-				display: none;
-			}
-			a {
-				color: ${({ theme }) => theme.themeColor};
-				margin: 0 2px;
-				&:hover {
-					color: ${({ theme }) => theme.textHover};
-				}
-			}
-		} */
 		.blog-excerpt {
 			padding: 6px 12px;
+			line-height: 1.2rem;
 			text-align: center;
 		}
 		.ellip {

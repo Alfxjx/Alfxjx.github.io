@@ -17,7 +17,7 @@
     "@emotion/react": "11",
     "@emotion/styled": "11",
     "autoprefixer": "^10.2.5",
-    "css-doodle": "^0.20.2",
+    "css-doodle": "^0.26.3",
     "framer-motion": "4",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.2.0",

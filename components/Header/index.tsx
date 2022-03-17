@@ -79,7 +79,7 @@ const HeaderStyle = styled.div`
 		cursor: pointer;
 		fill: ${({ theme }) => theme.themeColor};
 		@media (max-width: 600px) {
-			margin: 3px 10px;
+			margin: 3px 5px;
 		}
 	}
 	.links {

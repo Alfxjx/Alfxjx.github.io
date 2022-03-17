@@ -16,13 +16,14 @@ const InsideButton = styled.button<{ primary?: boolean; round?: boolean }>`
 
 const TextButtonStyles = styled.button<{ showUnderLine?: boolean }>`
 	border: none;
+	border-bottom: ${({ showUnderLine, theme }) =>
+		showUnderLine ? `1px solid ${theme.themeColor}` : "none"};
 	background: transparent;
 	cursor: pointer;
+	padding: 0 0 0 0;
 	color: ${(props) => props.theme.themeColor};
 	text-align: center;
-	text-decoration: ${({ showUnderLine }) =>
-		showUnderLine ? "underline" : "none"};
-	text-decoration-color: ${(props) => props.theme.themeColor};
+	text-decoration: none;
 `;
 
 export type ButtonProps = {

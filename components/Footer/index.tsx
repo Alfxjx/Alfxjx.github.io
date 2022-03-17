@@ -10,12 +10,13 @@ import Resume from "../../public/svg/resume.svg";
 const SVG_SIZE = 22;
 
 export const Footer = ({ showLink }) => {
+	const thisYear = new Date().getFullYear();
 	return (
 		<FooterWrapper>
 			<div className="my-main-font text">
 				<span>
 					Powerd by <Link href="https://nextjs.org">Next.js</Link> on{" "}
-					<Link href="https://vercel.com">Vercel</Link>, Since Year Covid
+					<Link href="https://vercel.com">Vercel</Link> with ♥ 2020-{thisYear}
 				</span>
 			</div>
 			<IconList show={showLink}>
@@ -40,8 +41,8 @@ const FooterWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	letter-spacing: 2px;
-	font-weight: 600;
+	font-weight: 500;
+	font-size: 0.75rem;
 	z-index: 10;
 	.text {
 		padding: 2rem 0 0 0;

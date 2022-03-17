@@ -1,13 +1,7 @@
 import React from "react";
-
-// https://github.com/css-doodle/css-doodle/issues/35
+import "css-doodle";
 
 const Doodle = (rule) => () => {
-	React.useEffect(() => {
-		const script = document.createElement("script");
-		script.src = "https://unpkg.com/css-doodle@0.20.2/css-doodle.min.js";
-		document.body.appendChild(script);
-	}, []);
 	return <css-doodle click-to-update>{rule}</css-doodle>;
 };
 

@@ -8,6 +8,7 @@ visit [www.abandon.work](https://www.abandon.work), or [here](https://alfxjx.git
 
 1. recent 5 posts
 2. projects gallery
+3. a good font
 
 ## Done
 

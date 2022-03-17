@@ -43,7 +43,7 @@ export const Toggle = ({
 	toggleTheme: () => void;
 }) => {
 	return (
-		<Button btnType='ghost' round='round' onClick={toggleTheme}>
+		<Button btnType="ghost" onClick={toggleTheme}>
 			{children}
 		</Button>
 	);
