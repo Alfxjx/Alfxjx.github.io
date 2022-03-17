@@ -10,11 +10,10 @@ import styled from "styled-components";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "@/components/Toast/index";
 
-import { Toggle } from "@/components/theme/Toggle";
 import { Footer } from "@/components/Footer/index";
 import { Header } from "@/components/Header/index";
 import { Post as PostStyles } from "@/components/Post/index";
-import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
+import { Switch } from "../Button/switch";
 import { Tag } from "@/components/Tag/index";
 
 import { formatDate } from "@/utils/formatDate";
@@ -49,9 +48,10 @@ export function PostList({ newOneContent, allPosts }) {
 	return (
 		<ListPage>
 			<div className="btn-wrapper">
-				<Toggle toggleTheme={() => themeToggler()}>
-					<LightDarkSwitcher type={NowTheme} />
-				</Toggle>
+				<Switch
+					initalValue={NowTheme === "L"}
+					onChange={() => themeToggler()}
+				></Switch>
 			</div>
 			<Header></Header>
 			<div className="blog-list">

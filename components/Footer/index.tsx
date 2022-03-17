@@ -44,11 +44,14 @@ const FooterWrapper = styled.div`
 	font-weight: 500;
 	font-size: 0.75rem;
 	z-index: 10;
+	width: 100%;
+	background: ${({ theme }) => theme.background};
 	.text {
 		padding: 2rem 0 0 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		color: ${({ theme }) => theme.text};
 	}
 	a {
 		color: ${({ theme }) => theme.themeColor};

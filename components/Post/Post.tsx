@@ -6,8 +6,7 @@ import Link from "next/link";
 import { useEffect, useContext } from "react";
 import "highlight.js/styles/atom-one-dark.css";
 import { MyContext } from "../../pages/_app";
-import { Toggle } from "@/components/theme/Toggle";
-import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
+import { Switch } from "../Button/switch";
 
 import { useRouter } from "next/router";
 import { Footer } from "@/components/Footer/index";
@@ -71,9 +70,10 @@ export default function Post({ post, type }) {
 				</div>
 			</div>
 			<div className="toggle">
-				<Toggle toggleTheme={() => themeToggler()}>
-					<LightDarkSwitcher type={NowTheme} />
-				</Toggle>
+				<Switch
+					initalValue={NowTheme === "L"}
+					onChange={() => themeToggler()}
+				></Switch>
 			</div>
 			<div style={{ height: "3.25rem" }}></div>
 			<PostWrapper>
