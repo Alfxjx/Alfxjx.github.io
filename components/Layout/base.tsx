@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Header } from "../Header/index";
-import { Toggle } from "../theme/Toggle";
 import { Footer } from "../Footer/index";
-import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
 import { MyContext } from "../../pages/_app";
+import { Switch } from "../Button/switch";
 
 const BaseLayout = ({ title, children }) => {
 	const { themeToggler, getNowTheme } = useContext(MyContext);
@@ -24,9 +23,10 @@ const BaseLayout = ({ title, children }) => {
 		<LayoutWrapper>
 			<Header></Header>
 			<div className="btn-wrapper">
-				<Toggle toggleTheme={() => themeToggler()}>
-					<LightDarkSwitcher type={NowTheme} />
-				</Toggle>
+				<Switch
+					initalValue={NowTheme === "L"}
+					onChange={() => themeToggler()}
+				/>
 			</div>
 			<div className="main">{children}</div>
 			<div className="footer-wrapper">

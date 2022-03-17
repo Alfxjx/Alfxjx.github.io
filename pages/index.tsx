@@ -1,20 +1,17 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { getAllBlogs, getAllPosts } from "@/utils/api";
 import { Footer } from "@/components/Footer";
-import { Button, TextButton } from "@/components/Button/index";
+import { TextButton } from "@/components/Button/index";
 import { Select } from "@/components/Select";
 import { StripeHeader } from "@/components/StripeHeader";
-import { LightDarkSwitcher } from "@/components/theme/LightDarkSwitcher";
-import { Toggle } from "../components/theme/Toggle";
 import { MyContext } from "./_app";
 import { FancyDoodle } from "@/components/Doodle/indexPage";
+import { Switch } from "@/components/Button/switch";
 
 export default function Home({ newPost }) {
-	console.log("Still working in a company for salary.");
 	return (
 		<div>
 			<Head>
@@ -159,9 +156,10 @@ const HeaderBar = ({ newPost }) => {
 					optionList={options}
 					onSelect={handleSelect}
 				></Select>
-				<Toggle toggleTheme={() => themeToggler()}>
-					<LightDarkSwitcher type={NowTheme} />
-				</Toggle>
+				<Switch
+					initalValue={NowTheme === "L"}
+					onChange={() => themeToggler()}
+				/>
 			</div>
 		</HeaderBarWrapper>
 	);
