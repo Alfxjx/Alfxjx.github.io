@@ -3,7 +3,7 @@ import { Button } from "../Button/index";
 
 type themeType = "light" | "dark";
 
-export const useDarkMode: () => [string, () => void, () => String] = () => {
+export const useDarkMode: () => [string, () => void, () => string] = () => {
 	const [theme, setTheme] = useState("light");
 
 	const setMode = (mode: themeType) => {

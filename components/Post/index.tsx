@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const Post = styled.div`
+	font-family: Monaco, sans-serif;
 	word-break: break-word;
 	blockquote {
 		border-left: 5px solid ${({ theme }) => theme.themeColor};
@@ -11,10 +12,13 @@ export const Post = styled.div`
 		line-height: 1.5rem;
 	}
 	pre {
-		font-family: consolas, sans-serif;
-		letter-spacing: 0.2px;
+		font-family: Monaco, sans-serif;
+		font-size: 0.75rem;
 		border-radius: 0.25rem;
 		padding: 1rem !important;
+		max-width: 75%;
+		tab-size: 1.5rem;
+		margin: 0 auto !important;
 	}
 	code {
 		background: ${({ theme }) => theme.inlineCodeBackground};
@@ -45,7 +49,7 @@ export const Post = styled.div`
 	}
 	p {
 		margin: 10px 0;
-		line-height: 1.5rem;
+		line-height: 1.75rem;
 		position: relative;
 	}
 	img {
@@ -95,7 +99,7 @@ export const Post = styled.div`
 		}
 	}
 	li {
-		margin: 5px 0;
+		margin: 5px 0 0 2.5rem;
 	}
 	strong {
 		font-weight: 700;

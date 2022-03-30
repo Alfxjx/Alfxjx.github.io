@@ -13,6 +13,7 @@ export const lightTheme = {
 	background: "#feffff",
 	backgroundLight: "#feffff",
 	themeColor: "#0bc2bf",
+	themeColorReverse: "#a59039",
 	inlineCodeBackground: "#f1f1fe",
 	...generalTheme,
 };
@@ -26,6 +27,7 @@ export const darkTheme = {
 	background: "#363537",
 	backgroundLight: "#666",
 	themeColor: "#a59039",
+	themeColorReverse: "#0bc2bf",
 	inlineCodeBackground: "#313131",
 	...generalTheme,
 };
