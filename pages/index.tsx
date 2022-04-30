@@ -9,7 +9,12 @@ import { Select } from "@/components/Select";
 import { MyContext } from "./_app";
 import { FancyDoodle } from "@/components/Doodle/indexPage";
 import { Switch } from "@/components/Button/switch";
+import { ProjectCard, IProject } from "@/components/Card/ProjectCard";
 import { useTheme } from "@/hooks/useTheme";
+
+import { FiMoreHorizontal } from "react-icons/fi";
+import { AiOutlineArrowDown } from "react-icons/ai";
+
 export default function Home({ newPost }) {
 	return (
 		<div>
@@ -21,7 +26,10 @@ export default function Home({ newPost }) {
 
 			<FullPage>
 				<HeaderBar newPost={newPost} />
-				<SelfIntro newPost={newPost} />
+				<div className="main">
+					<SelfIntro newPost={newPost} />
+					<MyProjects></MyProjects>
+				</div>
 				<Footer showLink={true} />
 			</FullPage>
 		</div>
@@ -30,6 +38,11 @@ export default function Home({ newPost }) {
 
 const SelfIntro = ({ newPost }) => {
 	const themeCurr = useTheme();
+
+	const handlePageDown = () => {
+		const height = document.documentElement.clientHeight;
+		window.scrollTo({ behavior: "smooth", top: height });
+	};
 	return (
 		<FullPageMain>
 			<div className="text-introduction">
@@ -53,7 +66,51 @@ const SelfIntro = ({ newPost }) => {
 					<FancyDoodle></FancyDoodle>
 				</a>
 			</div>
+			<div className="page-down" onClick={handlePageDown}>
+				<AiOutlineArrowDown />
+			</div>
 		</FullPageMain>
+	);
+};
+
+const MyProjects = () => {
+	const proj: IProject[] = [
+		{
+			name: "Qlock",
+			description:
+				"An art clock components inspired by QlockTwo I met in Hangzhou.",
+			left: true,
+			picture: "/projects/qlock.png",
+			link: "https://qlock-web.vercel.app/",
+		},
+		{
+			name: "NextChakraAdmin",
+			description:
+				"An admin template base on Next.js and Chakra-ui, with i18n, charts and editors",
+			left: false,
+			picture: "/projects/nca.png",
+			link: "https://next-chakra-admin.vercel.app",
+		},
+		{
+			name: "water-drinker",
+			description: "A animated water drinker counter app",
+			left: true,
+			picture: "/projects/water.png",
+			link: "https://next-chakra-admin.vercel.app",
+		},
+	];
+	return (
+		<MyProjectWrapper>
+			<h1 className="title">My Projects</h1>
+			{proj.map((x) => (
+				<ProjectCard key={x.name} options={x}></ProjectCard>
+			))}
+			<div className="more">
+				<a target="_blank" href="https://github.com/alfxjx">
+					<FiMoreHorizontal></FiMoreHorizontal>
+				</a>
+			</div>
+		</MyProjectWrapper>
 	);
 };
 
@@ -163,6 +220,27 @@ const HeaderBar = ({ newPost }) => {
 	);
 };
 
+const MyProjectWrapper = styled.div`
+	width: 100%;
+	height: 80vh;
+	h1.title {
+		padding-left: 2rem;
+		font-size: 2rem;
+		@media (max-width: 800px) {
+			font-size: 1.5rem;
+		}
+	}
+	.more {
+		font-size: 2rem;
+		text-align: center;
+		cursor: pointer;
+		a {
+			color: ${({ theme }) => theme.text};
+			text-decoration: none;
+		}
+	}
+`;
+
 const FullPage = styled.div`
 	width: 100vw;
 	min-height: 100vh;
@@ -172,6 +250,9 @@ const FullPage = styled.div`
 	position: relative;
 	background: ${({ theme }) => theme.background};
 	color: ${({ theme }) => theme.text};
+	.main {
+		flex: 1 1 auto;
+	}
 	.bg-under {
 		position: fixed;
 		z-index: 1;
@@ -183,10 +264,9 @@ const FullPage = styled.div`
 `;
 
 const FullPageMain = styled.div`
-	flex: 1 1 auto;
-	width: 80%;
+	position: relative;
+	height: 100vh;
 	max-width: 1280px;
-	height: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -200,6 +280,27 @@ const FullPageMain = styled.div`
 		flex-direction: column-reverse;
 		justify-content: center;
 		align-items: space-around;
+	}
+	.page-down {
+		position: absolute;
+		bottom: 2rem;
+		cursor: pointer;
+		font-size: 2rem;
+		animation: drop 1s ease infinite;
+	}
+	@keyframes drop {
+		0% {
+			transform: translateY(0px);
+		}
+		25% {
+			transform: translateY(5px);
+		}
+		50% {
+			transform: translateY(10px);
+		}
+		75% {
+			transform: translateY(5px);
+		}
 	}
 	.text-introduction {
 		flex: 5 1 auto;
@@ -284,7 +385,7 @@ const HeaderBarWrapper = styled.div`
 	position: fixed;
 	right: 0;
 	top: 0;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 2rem;
 	z-index: 1000;
 	box-sizing: border-box;
 	background: ${({ theme }) => theme.background};
