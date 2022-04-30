@@ -104,7 +104,8 @@ const ArchiveWrapper = styled.div`
 	width: 100%;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 2rem;
+	margin: 2rem auto 0;
+	max-width: 1280px;
 	.card {
 		width: 80%;
 		padding: 3rem 2rem;

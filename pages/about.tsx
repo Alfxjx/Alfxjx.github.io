@@ -8,12 +8,12 @@ import { Comments } from "@/components/Comments/index";
 
 const About = ({ post }) => {
 	return (
-		<BaseLayout title='About'>
+		<BaseLayout title="About">
 			<AboutWrapper>
-				<div className='card'>
+				<div className="card">
 					<h1>{post.title}</h1>
 					<div
-						className='post'
+						className="post"
 						dangerouslySetInnerHTML={{ __html: post.content }}
 					/>
 					<Comments />
@@ -28,7 +28,8 @@ const AboutWrapper = styled(PostStyles)`
 	width: 100%;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 2rem;
+	margin: 2rem auto 0;
+	max-width: 1280px;
 	.card {
 		width: 80%;
 		padding: 3rem 2rem;

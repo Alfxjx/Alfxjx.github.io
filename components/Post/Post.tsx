@@ -144,8 +144,9 @@ const Wrapper = styled.div`
 `;
 
 const PostWrapper = styled(PostStyles)`
+	max-width: 1280px;
 	flex: 1 0 auto;
-	margin: 0 15%;
+	margin: 0 auto;
 	background: ${({ theme }) => theme.backgroundLight};
 	@media (max-width: 1280px) {
 		padding: 3rem 1rem;
