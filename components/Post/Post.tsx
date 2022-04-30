@@ -14,9 +14,8 @@ import { Post as PostStyles } from "@/components/Post/index";
 import { Comments } from "@/components/Comments/index";
 import { ProgressBar } from "@/components/ProgressBar/index";
 
-import Arrow from "../../public/svg/arrow.svg";
-import Code from "../../public/svg/code.svg";
-import Life from "../../public/svg/book.svg";
+import { BiArrowBack as Arrow, BiCodeAlt as Code } from "react-icons/bi";
+import { BsBook as Life } from "react-icons/bs";
 
 export default function Post({ post, type }) {
 	const router = useRouter();

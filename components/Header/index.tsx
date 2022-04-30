@@ -3,11 +3,13 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import Home from "../../public/svg/home.svg";
-import Archive from "../../public/svg/archive.svg";
-import About from "../../public/svg/about.svg";
-import Book from "../../public/svg/book.svg";
-import Code from "../../public/svg/code.svg";
+import {
+	BiInfoCircle as About,
+	BiArchive as Archive,
+	BiHomeHeart as Home,
+	BiCodeAlt as Code,
+} from "react-icons/bi";
+import { BsBook as Book } from "react-icons/bs";
 
 export const Header = () => {
 	const router = useRouter();

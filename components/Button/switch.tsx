@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import Sun from "../../public/svg/sun.svg";
-import Moon from "../../public/svg/moon.svg";
+import { BsSun, BsMoon } from "react-icons/bs";
 
 export function Switch({ initalValue, onChange }) {
 	const [active, setActive] = useState<boolean>(null);
@@ -16,8 +15,8 @@ export function Switch({ initalValue, onChange }) {
 
 	return (
 		<SwitchWrapper active={active} onClick={toggle}>
-			<Sun />
-			<Moon />
+			<BsSun />
+			<BsMoon />
 			<div className="round"></div>
 		</SwitchWrapper>
 	);
@@ -48,8 +47,8 @@ const SwitchWrapper = styled.button<{ active: boolean }>`
 		background: ${({ theme }) => theme.textReverse};
 	}
 	svg {
-		width: calc(0.75 * var(--size));
-		height: calc(0.75 * var(--size));
+		width: calc(0.5 * var(--size));
+		height: calc(0.5 * var(--size));
 		fill: ${({ theme }) => theme.textReverse};
 	}
 `;

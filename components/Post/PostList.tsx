@@ -19,8 +19,7 @@ import { Tag } from "@/components/Tag/index";
 import { formatDate } from "@/utils/formatDate";
 import { MyContext } from "../../pages/_app";
 
-import Share from "../../public/svg/share.svg";
-import Expand from "../../public/svg/expand.svg";
+import { BiShare as Share, BiExpandAlt as Expand } from "react-icons/bi";
 
 // @note react-reveal 之后文章多了可以用
 export function PostList({ newOneContent, allPosts }) {

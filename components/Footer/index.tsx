@@ -2,10 +2,9 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import Github from "../../public/svg/github.svg";
-import Weibo from "../../public/svg/weibo.svg";
-import Juejin from "../../public/svg/juejin.svg";
-import Resume from "../../public/svg/resume.svg";
+import { FiGithub } from "react-icons/fi";
+import { FaWeibo, FaFilePdf } from "react-icons/fa";
+import { BiPyramid } from "react-icons/bi";
 
 const SVG_SIZE = 22;
 
@@ -21,16 +20,16 @@ export const Footer = ({ showLink }) => {
 			</div>
 			<IconList show={showLink}>
 				<a href="https://github.com/alfxjx">
-					<Github width={SVG_SIZE} height={SVG_SIZE} />
+					<FiGithub width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 				<a href="https://weibo.com/u/1950371745">
-					<Weibo width={SVG_SIZE} height={SVG_SIZE} />
+					<FaWeibo width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 				<a href="https://juejin.cn/user/2330620383728551">
-					<Juejin width={SVG_SIZE} height={SVG_SIZE} />
+					<BiPyramid width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 				<a href="/xujianxiang-resume.pdf">
-					<Resume width={SVG_SIZE} height={SVG_SIZE} />
+					<FaFilePdf width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 			</IconList>
 		</FooterWrapper>
@@ -69,10 +68,10 @@ const IconList = styled.div`
 	align-items: center;
 	width: 10rem;
 	padding: 1rem 0 0.5rem;
-	svg.icon {
+	svg {
 		width: 24px;
 		height: 24px;
-		fill: ${({ theme }) => theme.text};
+		fill: ${({ theme }) => theme.themeColor};
 	}
 
 	svg {
