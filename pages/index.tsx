@@ -79,21 +79,30 @@ const MyProjects = () => {
 			name: "Qlock",
 			description:
 				"An art clock components inspired by QlockTwo I met in Hangzhou.",
-			left: true,
 			link: "https://qlock-web.vercel.app/",
+			width: 480,
+			height: 640,
+			scale: 0.5,
+			top: -2,
 		},
 		{
 			name: "NextChakraAdmin",
 			description:
 				"An admin template base on Next.js and Chakra-ui, with i18n, charts and editors",
-			left: false,
 			link: "https://next-chakra-admin.vercel.app",
+			width: 640,
+			height: 360,
+			scale: 0.5,
+			top: -2,
 		},
 		{
 			name: "water-drinker",
 			description: "A animated water drinker counter app",
-			left: true,
 			link: "https://weldingboys.vercel.app/water",
+			width: 480,
+			height: 640,
+			scale: 0.5,
+			top: -15,
 		},
 	];
 	return (
@@ -221,8 +230,9 @@ const MyProjectWrapper = styled.div`
 	width: 100%;
 	height: 80vh;
 	h1.title {
-		padding-left: 2rem;
-		font-size: 2rem;
+		font-family: "Monaco", sans-serif;
+		padding: 2rem 0 0 2rem;
+		font-size: 1.5rem;
 		@media (max-width: 800px) {
 			font-size: 1.5rem;
 		}
