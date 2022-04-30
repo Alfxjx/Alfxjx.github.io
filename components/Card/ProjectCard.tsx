@@ -6,7 +6,6 @@ export interface IProject {
 	name: string;
 	left: boolean;
 	description: string;
-	picture: string;
 	link: string;
 }
 
@@ -17,7 +16,8 @@ const ProjectCard = ({ options }: { options: IProject }) => {
 				<a target="_blank" href={options.link} className="name">
 					<Share></Share>
 					<span>{options.name}</span>
-					<img className="img" src={options.picture} alt="proj-pic" />
+					{/* <img className="img" src={options.picture} alt="proj-pic" /> */}
+					<iframe className="img" src={options.link}></iframe>
 				</a>
 				<div className="description">{options.description}</div>
 			</div>
@@ -60,6 +60,8 @@ const ProjectCardWrapper = styled.div`
 			left: 0;
 			top: 2rem;
 			z-index: 10;
+			width: 640px;
+			height: 480px;
 		}
 		&:hover {
 			.img {

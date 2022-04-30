@@ -80,7 +80,6 @@ const MyProjects = () => {
 			description:
 				"An art clock components inspired by QlockTwo I met in Hangzhou.",
 			left: true,
-			picture: "/projects/qlock.png",
 			link: "https://qlock-web.vercel.app/",
 		},
 		{
@@ -88,15 +87,13 @@ const MyProjects = () => {
 			description:
 				"An admin template base on Next.js and Chakra-ui, with i18n, charts and editors",
 			left: false,
-			picture: "/projects/nca.png",
 			link: "https://next-chakra-admin.vercel.app",
 		},
 		{
 			name: "water-drinker",
 			description: "A animated water drinker counter app",
 			left: true,
-			picture: "/projects/water.png",
-			link: "https://next-chakra-admin.vercel.app",
+			link: "https://weldingboys.vercel.app/water",
 		},
 	];
 	return (
