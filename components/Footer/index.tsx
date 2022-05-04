@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { FiGithub } from "react-icons/fi";
-import { FaWeibo, FaFilePdf } from "react-icons/fa";
+import { FaWeibo, FaFilePdf, FaTwitter } from "react-icons/fa";
 import { BiPyramid } from "react-icons/bi";
 
 const SVG_SIZE = 22;
@@ -21,6 +21,9 @@ export const Footer = ({ showLink }) => {
 			<IconList show={showLink}>
 				<a href="https://github.com/alfxjx">
 					<FiGithub width={SVG_SIZE} height={SVG_SIZE} />
+				</a>
+				<a href="https://twitter.com/alfxjx">
+					<FaTwitter width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 				<a href="https://weibo.com/u/1950371745">
 					<FaWeibo width={SVG_SIZE} height={SVG_SIZE} />
