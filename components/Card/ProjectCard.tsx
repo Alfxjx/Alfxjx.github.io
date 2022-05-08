@@ -9,16 +9,15 @@ export interface IProject {
 	description: string;
 	link: string;
 	scale: number;
-	top: number;
 }
 
 const ProjectCard = ({ options }: { options: IProject }) => {
 	return (
-		<ProjectCardWrapper scale={options.scale} top={options.top}>
+		<ProjectCardWrapper scale={options.scale}>
 			<div>
 				<a target="_blank" href={options.link} className="name">
 					<Share></Share>
-					<span>{options.name}</span>
+					<span>{options.name.toUpperCase()}</span>
 					{/* <img className="img" src={options.picture} alt="proj-pic" /> */}
 					<iframe
 						className="img"
@@ -34,24 +33,29 @@ const ProjectCard = ({ options }: { options: IProject }) => {
 };
 
 const ProjectCardWrapper = styled.div<{ scale: number; top: number }>`
+	cursor: pointer;
 	color: ${({ theme }) => theme.text};
 	border-radius: ${({ theme }) => theme.borderRadius};
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	font-family: "Monaco", sans-serif;
-	margin: 2rem 0;
-	padding: 2rem;
+	margin: 1rem 0;
+	padding: 1.25rem;
 	box-shadow: ${({ theme }) => theme.boxShadow};
+	background: ${({ theme }) => theme.background};
 	max-width: 1280px;
 	@media (max-width: 800px) {
-		margin: 1rem auto;
-		padding: 1.5rem;
+		margin: 0.75rem auto;
+		padding: 1rem;
 		width: 80%;
+	}
+	&:hover {
+		background: ${({ theme }) => theme.bgHover};
 	}
 	.name {
 		color: ${({ theme }) => theme.text};
-		font-size: 1.25rem;
+		font-size: 1rem;
 		display: flex;
 		align-items: center;
 		text-decoration: none;
@@ -60,13 +64,13 @@ const ProjectCardWrapper = styled.div<{ scale: number; top: number }>`
 			margin-left: 10px;
 		}
 		@media (max-width: 800px) {
-			font-size: 1rem;
+			font-size: 0.75rem;
 		}
 		.img {
 			display: none;
-			position: absolute;
-			left: 0;
-			top: ${({ top }) => `${top}rem`};
+			position: fixed;
+			right: 2rem;
+			top: 3rem;
 			z-index: 10;
 			transform-origin: left top;
 			transform: ${({ scale }) => `scale(${scale})`};

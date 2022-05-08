@@ -12,6 +12,8 @@ import { Switch } from "@/components/Button/switch";
 import { ProjectCard, IProject } from "@/components/Card/ProjectCard";
 import { useTheme } from "@/hooks/useTheme";
 
+import { projList as proj } from "../data/index";
+
 import { FiMoreHorizontal } from "react-icons/fi";
 import { AiOutlineArrowDown } from "react-icons/ai";
 
@@ -54,8 +56,7 @@ const SelfIntro = ({ newPost }) => {
 					</a>
 				</p>
 				<p className="my-main-font title">
-					<del style={{ color: themeCurr.themeColor }}>🦄</del> Developer with
-					passion
+					<del style={{ color: themeCurr.themeColor }}>🦄</del> Developer
 				</p>
 				<div className="width-800">
 					<ButtonsList newPost={newPost}></ButtonsList>
@@ -74,43 +75,14 @@ const SelfIntro = ({ newPost }) => {
 };
 
 const MyProjects = () => {
-	const proj: IProject[] = [
-		{
-			name: "Qlock",
-			description:
-				"An art clock components inspired by QlockTwo I met in Hangzhou.",
-			link: "https://qlock-web.vercel.app/",
-			width: 480,
-			height: 640,
-			scale: 0.5,
-			top: -2,
-		},
-		{
-			name: "NextChakraAdmin",
-			description:
-				"An admin template base on Next.js and Chakra-ui, with i18n, charts and editors",
-			link: "https://next-chakra-admin.vercel.app",
-			width: 640,
-			height: 360,
-			scale: 0.5,
-			top: -2,
-		},
-		{
-			name: "water-drinker",
-			description: "A animated water drinker counter app",
-			link: "https://weldingboys.vercel.app/water",
-			width: 480,
-			height: 640,
-			scale: 0.5,
-			top: -15,
-		},
-	];
 	return (
 		<MyProjectWrapper>
 			<h1 className="title">My Projects</h1>
-			{proj.map((x) => (
-				<ProjectCard key={x.name} options={x}></ProjectCard>
-			))}
+			<div className="wrapper">
+				{proj.map((x) => (
+					<ProjectCard key={x.name} options={x}></ProjectCard>
+				))}
+			</div>
 			<div className="more">
 				<a target="_blank" href="https://github.com/alfxjx">
 					<FiMoreHorizontal></FiMoreHorizontal>
@@ -236,6 +208,9 @@ const MyProjectWrapper = styled.div`
 		@media (max-width: 800px) {
 			font-size: 1.5rem;
 		}
+	}
+	.wrapper {
+		padding: 0 7.5%;
 	}
 	.more {
 		font-size: 2rem;
