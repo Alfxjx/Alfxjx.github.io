@@ -143,7 +143,7 @@ const Wrapper = styled.div`
 `;
 
 const PostWrapper = styled(PostStyles)`
-	max-width: 1280px;
+	max-width: 720px;
 	flex: 1 0 auto;
 	margin: 0 auto;
 	background: ${({ theme }) => theme.backgroundLight};

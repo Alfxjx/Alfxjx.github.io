@@ -212,7 +212,7 @@ const ListPage = styled.div`
 			margin: 0 10px;
 			padding: 3rem 0 0 0;
 		}
-		max-width: 1280px;
+		max-width: 960px;
 		margin: 0 auto;
 		padding: 2rem 0 0 0;
 		flex: 1;
