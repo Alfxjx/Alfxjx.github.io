@@ -47,7 +47,7 @@ const LayoutWrapper = styled.div`
 	.btn-wrapper {
 		position: fixed;
 		right: 1rem;
-		top: 0.5rem;
+		top: 0.75rem;
 		z-index: 100;
 		button {
 			margin: 0 2px;

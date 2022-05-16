@@ -98,6 +98,9 @@ const ButtonsList = ({ newPost }) => {
 	const handleNew = () => {
 		router.push(`/${newPost.type}/${newPost.slug}`);
 	};
+	const handleThoughts = () => {
+		router.push(`/thoughts`);
+	};
 	const handleTechs = () => {
 		router.push("/tech");
 	};
@@ -112,6 +115,13 @@ const ButtonsList = ({ newPost }) => {
 				onClick={handleNew}
 			>
 				Latest
+			</TextButton>
+			<TextButton
+				className="my-main-font btn"
+				showUnderLine={true}
+				onClick={handleThoughts}
+			>
+				Thoughts
 			</TextButton>
 			<TextButton
 				className="my-main-font btn"
@@ -184,11 +194,11 @@ const HeaderBar = ({ newPost }) => {
 				<ButtonsList newPost={newPost}></ButtonsList>
 			</div>
 			<div className="end">
-				<Select
+				{/* <Select
 					defaultValue={focusSite}
 					optionList={options}
 					onSelect={handleSelect}
-				></Select>
+				></Select> */}
 				<Switch
 					initalValue={NowTheme === "L"}
 					onChange={() => themeToggler()}

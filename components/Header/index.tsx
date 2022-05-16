@@ -9,7 +9,7 @@ import {
 	BiHomeHeart as Home,
 	BiCodeAlt as Code,
 } from "react-icons/bi";
-import { BsBook as Book } from "react-icons/bs";
+import { BsBook as Book, BsLightbulb as Bulb } from "react-icons/bs";
 
 export const Header = () => {
 	const router = useRouter();
@@ -52,6 +52,13 @@ export const Header = () => {
 						</a>
 					</Link>
 				</div>
+				<div title="thoughts">
+					<Link href="/thoughts">
+						<a>
+							<Bulb title="thoughts" />
+						</a>
+					</Link>
+				</div>
 			</div>
 		</HeaderStyle>
 	);
@@ -73,6 +80,7 @@ const HeaderStyle = styled.div`
 		display: flex;
 		padding: 10px 3%;
 		justify-content: flex-start;
+		align-items: center;
 	}
 	svg {
 		margin: 10px 3px;

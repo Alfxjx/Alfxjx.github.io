@@ -110,4 +110,9 @@ export const Post = styled.div`
 		text-decoration: underline;
 		text-decoration-color: ${({ theme }) => theme.themeColor};
 	}
+	hr {
+		width: 75%;
+		margin: 1rem auto;
+		border: 1px solid ${({ theme }) => theme.headerBackground};
+	}
 `;
