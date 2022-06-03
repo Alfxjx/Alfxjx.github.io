@@ -92,8 +92,10 @@ axiosBase.interceptors.response.use(
 		}
 		return res;
 	},
-	(err: AxiosError<{ errorMessage: string; success: boolean }>) =>
-		Promise.reject(err)
+	(err: AxiosError<{ errorMessage: string; success: boolean }>) => {
+		// handle the error
+		return Promise.reject(err);
+	}
 );
 ```
 
@@ -129,8 +131,15 @@ axiosBase.interceptors.response.use(
 		}
 		// token...
 	},
-	(err: AxiosError<{ errorMessage: string; success: boolean }>) =>
-		Promise.reject(err)
+	(err: AxiosError<{ errorMessage: string; success: boolean }>) => {
+		notify.error(err.response?.data.errorMessage as string);
+		if (err.response?.status === 401 && isNoAuth(window.location.pathname)) {
+			setTimeout(() => {
+				window.location.href = "/person/login";
+			}, 1000);
+		}
+		return Promise.reject(err);
+	}
 );
 ```
 
@@ -151,16 +160,7 @@ const httpFuncs = {
 				.then((res: AxiosResponse<IResponse<T>>) => resolve(res))
 				// http error
 				.catch((err: AxiosError<IErrorProps>) => {
-					notify.error(err.response?.data.errorMessage as string);
-					if (
-						err.response?.status === 401 &&
-						isNoAuth(window.location.pathname)
-					) {
-						setTimeout(() => {
-							window.location.href = "/person/login";
-						}, 1000);
-					}
-					return reject(err);
+					console.log(err.response);
 				});
 		});
 	},
