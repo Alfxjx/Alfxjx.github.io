@@ -31,11 +31,13 @@ export default function Index({ posts }) {
       <Header></Header>
       <div className="main">
         <p className="hello">
-          Hello, I'm Frontend Developer,{" "}
+          This is{" "}
           <a className="breathe" href="http://github.com/alfxjx">
             Alfxjx.
           </a>
         </p>
+
+        <p className="hello-sub">A Frontend Developer with Passion.</p>
 
         <div className="title">Projects</div>
         <div className="proj-list">
@@ -105,6 +107,16 @@ const IndexWrapper = styled.div`
         }
       }
     }
+    .hello-sub {
+      color: ${({ theme }) => theme.text};
+      opacity: 1;
+      font-weight: 500;
+      text-decoration: underline;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      padding: 1rem 0;
+      text-align: center;
+    }
     .title {
       font-size: 1.5rem;
       font-weight: 600;
@@ -112,10 +124,17 @@ const IndexWrapper = styled.div`
       text-align: center;
     }
     .proj-list {
-      width: 100%;
+      width: 50%;
+      margin: 0 auto;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+      @media (max-width: 1280px) {
+        width: 80%;
+      }
+      @media (max-width: 800px) {
+        width: 100%;
+      }
     }
     .post-list {
       width: 100%;

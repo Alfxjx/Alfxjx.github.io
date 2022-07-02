@@ -22,24 +22,28 @@ export const ArticleCard = ({ post }) => (
 const ArticleWrapper = styled.div`
   margin: 1rem 0;
   cursor: pointer;
-  width: 90%;
+  width: 75%;
+  max-width: 720px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   background: ${({ theme }) => theme.backgroundLight};
   border-radius: ${({ theme }) => theme.borderRadius};
+  @media (max-width: 800px) {
+    width: 90%;
+  }
   .card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    max-width: 720px;
     font-family: "Monaco", sans-serif;
-
+    width: 100%;
+    box-sizing: border-box;
     padding: 1.25rem;
 
     @media (max-width: 800px) {
       margin: 0.75rem auto;
       padding: 1rem;
-      width: 80%;
+      width: 100%;
     }
     &:hover {
       background: ${({ theme }) => theme.bgHover};
@@ -66,6 +70,7 @@ const ArticleWrapper = styled.div`
     line-height: 1.5rem;
   }
   .excerpt {
+    width: 100%;
     margin-top: 4px;
     color: ${({ theme }) => theme.textGray};
     line-height: 1.5rem;
