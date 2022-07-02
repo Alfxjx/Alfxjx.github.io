@@ -184,6 +184,7 @@ const HeaderWrapper = styled.div`
   box-sizing: border-box;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
+  z-index: 9999;
   /* From https://css.glass */
   background: ${({ theme }) => theme.backgroundGlass};
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
