@@ -10,7 +10,7 @@ author:
 
 > This is something about me.
 
-I'm Xu Jianxiang, a **frontend developer** work in Fintech. 
+I'm Xu Jianxiang, a **frontend developer** work in Fintech/Indutry. 
 
 Using *Vue.js, React, Next.js, Webpack* and other popular web dev libs or frameworks.
 
