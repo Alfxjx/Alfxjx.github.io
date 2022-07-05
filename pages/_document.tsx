@@ -10,7 +10,7 @@ class MyDocument extends Document {
 						href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
 						rel="stylesheet"
 					></link>
-					<script async defer data-website-id="3890bdd6-8ff5-4da5-8b72-45ba24876897" src="https://umami-production-b770.up.railway.app/umami.js"></script>
+					<script async defer data-website-id="3890bdd6-8ff5-4da5-8b72-45ba24876897" src="https://umami-alfxjx.up.railway.app/umami.js"></script>
 				</Head>
 				<body>
 					<Main />
