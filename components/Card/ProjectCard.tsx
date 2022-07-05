@@ -14,14 +14,16 @@ export interface IProject {
 const ProjectCard = ({ options }: { options: IProject }) => {
   return (
     <ProjectCardWrapper scale={options.scale}>
-      <div>
-        <a target="_blank" href={options.link} className="name">
-          <Share></Share>
-          <span>{options.name.toUpperCase()}</span>
-          {/* <img className="img" src={options.picture} alt="proj-pic" /> */}
-        </a>
-        <div className="description">{options.description}</div>
-      </div>
+      <a target="_blank" href={options.link} className="all">
+        <div>
+          <a target="_blank" href={options.link} className="name">
+            <Share></Share>
+            <span>{options.name.toUpperCase()}</span>
+            {/* <img className="img" src={options.picture} alt="proj-pic" /> */}
+          </a>
+          <div className="description">{options.description}</div>
+        </div>
+      </a>
     </ProjectCardWrapper>
   );
 };
@@ -46,6 +48,13 @@ const ProjectCardWrapper = styled.div<{ scale: number; top: number }>`
   }
   &:hover {
     background: ${({ theme }) => theme.bgHover};
+    .name {
+      color: ${({ theme }) => theme.themeColor};
+    }
+  }
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.text};
   }
   .name {
     color: ${({ theme }) => theme.text};
@@ -60,6 +69,8 @@ const ProjectCardWrapper = styled.div<{ scale: number; top: number }>`
     }
     @media (max-width: 800px) {
       font-size: 0.75rem;
+    }
+    &:hover {
     }
     .img {
       display: none;

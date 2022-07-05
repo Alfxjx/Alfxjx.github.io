@@ -11,6 +11,15 @@ export const projList: IProject[] = [
 		scale: 0.75,
 	},
 	{
+		name: "Web3-time",
+		description:
+			"Now it's web3 time, show price for cryptocurrency and the time",
+		link: "https://web3-time.vercel.app/",
+		width: 480,
+		height: 640,
+		scale: 0.75,
+	},
+	{
 		name: "Next-Chakra-Admin",
 		description:
 			"An admin template base on Next.js and Chakra-ui, with i18n, charts and editors",
