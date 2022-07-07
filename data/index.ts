@@ -2,6 +2,15 @@ import { IProject } from "../components/Card/ProjectCard";
 
 export const projList: IProject[] = [
 	{
+		name: "100 Days",
+		description:
+			"100 days coding challenge, inspired by 100.antfu.me",
+		link: "https://100-days.vercel.app/",
+		width: 480,
+		height: 640,
+		scale: 0.75,
+	},
+	{
 		name: "Qlock",
 		description:
 			"An art clock components inspired by QlockTwo I met in Hangzhou.",
