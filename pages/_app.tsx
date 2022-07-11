@@ -1,9 +1,12 @@
-import "../styles/base.css";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createContext } from "react";
+import { ThemeProvider } from "styled-components";
+import { appWithTranslation } from "next-i18next";
+
 import { darkTheme, lightTheme } from "../components/theme/theme";
 import { useDarkMode } from "../components/theme/Toggle";
 import { StyledContainer } from "../components/Toast/index";
-import { createContext } from "react";
+
+import "../styles/base.css";
 
 export const MyContext = createContext(null);
 
@@ -21,4 +24,4 @@ function MyApp({ Component, pageProps }) {
 	);
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
