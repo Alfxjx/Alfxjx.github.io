@@ -13,4 +13,4 @@ git commit -m "build: blog deploy"
 echo "git push start"
 
 git push origin master
-git push gitee master
+@REM git push gitee master
