@@ -3,9 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Head from "next/head";
 
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import { useTranslation } from "react-i18next";
 import { MdOutlineTranslate } from "react-icons/md";
 
 import { getAllBlogs, getAllPosts } from "@/utils/api";
@@ -27,7 +25,7 @@ import { useRouter } from "next/router";
 export default function Index({ posts }) {
 	const themeCurr = useTheme();
 
-	const { t } = useTranslation("common");
+	const { t } = useTranslation();
 
 	return (
 		<IndexWrapper>
@@ -186,6 +184,8 @@ const Header = () => {
 
 	const [NowTheme, setNowTheme] = useState("");
 
+	const { i18n } = useTranslation();
+
 	useEffect(() => {
 		const theme = getNowTheme();
 		if (theme === "light") {
@@ -196,9 +196,8 @@ const Header = () => {
 	}, [getNowTheme()]);
 
 	const handleI18n = () => {
-		router.push(router.pathname, router.pathname, {
-			locale: router.locale === "zh" ? "en" : "zh",
-		});
+		const locale = window.localStorage.getItem("i18nextLng");
+		i18n.changeLanguage(locale === "en_US" ? "zh_CN" : "en_US");
 	};
 
 	return (
@@ -261,7 +260,7 @@ const HeaderWrapper = styled.div`
 	}
 `;
 
-export async function getStaticProps({ locale }) {
+export function getStaticProps({ locale }) {
 	const allPosts = getAllPosts(["title", "date", "type", "slug", "excerpt"]);
 	const allBlogs = getAllBlogs(["title", "date", "type", "slug", "excerpt"]);
 	const posts = [...allBlogs, ...allPosts]
@@ -272,7 +271,6 @@ export async function getStaticProps({ locale }) {
 		.slice(0, 4);
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ["common"])),
 			posts,
 		},
 	};
