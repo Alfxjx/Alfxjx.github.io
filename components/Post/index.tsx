@@ -1,4 +1,3 @@
-import theme from "@chakra-ui/theme";
 import React from "react";
 import styled from "styled-components";
 
