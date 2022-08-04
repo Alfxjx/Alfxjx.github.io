@@ -6,7 +6,7 @@ import { i18n, localResource } from "@/i18n/index";
 import { darkTheme, lightTheme } from "../components/theme/theme";
 import { useDarkMode } from "../components/theme/Toggle";
 import { StyledContainer } from "../components/Toast/index";
-
+import "atropos/css";
 import "../styles/base.css";
 
 export const MyContext = createContext(null);
