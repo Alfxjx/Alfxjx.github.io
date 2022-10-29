@@ -2,7 +2,7 @@
 title: "国庆旅游碎碎念"
 excerpt: "大概国庆自驾出门是这个2022最后的疯狂了"
 date: "2022-10-08T08:20:00.000Z"
-coverImage: "/assets/blog/shanghai-work-cover.jpeg"
+coverImage: "/assets/blog/guoqing-journy.png"
 type: life
 tag: ["旅游"]
 author:

@@ -1,5 +1,6 @@
 const generalTheme = {
 	borderRadius: "0.5rem",
+	boxShadow: "rgba(33, 35, 38, 0.1) 0px 10px 10px -10px",
 };
 
 export const lightTheme = {
@@ -16,7 +17,6 @@ export const lightTheme = {
 	themeColor: "#0072c1",
 	themeColorReverse: "#a59039",
 	inlineCodeBackground: "#f1f1fe",
-	boxShadow: "rgba(0, 0, 0, 0.15) 0px 3px 3px 0px",
 	...generalTheme,
 };
 export const darkTheme = {
@@ -33,7 +33,5 @@ export const darkTheme = {
 	themeColor: "#a59039",
 	themeColorReverse: "#0072c1",
 	inlineCodeBackground: "#313131",
-	boxShadow:
-		"rgba(255, 255, 255, 0.6) 0px 1px 1px 0px, rgba(255, 255, 255, 0.6) 0px 1px 2px 0px",
 	...generalTheme,
 };

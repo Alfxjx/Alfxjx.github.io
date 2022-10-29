@@ -6,6 +6,8 @@ import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import { MdOutlineTranslate } from "react-icons/md";
 
+import { BiCodeAlt as Code } from "react-icons/bi";
+import { BsBook as Book } from "react-icons/bs";
 import { getAllBlogs, getAllPosts } from "@/utils/api";
 
 import { Footer } from "@/components/Footer";
@@ -39,7 +41,7 @@ export default function Index({ posts }) {
 				<p className="hello">
 					{t("index--whoami")}{" "}
 					<a className="breathe" href="http://github.com/alfxjx">
-						Alfxjx.
+						Alfr3d.
 					</a>
 				</p>
 
@@ -66,6 +68,18 @@ export default function Index({ posts }) {
 					</Link>
 				</div>
 
+				<div className="title">Recent Posts</div>
+				<div className="post-list">
+					{posts.map((x) => {
+						return <ArticleCard key={x.title} post={x} />;
+					})}
+				</div>
+				<div className="more-blog">
+					<span>{t("index--more-info")}</span>
+					<Link href={"/tech"}><Code title="tech" /></Link>
+					<Link href={"/life"}><Book title="life" /></Link>
+				</div>
+
 				<div className="title">Projects</div>
 				<div className="proj-list">
 					{projList.map((item) => {
@@ -73,12 +87,7 @@ export default function Index({ posts }) {
 					})}
 				</div>
 
-				<div className="title">Recent Posts</div>
-				<div className="post-list">
-					{posts.map((x) => {
-						return <ArticleCard key={x.title} post={x} />;
-					})}
-				</div>
+
 			</div>
 			<Footer showLink={true}></Footer>
 		</IndexWrapper>
@@ -156,24 +165,29 @@ const IndexWrapper = styled.div`
 			margin: 1rem auto;
 			text-align: center;
 		}
+		
+		.post-list {
+			max-width: 720px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.more-blog {
+			width: 100%;
+			min-height: 1.5rem;
+			display: flex;
+			justify-content: center;
+			svg {
+				margin: 0 4px;
+			}
+		}
+
 		.proj-list {
-			width: 50%;
+			max-width: 720px;
 			margin: 0 auto;
 			display: flex;
 			justify-content: center;
 			flex-wrap: wrap;
-			@media (max-width: 1280px) {
-				width: 80%;
-			}
-			@media (max-width: 800px) {
-				width: 100%;
-			}
-		}
-		.post-list {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
 		}
 	}
 `;
