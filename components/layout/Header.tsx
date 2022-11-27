@@ -8,7 +8,7 @@ export function Header() {
   const [isLight, setLight] = useState(true);
 
   useEffect(() => {
-    const light = window.localStorage.getItem("theme") === "light" ? true : false;
+    const light = window.localStorage.getItem("theme") === "dark" ? true : false;
     doSetTheme(light);
   }, []);
 
@@ -16,10 +16,10 @@ export function Header() {
     if (light) {
       document.querySelector("html")?.setAttribute("class", "dark");
       setLight(!light);
-      window.localStorage.setItem("theme", "dark");
+      window.localStorage.setItem("theme", "light");
     } else {
       document.querySelector("html")?.removeAttribute("class");
-      window.localStorage.setItem("theme", "light");
+      window.localStorage.setItem("theme", "dark");
       setLight(!light);
     }
   };
