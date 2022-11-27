@@ -1,9 +1,10 @@
 import Image from "next/image";
-import DefaultButton from "../default-button";
+import { Button } from "../buttons/default-button";
 import { BsSun, BsMoon } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import { useCycle } from "framer-motion";
 
-export default function Header() {
+export function Header() {
   const [isLight, setLight] = useState(true);
 
   useEffect(() => {
@@ -27,15 +28,13 @@ export default function Header() {
     doSetTheme(isLight);
   };
   return (
-    <div className="h-12 w-full fixed top-0 left-0 z-50 bg-[rgba(255, 255, 255, 0.12)] backdrop-blur-md shadow-[rgb(0 0 0 / 10%) 0px 4px 30px] flex items-center justify-between border-b border-gray-100 dark:border-gray-900">
-      <div className="ml-2 flex justify-start items-center">
-        <Image src="/favicon.ico" width={24} height={24} alt="" />
-        <span>Alfr3d</span>
-      </div>
-      <div className="mr-2 flex justify-start items-center">
-        <DefaultButton onClick={handleTheme}>
+    <div className="h-16 w-full fixed top-0 left-0 z-30 bg-[rgba(255, 255, 255, 0.12)] backdrop-blur-sm shadow-[rgb(0 0 0 / 10%) 0px 4px 30px] flex items-center justify-end">
+      <div className="mr-2 flex justify-start items-center text-2xl">
+        <Image src="/favicon.ico" width={36} height={36} alt="" />
+        <span className="text-primary-500 mr-8">Alfr3d</span>
+        <Button onClick={handleTheme} round>
           <ThemeButton light={isLight}></ThemeButton>
-        </DefaultButton>
+        </Button>
       </div>
     </div>
   );
