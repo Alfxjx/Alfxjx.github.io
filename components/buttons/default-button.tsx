@@ -1,11 +1,10 @@
-import React from "react"
+import React from "react";
 
 export interface IDefaultButton {
-  children: React.ReactNode
+  onClick: () => void;
+  children: React.ReactNode;
 }
 
-export default function DefaultButton({ children }: IDefaultButton) {
-  return (
-    <button>{children}</button>
-  )
+export default function DefaultButton({ onClick, children }: IDefaultButton) {
+  return <button onClick={onClick}>{children}</button>;
 }

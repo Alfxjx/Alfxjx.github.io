@@ -8,141 +8,141 @@ const aboutDirectory = join(process.cwd(), "_about");
 const shortDirectory = join(process.cwd(), "_short");
 
 export function getPostSlugs() {
-	return fs.readdirSync(postsDirectory);
+  return fs.readdirSync(postsDirectory);
 }
 
 export function getBlogSlugs() {
-	return fs.readdirSync(blogDirectory);
+  return fs.readdirSync(blogDirectory);
 }
 
 export function getPostBySlug(slug: string, fields = []) {
-	const realSlug = slug.replace(/\.md$/, "");
-	const fullPath = join(postsDirectory, `${realSlug}.md`);
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-	const { data, content } = matter(fileContents);
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = join(postsDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
 
-	const items: any = {};
+  const items: any = {};
 
-	// Ensure only the minimal needed data is exposed
-	fields.forEach((field) => {
-		if (field === "slug") {
-			items[field] = realSlug;
-		}
-		if (field === "content") {
-			items[field] = content;
-		}
+  // Ensure only the minimal needed data is exposed
+  fields.forEach((field) => {
+    if (field === "slug") {
+      items[field] = realSlug;
+    }
+    if (field === "content") {
+      items[field] = content;
+    }
 
-		if (data[field]) {
-			items[field] = data[field];
-		}
-	});
+    if (data[field]) {
+      items[field] = data[field];
+    }
+  });
 
-	return items as any;
+  return items as any;
 }
 
 export function getBlogBySlug(slug: string, fields = []) {
-	const realSlug = slug.replace(/\.md$/, "");
-	const fullPath = join(blogDirectory, `${realSlug}.md`);
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-	const { data, content } = matter(fileContents);
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = join(blogDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
 
-	const items: any = {};
+  const items: any = {};
 
-	// Ensure only the minimal needed data is exposed
-	fields.forEach((field) => {
-		if (field === "slug") {
-			items[field] = realSlug;
-		}
-		if (field === "content") {
-			items[field] = content;
-		}
+  // Ensure only the minimal needed data is exposed
+  fields.forEach((field) => {
+    if (field === "slug") {
+      items[field] = realSlug;
+    }
+    if (field === "content") {
+      items[field] = content;
+    }
 
-		if (data[field]) {
-			items[field] = data[field];
-		}
-	});
+    if (data[field]) {
+      items[field] = data[field];
+    }
+  });
 
-	return items as any;
+  return items as any;
 }
 
 export function getAboutBySlug(slug: string, fields = []) {
-	const realSlug = slug.replace(/\.md$/, "");
-	const fullPath = join(aboutDirectory, `${realSlug}.md`);
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-	const { data, content } = matter(fileContents);
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = join(aboutDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
 
-	const items: any = {};
+  const items: any = {};
 
-	// Ensure only the minimal needed data is exposed
-	fields.forEach((field) => {
-		if (field === "slug") {
-			items[field] = realSlug;
-		}
-		if (field === "content") {
-			items[field] = content;
-		}
+  // Ensure only the minimal needed data is exposed
+  fields.forEach((field) => {
+    if (field === "slug") {
+      items[field] = realSlug;
+    }
+    if (field === "content") {
+      items[field] = content;
+    }
 
-		if (data[field]) {
-			items[field] = data[field];
-		}
-	});
+    if (data[field]) {
+      items[field] = data[field];
+    }
+  });
 
-	return items as any;
+  return items as any;
 }
 
 export function getShortBySlug(slug: string, fields = []) {
-	const realSlug = slug.replace(/\.md$/, "");
-	const fullPath = join(shortDirectory, `${realSlug}.md`);
-	const fileContents = fs.readFileSync(fullPath, "utf8");
-	const { data, content } = matter(fileContents);
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = join(shortDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
 
-	const items: any = {};
+  const items: any = {};
 
-	// Ensure only the minimal needed data is exposed
-	fields.forEach((field) => {
-		if (field === "slug") {
-			items[field] = realSlug;
-		}
-		if (field === "content") {
-			items[field] = content;
-		}
+  // Ensure only the minimal needed data is exposed
+  fields.forEach((field) => {
+    if (field === "slug") {
+      items[field] = realSlug;
+    }
+    if (field === "content") {
+      items[field] = content;
+    }
 
-		if (data[field]) {
-			items[field] = data[field];
-		}
-	});
+    if (data[field]) {
+      items[field] = data[field];
+    }
+  });
 
-	return items as any;
+  return items as any;
 }
 
 export function getAllPosts(fields = []) {
-	const slugs = getPostSlugs();
-	const posts = slugs
-		.map((slug) => getPostBySlug(slug, fields))
-		// sort posts by date in descending order
-		.sort((post1: any, post2: any) => (post1.date > post2.date ? -1 : 1));
-	return posts as any;
+  const slugs = getPostSlugs();
+  const posts = slugs
+    .map((slug) => getPostBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1: any, post2: any) => (post1.date > post2.date ? -1 : 1));
+  return posts as any;
 }
 
 export function getAllBlogs(fields = []) {
-	const slugs = getBlogSlugs();
-	const posts = slugs
-		.map((slug) => getBlogBySlug(slug, fields))
-		// sort posts by date in descending order
-		.sort((post1: any, post2: any) => (post1.date > post2.date ? -1 : 1));
-	return posts as any;
+  const slugs = getBlogSlugs();
+  const posts = slugs
+    .map((slug) => getBlogBySlug(slug, fields))
+    // sort posts by date in descending order
+    .sort((post1: any, post2: any) => (post1.date > post2.date ? -1 : 1));
+  return posts as any;
 }
 
 export function getAboutData(fields = []) {
-	// only use the first md
-	const slug = fs.readdirSync(aboutDirectory)[0];
-	const post = getAboutBySlug(slug, fields);
-	return post as any;
+  // only use the first md
+  const slug = fs.readdirSync(aboutDirectory)[0];
+  const post = getAboutBySlug(slug, fields);
+  return post as any;
 }
 
 export function getShortData(fields = []) {
-	// only use the first md
-	const slug = fs.readdirSync(shortDirectory)[0];
-	const post = getShortBySlug(slug, fields);
-	return post as any;
+  // only use the first md
+  const slug = fs.readdirSync(shortDirectory)[0];
+  const post = getShortBySlug(slug, fields);
+  return post as any;
 }
