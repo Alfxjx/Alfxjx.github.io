@@ -4,7 +4,7 @@ import localFont from '@next/font/local'
 
 import '../styles/globals.css'
 
-const SmileySansFont = localFont({ src: '../assets/fonts/SmileySans-Oblique.ttf' })
+const SmileySansFont = localFont({ src: '../public/assets/fonts/SmileySans-Oblique.ttf' })
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
