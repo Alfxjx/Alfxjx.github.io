@@ -42,5 +42,5 @@ export default function Header() {
 }
 
 function ThemeButton({ light }: { light: boolean }) {
-  return light ? <BsSun /> : <BsMoon />;
+  return light ? <BsMoon /> : <BsSun />;
 }
