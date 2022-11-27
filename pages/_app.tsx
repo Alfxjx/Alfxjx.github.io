@@ -1,6 +1,23 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import localFont from '@next/font/local'
+
+import '../styles/globals.css'
+
+const SmileySansFont = localFont({ src: '../assets/fonts/SmileySans-Oblique.ttf' })
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <div>
+      <Head>
+        <title>Alfr3d blog</title>
+        <meta name="description" content="Alfr3d blog" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className={SmileySansFont.className}>
+        <Component {...pageProps} />
+      </main>
+    </div>
+  )
 }
