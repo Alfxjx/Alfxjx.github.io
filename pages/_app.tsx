@@ -10,8 +10,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Head>
-        <title>Alfr3d blog</title>
-        <meta name="description" content="Alfr3d blog" />
+        <title>Alfr3d</title>
+        <meta name="description" content="Alfr3d's Blog" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
