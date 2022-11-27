@@ -15,13 +15,13 @@ export function getBlogSlugs() {
 	return fs.readdirSync(blogDirectory);
 }
 
-export function getPostBySlug(slug, fields = []) {
+export function getPostBySlug(slug: string, fields = []) {
 	const realSlug = slug.replace(/\.md$/, "");
 	const fullPath = join(postsDirectory, `${realSlug}.md`);
 	const fileContents = fs.readFileSync(fullPath, "utf8");
 	const { data, content } = matter(fileContents);
 
-	const items = {};
+	const items: any = {};
 
 	// Ensure only the minimal needed data is exposed
 	fields.forEach((field) => {
@@ -40,13 +40,13 @@ export function getPostBySlug(slug, fields = []) {
 	return items as any;
 }
 
-export function getBlogBySlug(slug, fields = []) {
+export function getBlogBySlug(slug: string, fields = []) {
 	const realSlug = slug.replace(/\.md$/, "");
 	const fullPath = join(blogDirectory, `${realSlug}.md`);
 	const fileContents = fs.readFileSync(fullPath, "utf8");
 	const { data, content } = matter(fileContents);
 
-	const items = {};
+	const items: any = {};
 
 	// Ensure only the minimal needed data is exposed
 	fields.forEach((field) => {
@@ -65,13 +65,13 @@ export function getBlogBySlug(slug, fields = []) {
 	return items as any;
 }
 
-export function getAboutBySlug(slug, fields = []) {
+export function getAboutBySlug(slug: string, fields = []) {
 	const realSlug = slug.replace(/\.md$/, "");
 	const fullPath = join(aboutDirectory, `${realSlug}.md`);
 	const fileContents = fs.readFileSync(fullPath, "utf8");
 	const { data, content } = matter(fileContents);
 
-	const items = {};
+	const items: any = {};
 
 	// Ensure only the minimal needed data is exposed
 	fields.forEach((field) => {
@@ -90,13 +90,13 @@ export function getAboutBySlug(slug, fields = []) {
 	return items as any;
 }
 
-export function getShortBySlug(slug, fields = []) {
+export function getShortBySlug(slug: string, fields = []) {
 	const realSlug = slug.replace(/\.md$/, "");
 	const fullPath = join(shortDirectory, `${realSlug}.md`);
 	const fileContents = fs.readFileSync(fullPath, "utf8");
 	const { data, content } = matter(fileContents);
 
-	const items = {};
+	const items: any = {};
 
 	// Ensure only the minimal needed data is exposed
 	fields.forEach((field) => {
