@@ -1,10 +1,14 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import localFont from "@next/font/local";
+import { Roboto } from '@next/font/google'
 
 import "../styles/globals.css";
 
-const SmileySansFont = localFont({ src: "../public/assets/fonts/SmileySans-Oblique.ttf" });
+const roboto = Roboto({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+})
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={SmileySansFont.className}>
+      <div className={roboto.className}>
         <Component {...pageProps} />
       </div>
     </div>

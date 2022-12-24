@@ -1,16 +1,23 @@
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
-import { Drawer } from "../components/layout/Drawer/index";
+import React from "react"
 
-export default function Home() {
+export default function Me() {
   return (
-    <main className="w-full min-h-screen relative flex flex-col items-center bg-white dark:bg-gray-800 text-black dark:text-gray-300">
-      <Header></Header>
-      <main className="mt-16 flex-1 w-full text-primary-500">
-        this is content
-      </main>
-      <Footer></Footer>
-      <Drawer></Drawer>
-    </main>
-  );
+    <div className="w-full min-h-screen overflow-hidden grid grid-cols-4 grid-rows-6 bg-white dark:bg-gray-800 text-black dark:text-gray-400">
+      <Card row={2} col={4}>01</Card>
+      <Card row={1} col={4}>02</Card>
+      <Card row={2} col={2}>03</Card>
+    </div>
+  )
+}
+
+interface ICardProps { row: number, col: number, children: React.ReactNode }
+
+const Card = ({ row, col, children }: ICardProps) => {
+  return (
+    <div className={`col-span-${col} row-span-${row}`}>
+      <div className="w-full h-full rounded-lg bg-gray-200 dark:bg-gray-700">
+        {children}
+      </div>
+    </div>
+  )
 }
