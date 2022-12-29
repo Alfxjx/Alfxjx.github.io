@@ -1,10 +1,19 @@
-import React from "react"
+import React from "react";
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { AboutMe } from '../components/about-me';
 
-export default function Me() {
+type Props = {
+  // Add custom props here
+}
+
+export default function Me(_props: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <div className="p-2 w-5/6 min-h-screen mx-auto grid grid-cols-12 grid-flow-row-dense auto-rows-[128px] gap-2 bg-white dark:bg-gray-800 text-black dark:text-gray-400">
+    <div className="p-2 w-5/6 min-h-screen mx-auto grid grid-cols-12 grid-flow-row-dense auto-rows-[15.5vh] gap-2 bg-white dark:bg-gray-800 text-black dark:text-gray-400">
       <div className="lg:col-span-6 lg:row-span-4">
-        <Card>01</Card>
+        <Card>
+          <AboutMe></AboutMe>
+        </Card>
       </div>
       <div className="lg:col-span-4 lg:row-span-3">
         <Card>02</Card>
@@ -19,7 +28,7 @@ export default function Me() {
         <Card>05</Card>
       </div>
       <div className="lg:col-span-3 lg:row-span-2">
-        <Card>06</Card> 
+        <Card>06</Card>
       </div>
       <div className="lg:col-span-3 lg:row-span-2">
         <Card>07</Card>
@@ -40,3 +49,14 @@ const Card = ({ children }: ICardProps) => {
     </div>
   )
 }
+
+
+export const getStaticProps: GetStaticProps<Props> = async ({
+  locale,
+}) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'en', [
+      'common',
+    ])),
+  },
+})

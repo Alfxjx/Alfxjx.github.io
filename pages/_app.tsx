@@ -1,8 +1,8 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Roboto } from '@next/font/google'
-
-import "../styles/globals.css";
+import { Roboto } from '@next/font/google';
+import { appWithTranslation } from 'next-i18next'
+import "../styles/globals.css"
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -10,7 +10,7 @@ const roboto = Roboto({
 })
 
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Head>
@@ -24,4 +24,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </div>
     </div>
   );
-}
+};
+
+export default appWithTranslation(App)

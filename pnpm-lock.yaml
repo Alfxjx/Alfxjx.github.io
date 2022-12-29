@@ -10,10 +10,13 @@ specifiers:
   eslint-config-next: 13.0.5
   framer-motion: ^7.6.12
   gray-matter: ^4.0.3
+  i18next: ^22.4.6
   next: 13.0.5
+  next-i18next: ^13.0.2
   postcss: ^8.4.19
   react: 18.2.0
   react-dom: 18.2.0
+  react-i18next: ^12.1.1
   react-icons: ^4.6.0
   remark: ^14.0.2
   remark-html: ^15.0.1
@@ -29,9 +32,12 @@ dependencies:
   eslint-config-next: 13.0.5_hsf322ms6xhhd4b5ne6lb74y4a
   framer-motion: 7.10.3_biqbaboplfbrettd7655fr4n2y
   gray-matter: 4.0.3
+  i18next: 22.4.6
   next: 13.0.5_biqbaboplfbrettd7655fr4n2y
+  next-i18next: 13.0.2_p7i4p7h2p2eeizygmwf2lmzdbe
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-i18next: 12.1.1_6vygckh2jgtx4nucc3no6lnm3y
   react-icons: 4.7.1_react@18.2.0
   remark: 14.0.2
   remark-html: 15.0.1
@@ -337,6 +343,13 @@ packages:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: false
+
+  /@types/hoist-non-react-statics/3.3.1:
+    resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
+    dependencies:
+      '@types/react': 18.0.25
+      hoist-non-react-statics: 3.3.2
     dev: false
 
   /@types/json5/0.0.29:
@@ -724,6 +737,11 @@ packages:
 
   /core-js-pure/3.27.0:
     resolution: {integrity: sha512-fJml7FM6v1HI3Gkg5/Ifc/7Y2qXcJxaDwSROeZGAZfNykSTvUk94WT55TYzJ2lFHK0voSr/d4nOVChLuNCWNpA==}
+    requiresBuild: true
+    dev: false
+
+  /core-js/3.27.0:
+    resolution: {integrity: sha512-wY6cKosevs430KRkHUIsvepDXHGjlXOZO3hYXNyqpD6JvB0X28aXyv0t1Y1vZMwE7SoKmtfa6IASHCPN52FwBQ==}
     requiresBuild: true
     dev: false
 
@@ -1521,8 +1539,30 @@ packages:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
     dev: false
 
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
+  /html-parse-stringify/3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+
   /html-void-elements/2.0.1:
     resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
+    dev: false
+
+  /i18next-fs-backend/2.1.1:
+    resolution: {integrity: sha512-FTnj+UmNgT3YRml5ruRv0jMZDG7odOL/OP5PF5mOqvXud2vHrPOOs68Zdk6iqzL47cnnM0ZVkK2BAvpFeDJToA==}
+    dev: false
+
+  /i18next/22.4.6:
+    resolution: {integrity: sha512-9Tm1ezxWyzV+306CIDMBbYBitC1jedQyYuuLtIv7oxjp2ohh8eyxP9xytIf+2bbQfhH784IQKPSYp+Zq9+YSbw==}
+    dependencies:
+      '@babel/runtime': 7.20.7
     dev: false
 
   /ignore/5.2.4:
@@ -2085,6 +2125,26 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
 
+  /next-i18next/13.0.2_p7i4p7h2p2eeizygmwf2lmzdbe:
+    resolution: {integrity: sha512-aUHyKT2kztMgEP44zDB5KoW8XZUQawIdOYWXcrMH6lxAcS0kBsKX0uKMzGS5XlgLW88gvOVc3D7NdfCznLgyyg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      i18next: ^22.0.6
+      next: '>= 12.0.0'
+      react: '>= 17.0.2'
+      react-i18next: ^12.1.1
+    dependencies:
+      '@babel/runtime': 7.20.7
+      '@types/hoist-non-react-statics': 3.3.1
+      core-js: 3.27.0
+      hoist-non-react-statics: 3.3.2
+      i18next: 22.4.6
+      i18next-fs-backend: 2.1.1
+      next: 13.0.5_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-i18next: 12.1.1_6vygckh2jgtx4nucc3no6lnm3y
+    dev: false
+
   /next/13.0.5_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-awpc3DkphyKydwCotcBnuKwh6hMqkT5xdiBK4OatJtOZurDPBYLP62jtM2be/4OunpmwIbsS0Eyv+ZGU97ciEg==}
     engines: {node: '>=14.6.0'}
@@ -2406,6 +2466,26 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-i18next/12.1.1_6vygckh2jgtx4nucc3no6lnm3y:
+    resolution: {integrity: sha512-mFdieOI0LDy84q3JuZU6Aou1DoWW2fhapcTGeBS8+vWSJuViuoCLQAMYSb0QoHhXS8B0WKUOPpx4cffAP7r/aA==}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.20.7
+      html-parse-stringify: 3.0.1
+      i18next: 22.4.6
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-icons/4.7.1_react@18.2.0:
@@ -2934,6 +3014,11 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 3.0.2
       vfile-message: 3.1.3
+    dev: false
+
+  /void-elements/3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
   /which-boxed-primitive/1.0.2:
