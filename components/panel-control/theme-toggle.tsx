@@ -17,14 +17,14 @@ export function ThemeToggle() {
 
 		if (currentTheme === "dark") {
 			return (
-				<button className="btn btn-primary" role="button" onClick={() => setTheme("light")}>
-					<BsSunFill className="w-6 h-6 text-yellow-500" />
+				<button className="btn btn-primary rounded-full" role="button" onClick={() => setTheme("light")}>
+					<BsSunFill className="w-4 h-4 text-yellow-500" />
 				</button>
 			);
 		} else {
 			return (
-				<button className="btn btn-primary" onClick={() => setTheme("dark")}>
-					<BsMoonFill className="w-6 h-6 text-gray-900 " />
+				<button className="btn btn-primary rounded-full" onClick={() => setTheme("dark")}>
+					<BsMoonFill className="w-4 h-4 text-gray-900 " />
 				</button>
 			);
 		}

@@ -3,6 +3,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AboutMe } from "../components/about-me";
 import { PanelControl } from "../components/panel-control";
+import { Neuron } from "../components/shared/Neuron";
 
 type Props = {
 	// Add custom props here
@@ -10,35 +11,23 @@ type Props = {
 
 export default function Me(_props: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
-		<div className="w-full min-h-screen bg-white dark:bg-gray-800 text-black dark:text-gray-400">
-			<div className="p-2 lg:w-5/6 md:w-[90%] sm-w-[95%] min-h-screen mx-auto grid grid-cols-12 grid-flow-row-dense auto-rows-[15.2vh] gap-2 ">
-				<div className="lg:col-span-6 lg:row-span-4 sm:col-span-12 md:row-span-4">
-					<Card>
-						<AboutMe></AboutMe>
-					</Card>
+		<div className="w-full h-screen bg-[#333] dark:bg-[#191919] text-black dark:text-gray-400">
+			<div className="p-2 lg:w-[90%] md:w-[90%] min-h-[700px] max-h-[1200px] h-screen sm-w-[95%] mx-auto flex justify-start">
+				<div className="flex flex-col w-[60%]">
+					<div className="w-full h-[60%] rounded-3xl bg-white dark:bg-gray-700 p-8">
+						<AboutMe />
+					</div>
+					<div className="flex justify-start items-center w-full h-[40%] mt-2">
+						<div className="w-full h-full rounded-3xl bg-[#ff8] p-8">
+							<Neuron />
+						</div>
+						<div className="w-full h-full rounded-3xl bg-white dark:bg-gray-700 p-8 ml-2">2</div>
+					</div>
 				</div>
-				<div className="lg:col-span-4 lg:row-span-3">
-					<Card>02</Card>
-				</div>
-				<div className="lg:col-span-2 lg:row-span-4">
-					<Card>
-						<PanelControl></PanelControl>
-					</Card>
-				</div>
-				<div className="lg:col-span-4 lg:row-span-1">
-					<Card>04</Card>
-				</div>
-				<div className="lg:col-span-3 lg:row-span-2">
-					<Card>05</Card>
-				</div>
-				<div className="lg:col-span-3 lg:row-span-2">
-					<Card>06</Card>
-				</div>
-				<div className="lg:col-span-3 lg:row-span-2">
-					<Card>07</Card>
-				</div>
-				<div className="lg:col-span-3 lg:row-span-2">
-					<Card>08</Card>
+
+				<div className="flex flex-col w-[40%] ml-2">
+					<div className="w-full h-[40%] rounded-3xl bg-[#cfffce] p-8"></div>
+					<div className="w-full h-[60%] rounded-3xl bg-white dark:bg-gray-700 p-8 mt-2"></div>
 				</div>
 			</div>
 		</div>
@@ -48,10 +37,6 @@ export default function Me(_props: InferGetStaticPropsType<typeof getStaticProps
 interface ICardProps {
 	children: React.ReactNode;
 }
-
-const Card = ({ children }: ICardProps) => {
-	return <div className="w-full h-full rounded-lg bg-gray-200 dark:bg-gray-700">{children}</div>;
-};
 
 export const getStaticProps: GetStaticProps<Props> = async ({ locale }) => ({
 	props: {

@@ -1,3 +1,6 @@
 {
-  "about-me-intro": "about me intro"
+	"about-me-intro": "Hello, I'm Alfred, I'm a front-end developer.",
+	"about-me-stack": "I have done vue.js, next.js, and now I mainly focus on Angular.",
+	"about-me-base": "Currently the base is in Changzhou, Jiangsu, China.",
+	"about-me-social": "You can follow my blog. I am also maintaining a newsletter. Welcome to subscribe."
 }

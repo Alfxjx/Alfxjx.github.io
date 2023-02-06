@@ -1,3 +1,6 @@
 {
-  "about-me-intro": "关于我"
+	"about-me-intro": "你好，我是 Alfred，我是一个前端开发者。",
+	"about-me-stack": "做过vue.js、next.js，现在主要专注于Angular。",
+	"about-me-base": "目前base在中国江苏常州。",
+	"about-me-social": "可以关注我的blog，我也在维护一个周刊，欢迎订阅。"
 }
