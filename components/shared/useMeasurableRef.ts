@@ -1,10 +1,11 @@
 import { useState, useCallback } from "react";
-export function useMeasurableRef(): [HTMLCanvasElement | null, (x: HTMLCanvasElement | null) => void] {
-	const [canvasRef, setReadyState] = useState<HTMLCanvasElement | null>(null);
-	const canvasRefCb = useCallback((node: HTMLCanvasElement | null) => {
+
+export function useMeasurableRef<T>(): [T | null, (x: T | null) => void] {
+	const [respRef, setRespRef] = useState<T | null>(null);
+	const respRefCb = useCallback((node: T | null) => {
 		if (node !== null) {
-			setReadyState(node);
+			setRespRef(node);
 		}
 	}, []);
-	return [canvasRef, canvasRefCb];
+	return [respRef, respRefCb];
 }

@@ -219,7 +219,7 @@ export function Neuron() {
 	// 		setReadyState(node);
 	// 	}
 	// }, []);
-	const [canvasRef, canvasRefCb] = useMeasurableRef();
+	const [canvasRef, canvasRefCb] = useMeasurableRef<HTMLCanvasElement>();
 	const canvasCtxRef = useRef<CanvasRenderingContext2D | null>(null);
 	let hue = getRandomInt(0, 360);
 
