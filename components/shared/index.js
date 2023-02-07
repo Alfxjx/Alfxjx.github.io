@@ -205,4 +205,9 @@ var setCircles = () => {
 	}
 };
 
-export { onresize, setCircles, ctx, start, getRandomInt };
+onresize();
+
+setCircles();
+ctx.strokeStyle = "hsla(" + getRandomInt(0, 360) + ",90%,60%,0.6)";
+
+start();

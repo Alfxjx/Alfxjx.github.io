@@ -18,16 +18,16 @@ export default function Me(_props: InferGetStaticPropsType<typeof getStaticProps
 						<AboutMe />
 					</div>
 					<div className="flex justify-start items-center w-full h-[40%] mt-2">
-						<div className="w-full h-full rounded-3xl bg-[#ff8] p-8">
-							<Neuron />
-						</div>
-						<div className="w-full h-full rounded-3xl bg-white dark:bg-gray-700 p-8 ml-2">2</div>
+						<div className="w-3/6 h-full rounded-3xl bg-white dark:bg-gray-700 p-8"></div>
+						<div className="w-3/6 h-full rounded-3xl bg-[#ff8] p-8 ml-2">2</div>
 					</div>
 				</div>
 
 				<div className="flex flex-col w-[40%] ml-2">
 					<div className="w-full h-[40%] rounded-3xl bg-[#cfffce] p-8"></div>
-					<div className="w-full h-[60%] rounded-3xl bg-white dark:bg-gray-700 p-8 mt-2"></div>
+					<div className="w-full h-[60%] rounded-3xl bg-white dark:bg-gray-700 p-8 mt-2 overflow-hidden">
+						<Neuron />
+					</div>
 				</div>
 			</div>
 		</div>
