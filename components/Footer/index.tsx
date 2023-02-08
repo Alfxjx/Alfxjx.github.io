@@ -15,8 +15,8 @@ export const Footer = ({ showLink }) => {
 		<FooterWrapper>
 			<div className="my-main-font text">
 				<span>
-					Powerd by <Link href="https://nextjs.org">Next.js</Link> on{" "}
-					<Link href="https://vercel.com">Vercel</Link> with ♥ 2020-{thisYear}
+					Powerd by <Link href="https://nextjs.org">Next.js</Link> on <Link href="https://vercel.com">Vercel</Link> with
+					♥ 2020-{thisYear}
 				</span>
 			</div>
 			<IconList show={showLink}>
@@ -32,11 +32,11 @@ export const Footer = ({ showLink }) => {
 				<a href="https://juejin.cn/user/2330620383728551">
 					<BiPyramid width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
-				<a href="https://umami-alfxjx.up.railway.app/share/eaSooCGG/Blog">
-					<FaFilePdf width={SVG_SIZE} height={SVG_SIZE} />
+				<a href="https://analytics.umami.is/share/uGgFqvXK6lUS93GB/blog">
+					<MdAnalytics width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 				<a href="/xujianxiang-resume.pdf">
-					<MdAnalytics width={SVG_SIZE} height={SVG_SIZE} />
+					<FaFilePdf width={SVG_SIZE} height={SVG_SIZE} />
 				</a>
 			</IconList>
 		</FooterWrapper>
