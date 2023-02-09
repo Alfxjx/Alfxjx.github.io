@@ -5,6 +5,7 @@ import { AboutMe } from "../components/about-me";
 import { PanelControl } from "../components/panel-control";
 import { Neuron } from "../components/shared/Neuron";
 import { NeuronNext } from "../components/shared/NeuronNext";
+import { Coder } from "../components/shared/lotties/Coder";
 
 type Props = {
 	// Add custom props here
@@ -19,8 +20,8 @@ export default function Me(_props: InferGetStaticPropsType<typeof getStaticProps
 						<div className="flex-0">
 							<AboutMe />
 						</div>
-						<div className="flex-1 max-w-[400px] overflow-hidden max-xl:hidden">
-							<Neuron />
+						<div className="flex-1 max-w-[400px] flex justify-center items-end max-2xl:hidden">
+							<Coder />
 						</div>
 					</div>
 					<div className="flex justify-start items-center w-full h-[40%] max-lg:h-full mt-2">
