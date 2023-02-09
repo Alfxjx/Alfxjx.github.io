@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useMeasurableRef } from "./useMeasurableRef";
 
 const TP = 2 * Math.PI;
-const CSIZE = 400;
+const CSIZE = 125;
 
 let t = 0;
 let inc = 3;
@@ -44,7 +44,7 @@ class Circle {
 		ctx.beginPath();
 		ctx.moveTo(this.x + this.radius * rf, this.y);
 		ctx.arc(this.x, this.y, this.radius * rf, 0, TP);
-		ctx.fillStyle = "hsl(" + (hue + 5 * this.radius) + ",90%,50%)";
+		ctx.fillStyle = "hsl(" + (hue + 5 * this.radius) + ",35%,50%)";
 		ctx.fill();
 	}
 }
@@ -96,11 +96,11 @@ class Curve {
 		this.ctx.setLineDash([Math.max(1, tt), 4000]);
 		this.ctx.stroke(this.path);
 		if (tt > this.len + 40) {
-			this.car[this.car.length - 1].drawCircle(0.8, hue);
+			this.car[this.car.length - 1].drawCircle(0.6, hue);
 			if (tt > this.len + 120) return false;
 			else return true;
 		} else if (tt > this.len) {
-			let raf = (0.8 * (tt - this.len)) / 40;
+			let raf = (0.8 * (tt - this.len)) / 60;
 			this.car[this.car.length - 1].drawCircle(raf, hue);
 			return true;
 		} else {
@@ -115,7 +115,7 @@ var draw = (ctx: any, hue: any) => {
 	for (let i = 0; i < curves.length; i++) {
 		if (curves[i].drawCurve(hue)) grown++;
 	}
-	drawPoint(0, 0, "silver", ctx);
+	drawPoint(0, 0, "rgba(128,128,128,0.5)", ctx);
 	return grown;
 };
 
@@ -199,7 +199,7 @@ var animate = (ctx: any, hue: any) => {
 	if (!draw(ctx, hue) || t < 0) {
 		if (inc == 3) inc = -8;
 		else {
-			ctx.strokeStyle = "hsla(" + getRandomInt(0, 360) + ",90%,60%,0.6)";
+			ctx.strokeStyle = "hsla(" + getRandomInt(0, 360) + ",50%,40%,0.6)";
 			inc = 3;
 			t = 0;
 			eg = Math.random() < 0.3;
@@ -225,7 +225,7 @@ export function Neuron() {
 
 	useEffect(() => {
 		const handleResize = () => {
-			let D = Math.min(window.innerWidth, window.innerHeight) - 40;
+			let D = Math.min(window.innerWidth * 0.3, window.innerHeight) - 40;
 			if (canvasRef) {
 				canvasCtxRef.current = canvasRef.getContext("2d");
 				let ctx = canvasCtxRef.current!;
@@ -257,8 +257,14 @@ export function Neuron() {
 	}, [hue, canvasRef]);
 
 	return (
-		<div ref={bodyRef} className="text-center">
-			<canvas ref={canvasRefCb} width={2 * CSIZE} height={2 * CSIZE} onClick={handleStart}></canvas>
+		<div ref={bodyRef} className="flex justify-center">
+			<canvas
+				ref={canvasRefCb}
+				width={2 * CSIZE}
+				height={2 * CSIZE}
+				onClick={handleStart}
+				title="This is A Pen by Paul Slaymaker. Thank you Paul!"
+			></canvas>
 		</div>
 	);
 }

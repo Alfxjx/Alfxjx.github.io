@@ -7,7 +7,7 @@ export function PanelControl() {
 			<div>
 				<ThemeToggle></ThemeToggle>
 			</div>
-			<div className="ml-2">
+			<div>
 				<I18nBtn></I18nBtn>
 			</div>
 		</div>
