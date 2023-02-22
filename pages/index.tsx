@@ -16,11 +16,11 @@ export default function Me(_props: InferGetStaticPropsType<typeof getStaticProps
 		<div className="w-full h-screen bg-[#333] dark:bg-[#191919] text-black dark:text-gray-400">
 			<div className="p-2 xl:max-w-[1600px] lg:w-[80%] md:w-[90%] sm-w-[95%] min-h-[700px] max-h-[1200px] h-screen mx-auto flex max-lg:flex-col justify-start">
 				<div className="flex flex-col h-full w-[60%] max-lg:w-full max-lg:flex-1">
-					<div className="w-full h-[60%] max-lg:h-full rounded-3xl bg-white dark:bg-gray-700 p-8 flex justify-start">
+					<div className="w-full h-[60%] max-lg:h-full rounded-3xl bg-white dark:bg-gray-700 p-8 flex justify-between">
 						<div className="flex-0">
 							<AboutMe />
 						</div>
-						<div className="flex-1 max-w-[400px] flex justify-center items-end max-2xl:hidden">
+						<div className="flex-1 max-w-[300px] flex justify-center items-end max-xl:hidden">
 							<Coder />
 						</div>
 					</div>
